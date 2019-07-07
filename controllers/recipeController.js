@@ -21,10 +21,9 @@ module.exports = {
           { _id: dbRecipe.user_id },
           { $pull: { recipes: dbRecipe._id } },
           { new: true },
-        )
-      .catch(err => {
-        res.json(err);
-      });
+        );
+      })
+      .catch(err => res.json(err));
   },
 
   updateRecipe: function(req, res) {
