@@ -2,13 +2,10 @@ const db = require('../models');
 
 module.exports = {
   login: function(req, res) {
-    const {
-      body: { email, password },
-    } = req;
-    db.Doctor.findOne({ email }, function(err, user) {
+    db.Doctor.findOne({ email: req.body.email }, function(err, user) {
       if (err) throw err;
       if (user) {
-        user.comparePassword(password, function(err, isMatch) {
+        user.comparePassword(req.body.password, function(err, isMatch) {
           if (err) throw err;
           req.session.user = user;
           res.json(user);
