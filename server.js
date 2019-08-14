@@ -37,16 +37,18 @@ mongoose.Promise = Promise;
 
 dotenv.config();
 // Connect to the Mongo DB
-mongoose.connect('mongodb://localhost/aBetterYou', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
-// mongoose.connect(
-//   process.env.MONGODB_URI ||
-//     'mongodb://heroku_g9qnjs2k:4mu4ku96lnli703pl5uhq20fun@ds131902.mlab.com:31902/heroku_g9qnjs2k',
-//   { useNewUrlParser: true, useCreateIndex: true },
-// );
+
+// mongoose.connect('mongodb://localhost/aBetterYou', {
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false,
+// });
+
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    'mongodb://heroku_g9qnjs2k:4mu4ku96lnli703pl5uhq20fun@ds131902.mlab.com:31902/heroku_g9qnjs2k',
+  { useNewUrlParser: true, useCreateIndex: true },
+);
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
