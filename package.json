@@ -30,7 +30,8 @@
     "start": "concurrently \"node server.js\" \"npm run client\"",
     "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
-    "seedDB": "node scripts/seedDB.js"
+    "seedDB": "node scripts/seedDB.js",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
   "repository": {
     "type": "git",
@@ -40,5 +41,6 @@
   "bugs": {
     "url": "https://github.com/a-better-you-2/abttru-2.0/issues"
   },
-  "homepage": "https://github.com/a-better-you-2/abttru-2.0#readme"
+  "homepage": "https://github.com/a-better-you-2/abttru-2.0#readme",
+  "heroku-run-build-script": true
 }
