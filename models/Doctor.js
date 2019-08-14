@@ -12,7 +12,7 @@ const doctorSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  facility_name: String,
+  facilityName: String,
   specialty: String,
   patients: [
     {
