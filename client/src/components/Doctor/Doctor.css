@@ -1,50 +1,58 @@
 .isbn {
-    width: 10%;
-  }
-  
-  .name{
-    width: 20%;
-  }
-  
-  .risk_factor {
-    width: 20%;
-  }
-  
-  .diet_recommendaton {
-    width: 25%;
-  }
+  width: 10%;
+}
 
-  .diet_restriction {
-    width: 25%;
-  }
+.name {
+  width: 20%;
+}
 
-  .patient {
-    height: 125px;
-  }
+.risk_factor {
+  width: 20%;
+}
 
-  .patient-photo {
-    width: 100px;
-    height: 100px;
-    padding: 2px;
-    margin: 5px;
-    float: left;
-  }
+.diet_recommendaton {
+  width: 25%;
+}
 
-  .patient-info {
-    padding: 10px;
-    float:left;
-    margin-right: 150px;
-  }
+.diet_restriction {
+  width: 25%;
+}
 
-  button#dropdownMenuButton {
-    width: auto;
-    height: auto;
+.patient {
+  height: 125px;
+}
+
+.patient-photo {
+  width: 100px;
+  height: 100px;
+  padding: 2px;
+  margin: 5px;
+  float: left;
+}
+
+#patient-wrapper {
+  display: inline-flex;
+}
+
+.stepzilla-button-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.patient {
+  display: inline;
+}
+
+.patient-info {
+  float: left;
+}
+
+button#dropdownMenuButton {
+  width: auto;
+  height: auto;
 }
 
 @media screen and (max-width: 600px) {
-  .patient {
-    height: 100px;
-  }
   .patient-photo {
     width: 75px;
     height: 75px;
@@ -53,15 +61,13 @@
   }
   .patient-info {
     padding: 10px;
-    float:left;
-    margin-right: 0px;
+    float: left;
   }
   .first-last {
     font-size: 12px;
   }
   .health {
     font-size: 10px;
+    margin: 0.1em;
   }
 }
-
-  

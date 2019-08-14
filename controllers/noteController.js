@@ -6,7 +6,7 @@ module.exports = {
       .then(dbNote => {
         res.json(dbNote);
         return db.Recipe.findOneAndUpdate(
-          { _id: dbNote.recipe_id },
+          { _id: dbNote.recipeId },
           { $push: { notes: dbNote } },
           { upsert: true, new: true },
         );
@@ -18,7 +18,7 @@ module.exports = {
     db.Note.findOneAndRemove({ _id: req.params.id })
       .then(dbNote => {
         return db.Recipe.findByIdAndUpdate(
-          { _id: dbNote.recipe_id },
+          { _id: dbNote.recipeId },
           { $pull: { notes: dbNote._id } },
           { new: true },
         );

@@ -24,7 +24,7 @@
     z-index: 1;
   }
 
-.dropdown-toggle { 
+.dropdown-toggle {
   width: 100px;
   height: 20px;
   margin-left: 10px;
@@ -41,14 +41,14 @@
   margin-bottom: 5px;
 }
 
-.dropdown-menu>li>a:hover { 
+.dropdown-menu>li>a:hover {
   background: #f1f9fd ;
   width: 100%;
-} 
+}
 
 /* $search-blue */
-.dropdown-header { 
-  background: #ccc; font-size: 14px; font-weight: 700; padding-top: 5px; padding-bottom: 5px; margin-top: 10px; margin-bottom: 5px 
+.dropdown-header {
+  background: #ccc; font-size: 14px; font-weight: 700; padding-top: 5px; padding-bottom: 5px; margin-top: 10px; margin-bottom: 5px
 }
 
 .scrollable-menu {
@@ -73,7 +73,6 @@
 .recipe-info {
   padding: 10px;
   float:left;
-  margin-right: 150px;
 }
 
 .card-holder {
@@ -102,7 +101,7 @@ RingLoader {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
 }
-/* 
+/*
 @media screen and (max-width: 600px) {
   .js-plotly-plot {
     margin-top: 150px;

@@ -1,20 +1,29 @@
 #user-thumb {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto;
-    padding: 2px;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+  padding: 2px;
+}
+
+#user-photo,
+#user-stats {
+  margin: 1em;
 }
 
 .health-stats {
-    display:inline;
+  display:inline;
 }
 
 .patients {
-    text-align: center;
-    color: #F3F0DD;
+  text-align: center;
+  color: #F3F0DD;
 }
 
-.user-info { 
-    padding: 10px;
-    color: #F3F0DD;
+.user-info {
+  color: #F3F0DD;
+}
+
+a.stepzilla-link {
+  text-decoration: none;
+  color: #eee;
 }

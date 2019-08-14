@@ -1,8 +1,6 @@
 import React from 'react';
-// import { Link } from "react-router-dom";
 import axios from 'axios';
 import { Card, Button } from 'reactstrap';
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Step1 from '../formComponents/StepOne';
 import Step2 from '../formComponents/StepTwo';
 import Step3 from '../formComponents/StepThree';
@@ -27,28 +25,45 @@ class EditUser extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-    axios
-      .put(`/api/abttru/user/${this.props.match.params.id}`, this.state)
-      .then(res =>
-        this.props.history.push({
-          pathname: `/show/${this.state._id}`,
-          params: { data: this.state, doctor_id: this.state.doctor_id },
-        }),
-      ) // redirect back to the show page
-      .catch(err => console.log(err));
+    const { _id, doctorId } = this.state;
+    axios.put(`/api/abttru/user/${_id}`, this.state).then(() =>
+      this.props.history.push({
+        pathname: `/show/${_id}`,
+        params: { data: this.state, doctorId: doctorId },
+      }),
+    ); // redirect back to the show page
   };
 
   render() {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      userPhoto,
+      sex,
+      dob,
+      heightFoot,
+      heightInch,
+      weight,
+      waist,
+      bpSystolic,
+      bpDiastolic,
+      riskFactor,
+      dietRecommendation,
+      dietRestriction,
+    } = this.state;
+
     const steps = [
       {
         name: 'General Patient Info',
         component: (
           <Step1
-            first_name={this.state.first_name}
-            last_name={this.state.last_name}
-            email={this.state.email}
-            password={this.state.password}
-            user_photo={this.state.user_photo}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            password={password}
+            userPhoto={userPhoto}
             onChange={this.onChange}
           />
         ),
@@ -58,11 +73,11 @@ class EditUser extends React.Component {
         component: (
           <Step2
             pathName={this.props.match.path}
-            sex={this.state.sex}
-            heightFoot={this.state.heightFoot}
-            heightInch={this.state.heightInch}
-            weight={this.state.weight}
-            waist={this.state.waist}
+            sex={sex}
+            heightFoot={heightFoot}
+            heightInch={heightInch}
+            weight={weight}
+            waist={waist}
             onChange={this.onChange}
           />
         ),
@@ -71,11 +86,11 @@ class EditUser extends React.Component {
         name: 'Patient Health Factors',
         component: (
           <Step3
-            bp_systolic={this.state.bp_systolic}
-            bp_diastolic={this.state.bp_diastolic}
-            risk_factor={this.state.risk_factor}
-            diet_recommendation={this.state.diet_recommendation}
-            diet_restriction={this.state.diet_restriction}
+            bpSystolic={bpSystolic}
+            bpDiastolic={bpDiastolic}
+            riskFactor={riskFactor}
+            dietRecommendation={dietRecommendation}
+            dietRestriction={dietRestriction}
             onChange={this.onChange}
           />
         ),
@@ -84,22 +99,22 @@ class EditUser extends React.Component {
         name: 'Confirm & Save',
         component: (
           <Step4
-            first_name={this.state.first_name}
-            last_name={this.state.last_name}
-            email={this.state.email}
-            password={this.state.password}
-            user_photo={this.state.user_photo}
-            dob={this.state.dob}
-            sex={this.state.sex}
-            heightFoot={this.state.heightFoot}
-            heightInch={this.state.heightInch}
-            weight={this.state.weight}
-            waist={this.state.waist}
-            bp_systolic={this.state.bp_systolic}
-            bp_diastolic={this.state.bp_diastolic}
-            risk_factor={this.state.risk_factor}
-            diet_recommendation={this.state.diet_recommendation}
-            diet_restriction={this.state.diet_restriction}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            password={password}
+            userPhoto={userPhoto}
+            dob={dob}
+            sex={sex}
+            heightFoot={heightFoot}
+            heightInch={heightInch}
+            weight={weight}
+            waist={waist}
+            bpSystolic={bpSystolic}
+            bpDiastolic={bpDiastolic}
+            riskFactor={riskFactor}
+            dietRecommendation={dietRecommendation}
+            dietRestriction={dietRestriction}
           />
         ),
       },

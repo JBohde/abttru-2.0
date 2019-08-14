@@ -1,11 +1,11 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
 let noteSchema = new Schema({
-  recipe_id: String,
-  body: String
+  recipeId: String,
+  body: String,
 });
 
 // Export the Note model
-module.exports =mongoose.model("Note", noteSchema);;
+module.exports = mongoose.model('Note', noteSchema);

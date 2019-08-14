@@ -5,10 +5,11 @@
   "main": "server.js",
   "author": "abttru admin",
   "dependencies": {
-    "bcrypt": "^2.0.1",
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.2",
     "chai": "^4.2.0",
     "concurrently": "^3.5.0",
+    "dotenv": "^8.0.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.8.0",
     "express": "^4.15.4",

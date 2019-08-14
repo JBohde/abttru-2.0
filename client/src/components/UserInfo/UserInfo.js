@@ -8,18 +8,18 @@ import './UserInfo.css';
 
 class UserInfo extends React.Component {
   state = {
-    patient_id: this.props.match.params.id,
-    doctor_id: '',
+    patientId: this.props.match.params.id,
+    doctorId: '',
     name: '',
     password: '',
-    risk_factor: '',
-    diet_recommendation: '',
-    diet_restriction: '',
+    riskFactor: '',
+    dietRecommendation: '',
+    dietRestriction: '',
   };
 
   componentDidMount() {
     axios
-      .get(`/api/abttru/user/${this.state.patient_id}`)
+      .get(`/api/abttru/user/${this.state.patientId}`)
       .then(res => {
         this.setState(res.data);
       })
@@ -30,57 +30,65 @@ class UserInfo extends React.Component {
     const id = event.target.id;
     axios
       .delete(`/api/abttru/user/${id}`)
-      .then(() => this.props.history.push(`/doctor/${this.state.doctor_id}`))
+      .then(() => this.props.history.push(`/doctor/${this.state.doctorId}`))
       .catch(err => console.log(err));
   };
 
   render() {
     Moment.locale('en');
-    var dob = this.state.dob;
-
+    const {
+      _id,
+      dob,
+      name,
+      doctorId,
+      firstName,
+      lastName,
+      userPhoto,
+      email,
+      riskFactor,
+      heightFoot,
+      heightInch,
+      waist,
+      weight,
+      dietRecommendation,
+      dietRestriction,
+      bpSystolic,
+      bpDiastolic,
+    } = this.state;
     return (
       <div className="container">
-        <Card className="patient-card" key={this.state._id}>
-          <h4>{this.state.name}</h4>
+        <Card className="patient-card" key={_id}>
+          <h4>{name}</h4>
           <CardBody>
             <div className="user-info">
               <h5 className="patients">
-                <Link
-                  to={`/doctor/${this.state.doctor_id}`}
-                  className="patients"
-                >
+                <Link to={`/doctor/${doctorId}`} className="patients">
                   <FontAwesomeIcon icon="list" /> My Patients
                 </Link>
               </h5>
 
-              <h2 className="patients">
-                {this.state.first_name + ' ' + this.state.last_name}
-              </h2>
-              <div className="row">
-                <img
-                  id="user-thumb"
-                  src={this.state.user_photo}
-                  alt={this.state.first_name}
-                />
+              <h2 className="patients">{`${firstName} ${lastName}`}</h2>
+              <div id="user-photo" className="row">
+                <img id="user-thumb" src={userPhoto} alt={firstName} />
               </div>
-              <div className="row">
+              <div id="user-stats" className="row">
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                   <h5 className="health-stats">Email: </h5>
-                  <span> {this.state.email}</span>
+                  <span>{email}</span>
                   <br />
                   <h5 className="health-stats">Risk Factor: </h5>
-                  <span>{this.state.risk_factor}</span>
+                  <span>{riskFactor}</span>
                   <br />
                   <h5 className="health-stats">Height: </h5>
                   <span>
-                    {this.state.heightFoot}'{this.state.heightInch}"
+                    {heightFoot}'{heightInch}"
                   </span>
                   <br />
                   <h5 className="health-stats">Weight: </h5>
-                  <span>{this.state.weight}</span>
+                  <span>{weight}</span>
                   <br />
                   <h5 className="health-stats">Waist Measure: </h5>
-                  <span>{this.state.waist}</span>
+                  <span>{waist}</span>
                   <br />
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -92,43 +100,46 @@ class UserInfo extends React.Component {
                   </span>
                   <br />
                   <h5 className="health-stats">Diet Recommendation: </h5>
-                  <span>{this.state.diet_recommendation}</span>
+                  <span>{dietRecommendation}</span>
                   <br />
                   <h5 className="health-stats">Diet Restriction: </h5>
-                  <span>{this.state.diet_restriction}</span>
+                  <span>{dietRestriction}</span>
                   <br />
                   <h5 className="health-stats">Systolic BP: </h5>
-                  <span>{this.state.bp_systolic}</span>
+                  <span>{bpSystolic}</span>
                   <br />
                   <h5 className="health-stats">Diastolic BP: </h5>
-                  <span>{this.state.bp_diastolic}</span>
+                  <span>{bpDiastolic}</span>
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-3 col-lg-9" />
-              <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <Button
-                  id={this.state._id}
-                  onClick={this.deletePatient.bind(this)}
-                  className="btn-lg delete"
-                  color="primary"
-                >
-                  Delete
-                </Button>
-                <Link
-                  to={{
-                    pathname: `/edit/${this.state._id}`,
-                    params: {
-                      data: this.state,
-                      doctor_id: this.state.doctor_id,
-                    },
-                  }}
-                >
-                  <Button className="btn-lg btn-primary" color="primary">
-                    Edit Info&nbsp;
+              <div className="col-xs-12 col-sm-12 col-md-3 col-lg-8" />
+              <div className="col-xs-12 col-sm-12 col-md-3 col-lg-4">
+                <div className="stepzilla-button-wrapper">
+                  <Button
+                    id={_id}
+                    onClick={this.deletePatient.bind(this)}
+                    className="btn-lg delete"
+                    color="danger"
+                  >
+                    Delete
                   </Button>
-                </Link>
+                  <Button className="btn-lg" color="primary">
+                    <Link
+                      className='stepzilla-link'
+                      to={{
+                        pathname: `/edit/${_id}`,
+                        params: {
+                          data: this.state,
+                          doctor_id: doctorId,
+                        },
+                      }}
+                    >
+                      Edit Info
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </CardBody>

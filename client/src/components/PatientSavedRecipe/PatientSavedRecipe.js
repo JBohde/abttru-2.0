@@ -5,25 +5,24 @@ import UserJumbotron from '../UserJumbotron/';
 import './PatientSavedRecipe.css';
 import PiePlot from '../Graphs/PiePlot';
 import { RingLoader } from 'react-spinners';
-// import { css } from 'emotion';
+import { Button } from 'reactstrap';
 
 class PatientSavedRecipe extends React.Component {
   state = {
     data: [],
-    initial_user_id: this.props.match.params.id,
-    user_id: this.props.match.params.id,
-    recipe_id: '',
+    userId: this.props.match.params.id,
+    recipeId: '',
     name: '',
     password: '',
-    user_photo: '',
-    risk_factor: '',
-    diet_recommendation: '',
-    diet_restriction: '',
+    userPhoto: '',
+    riskFactor: '',
+    dietRecommendation: '',
+    dietRestriction: '',
     recipes: [],
-    recipe_data: [],
-    recipe_index: 0,
+    recipeData: [],
+    index: 0,
     notes: [],
-    note_text: '',
+    noteText: '',
     isUserPage: false,
     showResults: true,
     loading: false,
@@ -34,109 +33,109 @@ class PatientSavedRecipe extends React.Component {
       loading: true,
       showResults: false,
     });
-    axios.get(`/api/abttru/user/${this.state.initial_user_id}`).then(res => {
+    axios.get(`/api/abttru/user/${this.state.userId}`).then(res => {
       this.setState(res.data);
-      this.setState(
-        {
-          loading: false,
-          showResults: true,
-        },
-        () => console.log(this.state),
-      );
+      this.setState({
+        loading: false,
+        showResults: true,
+      });
       if (res.data.recipes.length < 1) {
         return;
-      } else {
-        this.getData();
       }
+      this.getData();
     });
   }
 
   getData = () => {
     this.setState({ showResults: false, loading: true });
-    let allUri = this.state.recipes.map(recipe => recipe.recipe_uri);
+    let allUri = this.state.recipes.map(recipe => recipe.uri);
     let length = allUri.length;
     if (length === 0) {
       this.setState({
-        recipe_index: 0,
+        index: 0,
         showResults: true,
         loading: false,
       });
     } else {
       let randomRecipe = Math.floor(Math.random() * length);
       this.setState({
-        recipe_index: randomRecipe,
+        index: randomRecipe,
         showResults: true,
         loading: false,
       });
     }
 
-    let recipeUri = allUri[this.state.recipe_index];
-    let edemamUri = recipeUri.replace(
-      /[#]/gi,
-      '%23',
-      /[:]/gi,
-      '%3A',
-      /[/]/,
-      '%2F',
-    );
+    let recipeUri = allUri[this.state.index];
+    let edemamUri = encodeURIComponent(recipeUri);
     axios
       .get(
         `https://api.edamam.com/search?r=${edemamUri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
       )
       .then(recipe => {
-        this.setState({ recipe_data: recipe.data });
+        this.setState({ recipeData: recipe.data });
       });
+  };
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
 
   changeRecipe = e => {
     this.setState({ loading: true, showResults: false });
     const id = e.target.id;
-    const uri = id.replace(/[#]/gi, '%23', /[:]/gi, '%3A', /[/]/, '%2F');
+    const uri = encodeURIComponent(id);
     axios
       .get(
         `https://api.edamam.com/search?r=${uri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
       )
       .then(recipe => {
-        const pos = this.state.recipes.map(e => e.recipe_uri.indexOf(id));
+        const position = this.state.recipes.map(r => r.uri).indexOf(id);
         this.setState({
-          recipe_data: recipe.data,
-          recipe_index: pos,
+          recipeData: recipe.data,
+          index: position,
           loading: false,
           showResults: true,
         });
       });
   };
 
-  makeCard = () => {
-    const savedCard = this.state.recipes.map(recipe => (
-      <div key={recipe._id}>
-        <RecipeCard
-          saveNote={this.saveNote}
-          deleteRecipe={this.deleteRecipe}
-          flipCard={this.flipCard}
-          key={recipe._id}
-          recipe_img={recipe.recipe_img}
-          recipe_name={recipe.recipe_name}
-          recipe_link={recipe.recipe_link}
-          recipe_id={recipe._id}
-          notes={recipe.notes.map(note => (
-            <div key={note._id} className="notes">
-              {note.body}
-              <button
-                className="delete-note"
-                id={note._id}
-                onClick={this.deleteNote}
-              >
-                x
-              </button>
-            </div>
-          ))}
-          note_text={this.state.note_text}
-          onChange={this.onChange}
-        />
+  makeNotes = notes =>
+    notes.map(note => (
+      <div key={note._id} className="notes">
+        {note.body}
+        <button className="delete-note" id={note._id} onClick={this.deleteNote}>
+          x
+        </button>
       </div>
     ));
-    return savedCard[this.state.recipe_index];
+
+  makeCard = () => {
+    const { recipes, index } = this.state;
+    const savedCard = recipes.map(recipe => {
+      const { saveNote, deleteRecipe, flipCard } = this;
+      const { noteText } = this.state;
+      const { _id, name, image, link, notes } = recipe;
+      return (
+        <div key={_id}>
+          <RecipeCard
+            saveNote={saveNote}
+            deleteRecipe={deleteRecipe}
+            flipCard={flipCard}
+            key={_id}
+            image={image}
+            name={name}
+            link={link}
+            id={_id}
+            notes={this.makeNotes(notes)}
+            noteText={noteText}
+            onChange={this.onChange}
+          />
+        </div>
+      );
+    });
+    return savedCard[index];
   };
 
   flipCard = () => {
@@ -150,94 +149,78 @@ class PatientSavedRecipe extends React.Component {
     return;
   };
 
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
   saveNote = event => {
     event.preventDefault();
     const id = event.target.id;
-    const noteObj = { recipe_id: id, body: this.state.note_text };
+    const noteObj = { recipeId: id, body: this.state.noteText };
     axios
       .post(`/api/abttru/recipes/notes/${id}`, noteObj)
-      .then(() => {
-        this.setState({ note_text: '' });
-      })
+      .then(() => this.setState({ noteText: '' }))
       .then(() => {
         axios
           .get(`/api/abttru/user/${this.props.match.params.id}`)
-          .then(res => {
-            this.setState(res.data);
-          });
-      })
-      .catch(err => console.log(err));
+          .then(res => this.setState(res.data));
+      });
   };
 
   deleteNote = event => {
     const id = event.target.id;
-    axios
-      .delete(`/api/abttru/recipes/notes/${id}`)
-      .then(() => {
-        axios
-          .get(`/api/abttru/user/${this.props.match.params.id}`)
-          .then(res => {
-            this.setState(res.data);
-          });
-      })
-      .catch(err => console.log(err));
+    axios.delete(`/api/abttru/recipes/notes/${id}`).then(() => {
+      axios
+        .get(`/api/abttru/user/${this.props.match.params.id}`)
+        .then(res => this.setState(res.data));
+    });
   };
 
   deleteRecipe = event => {
     const id = event.target.id;
-    axios
-      .delete(`/api/abttru/recipes/${id}`)
-      .then(() => {
-        axios
-          .get(`/api/abttru/user/${this.props.match.params.id}`)
-          .then(res => {
-            this.setState(res.data);
-            this.getData();
-          });
-      })
-      .catch(err => console.log(err));
+    axios.delete(`/api/abttru/recipes/${id}`).then(() => {
+      axios.get(`/api/abttru/user/${this.props.match.params.id}`).then(res => {
+        this.setState(res.data);
+        this.getData();
+      });
+    });
   };
 
   render() {
-    const savedSelect = this.state.recipes.map(recipe => (
-      <li className="recipe" id={recipe.recipe_uri} key={recipe._id}>
-        <a
-          href={recipe.recipe_link}
-          title={recipe.recipe_name}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="img-responsive pic"
-            src={recipe.recipe_img}
-            alt="alt"
-          />
-        </a>
-        <div className="recipe-info">
-          <h6 className="recipe_name">{recipe.recipe_name}</h6>
-          <br />
-          <button
-            className="recipe-card-button"
-            id={recipe.recipe_uri}
-            onClick={this.changeRecipe}
-          >
-            GET RECIPE CARD
-          </button>
-        </div>
-      </li>
-    ));
+    const savedSelect = this.state.recipes.map(recipe => {
+      const { _id, uri, link, name, image } = recipe;
+      return (
+        <li className="recipe" id={uri} key={_id}>
+          <a href={link} title={name} target="_blank" rel="noopener noreferrer">
+            <img className="img-responsive pic" src={image} alt="alt" />
+          </a>
+          <div className="recipe-info">
+            <h6 className="recipe_name">{name}</h6>
+            <br />
+            <Button
+              className="recipe-card-button"
+              id={uri}
+              onClick={this.changeRecipe}
+            >
+              GET RECIPE CARD
+            </Button>
+          </div>
+        </li>
+      );
+    });
 
-    const piePlot = this.state.recipe_data.map(recipe => (
+    const piePlot = this.state.recipeData.map(recipe => (
       <div key={recipe.uri}>
         <PiePlot digestData={recipe.digest} yieldData={recipe.yield} />
       </div>
     ));
+
+    const {
+      userId,
+      riskFactor,
+      dietRecommendation,
+      dietRestriction,
+      isUserPage,
+      userPhoto,
+      loading,
+      showResults,
+    } = this.state;
 
     return (
       <div>
@@ -246,19 +229,19 @@ class PatientSavedRecipe extends React.Component {
             <div>
               <UserJumbotron
                 className={'col-md-12'}
-                userId={this.state.initial_user_id}
-                risk_factor={this.state.risk_factor}
-                diet_label={this.state.diet_recommendation}
-                health_label={this.state.diet_restriction}
-                isUserPage={this.state.isUserPage}
-                user_photo={this.state.user_photo}
+                userId={userId}
+                riskFactor={riskFactor}
+                dietLabel={dietRecommendation}
+                healthLabel={dietRestriction}
+                isUserPage={isUserPage}
+                userPhoto={userPhoto}
               />
               <div className="">
                 <div className="row">
                   <div className="col-3 col-sm-3 col-md-5 cold-lg-5" />
                   <div className="col-6 col-sm-6 col-md-2 cold-lg-2 sweet-loader">
                     <RingLoader
-                      loading={this.state.loading}
+                      loading={loading}
                       size={200}
                       color={'#EC0B43'}
                     />
@@ -266,7 +249,7 @@ class PatientSavedRecipe extends React.Component {
                   <div className="col-3 col-sm-3 col-md-5 cold-lg-5" />
                 </div>
 
-                {this.state.showResults ? (
+                {showResults ? (
                   <div>
                     <div className="row">
                       <div className="col-12 col-sm-12 col-md-6 col-lg-6">

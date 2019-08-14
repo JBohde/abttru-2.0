@@ -16,24 +16,24 @@ class Create extends React.Component {
     super(props);
 
     this.state = {
-      doctor_id: this.props.match.params.id,
-      user_id: '',
-      first_name: '',
-      last_name: '',
+      doctorId: this.props.match.params.id,
+      userId: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
-      user_photo: '',
+      userPhoto: '',
       dob: '',
       sex: '',
       heightFoot: '',
       heightInch: '',
       weight: '',
       waist: '',
-      bp_systolic: '',
-      bp_diastolic: '',
-      risk_factor: '',
-      diet_recommendation: '',
-      diet_restriction: '',
+      bpSystolic: '',
+      bpDiastolic: '',
+      riskFactor: '',
+      dietRecommendation: '',
+      dietRestriction: '',
       isValid: true,
     };
   }
@@ -46,27 +46,20 @@ class Create extends React.Component {
 
   onSubmit = e => {
     e.preventDefault();
-
-    if (this.state.user_photo === '' && this.state.sex === 'Male') {
-      this.setState({
-        user_photo:
-          'http://www.92tangle.com/wp-content/uploads/2017/09/generic-headshot-male.png',
-      });
-    } else if (this.state.user_photo === '' && this.state.sex === 'Female') {
-      this.setState({
-        user_photo: 'http://www.uttyler.edu/images/headshot-fem.png',
-      });
-    }
-    if (this.state.first_name && this.state.password) {
+    const { firstName, password } = this.state;
+    const {
+      history,
+      match: {
+        params: { id },
+      },
+    } = this.props;
+    if (firstName && password) {
       this.setState({
         isValid: true,
       });
       axios
-        .post(`/api/abttru/doctor/${this.props.match.params.id}`, this.state)
-        .then(res =>
-          this.props.history.push(`/doctor/${this.props.match.params.id}`),
-        ) // redirect to admin page
-        .catch(err => console.log(err));
+        .post(`/api/abttru/doctor/${id}`, this.state)
+        .then(() => history.push(`/doctor/${id}`)); // redirect to admin page
     } else {
       this.setState({
         isValid: false,
@@ -75,16 +68,40 @@ class Create extends React.Component {
   };
 
   render() {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      userPhoto,
+      dob,
+      sex,
+      heightFoot,
+      heightInch,
+      weight,
+      waist,
+      bpSystolic,
+      bpDiastolic,
+      riskFactor,
+      dietRecommendation,
+      dietRestriction,
+      isValid,
+    } = this.state;
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
     const steps = [
       {
         name: 'General Patient Info',
         component: (
           <Step1
-            first_name={this.state.first_name}
-            last_name={this.state.last_name}
-            email={this.state.email}
-            password={this.state.password}
-            user_photo={this.state.user_photo}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            password={password}
+            userPhoto={userPhoto}
             onChange={this.onChange}
           />
         ),
@@ -93,12 +110,12 @@ class Create extends React.Component {
         name: 'Patient Statistics',
         component: (
           <Step2
-            dob={this.state.dob}
-            sex={this.state.sex}
-            heightFoot={this.state.heightFoot}
-            heightInch={this.state.heightInch}
-            weight={this.state.weight}
-            waist={this.state.waist}
+            dob={dob}
+            sex={sex}
+            heightFoot={heightFoot}
+            heightInch={heightInch}
+            weight={weight}
+            waist={waist}
             onChange={this.onChange}
           />
         ),
@@ -107,11 +124,11 @@ class Create extends React.Component {
         name: 'Patient Health Factors',
         component: (
           <Step3
-            bp_systolic={this.state.bp_systolic}
-            bp_diastolic={this.state.bp_diastolic}
-            risk_factor={this.state.risk_factor}
-            diet_recommendation={this.state.diet_recommendation}
-            diet_restriction={this.state.diet_restriction}
+            bpSystolic={bpSystolic}
+            bpDiastolic={bpDiastolic}
+            riskFactor={riskFactor}
+            dietRecommendation={dietRecommendation}
+            dietRestriction={dietRestriction}
             onChange={this.onChange}
           />
         ),
@@ -120,22 +137,22 @@ class Create extends React.Component {
         name: 'Confirm & Save',
         component: (
           <Step4
-            first_name={this.state.first_name}
-            last_name={this.state.last_name}
-            email={this.state.email}
-            password={this.state.password}
-            user_photo={this.state.user_photo}
-            dob={this.state.dob}
-            sex={this.state.sex}
-            heightFoot={this.state.heightFoot}
-            heightInch={this.state.heightInch}
-            weight={this.state.weight}
-            waist={this.state.waist}
-            bp_systolic={this.state.bp_systolic}
-            bp_diastolic={this.state.bp_diastolic}
-            risk_factor={this.state.risk_factor}
-            diet_recommendation={this.state.diet_recommendation}
-            diet_restriction={this.state.diet_restriction}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            password={password}
+            userPhoto={userPhoto}
+            dob={dob}
+            sex={sex}
+            heightFoot={heightFoot}
+            heightInch={heightInch}
+            weight={weight}
+            waist={waist}
+            bpSystolic={bpSystolic}
+            bpDiastolic={bpDiastolic}
+            riskFactor={riskFactor}
+            dietRecommendation={dietRecommendation}
+            dietRestriction={dietRestriction}
           />
         ),
       },
@@ -151,10 +168,7 @@ class Create extends React.Component {
           <CardBody>
             <div>
               <h5 className="list">
-                <Link
-                  to={{ pathname: `/doctor/${this.props.match.params.id}` }}
-                  id="doc-home"
-                >
+                <Link to={{ pathname: `/doctor/${id}` }} id="doc-home">
                   <FontAwesomeIcon icon="list" /> Doctor Home
                 </Link>
               </h5>
@@ -188,7 +202,7 @@ class Create extends React.Component {
           </CardBody>
         </Card>
         <br />
-        {!this.state.isValid && (
+        {!isValid && (
           <Alert color="danger">Please fill the required form fields.</Alert>
         )}
       </div>

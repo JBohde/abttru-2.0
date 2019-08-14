@@ -10,8 +10,6 @@ class ControlledCarousel extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.handleSelect = this.handleSelect.bind(this);
-
     this.state = {
       name: '',
       data: [],
@@ -27,8 +25,6 @@ class ControlledCarousel extends React.Component {
   }
 
   handleInputChange = event => {
-    // Destructure the name and value properties off of event.target
-    // Update the appropriate state
     const { name, value } = event.target;
     this.setState({
       [name]: value,
@@ -45,19 +41,15 @@ class ControlledCarousel extends React.Component {
 
   next() {
     if (this.animating) return;
-    const nextIndex =
-      this.state.activeIndex === this.state.data.length - 1
-        ? 0
-        : this.state.activeIndex + 1;
+    const { activeIndex, data } = this.state;
+    const nextIndex = activeIndex === data.length - 1 ? 0 : activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
 
   previous() {
     if (this.animating) return;
-    const nextIndex =
-      this.state.activeIndex === 0
-        ? this.state.data.length - 1
-        : this.state.activeIndex - 1;
+    const { activeIndex, data } = this.state;
+    const nextIndex = activeIndex === 0 ? data.length - 1 : activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
 
@@ -68,6 +60,8 @@ class ControlledCarousel extends React.Component {
 
   getRecipes(e) {
     e.preventDefault();
+    const appId = process.env.REACT_APP_EDAMAME_APP_ID;
+    const appKey = process.env.REACT_APP_EDAMAME_APP_KEY;
     this.setState({
       showCarousel: false,
       loading: true,
@@ -77,7 +71,7 @@ class ControlledCarousel extends React.Component {
       .get(
         `https://api.edamam.com/search?q=${
           this.state.name
-        }&app_id=6ee418a4&app_key=38910f6a58e3c348dd000cd7a9fc1139&calories=591-722&from=${firstIndex}&Diet=${
+        }&app_id=${appId}&app_key=${appKey}&calories=591-722&from=${firstIndex}&Diet=${
           this.props.diet_label
         }
         &Health=${this.props.health_label}`,
@@ -96,11 +90,11 @@ class ControlledCarousel extends React.Component {
     const target = event.target;
     const id = this.props.userId;
     const recipeObj = {
-      user_id: id,
-      recipe_name: target.getAttribute('name'),
-      recipe_img: target.getAttribute('img'),
-      recipe_link: target.getAttribute('link'),
-      recipe_uri: target.id,
+      userId: id,
+      name: target.getAttribute('name'),
+      image: target.getAttribute('img'),
+      link: target.getAttribute('link'),
+      uri: target.id,
     };
     axios
       .post(`/api/abttru/recipes/${id}`, recipeObj)
@@ -108,30 +102,29 @@ class ControlledCarousel extends React.Component {
   };
 
   render() {
-    const pathName = this.props.pathName;
+    const { pathName } = this.props;
     let searchedRecipeCard;
     if (pathName === '/guest') {
       searchedRecipeCard = this.state.data.map((data, index) => {
+        const {
+          recipe: { url, image, label },
+        } = data;
         return (
           <CarouselItem
             onExiting={this.onExiting}
             onExited={this.onExited}
-            key={data.recipe.url}
+            key={url}
           >
             <img
-              src={data.recipe.image}
+              src={image}
               width={250}
               height={250}
               alt="recipeImage"
               id="pic"
             />
             <div id="recipe-info">
-              <h4 id="label">{data.recipe.label}</h4>
-              <Button
-                className="get-recipe"
-                href={data.recipe.url}
-                target="_blank"
-              >
+              <h4 id="label">{label}</h4>
+              <Button className="get-recipe" href={url} target="_blank">
                 GET RECIPE
               </Button>
             </div>
@@ -140,37 +133,36 @@ class ControlledCarousel extends React.Component {
       });
     } else {
       searchedRecipeCard = this.state.data.map((data, index) => {
+        const {
+          recipe: { url, uri, image, label },
+          recipe,
+        } = data;
         return (
           <CarouselItem
             onExiting={this.onExiting}
             onExited={this.onExited}
-            key={data.recipe.url}
+            key={url}
           >
             <div className="row">
               <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                 <img
-                  src={data.recipe.image}
+                  src={image}
                   width={250}
                   height={250}
                   alt="recipeImage"
                   id="pic"
                 />
-                {/* <CarouselCaption captionHeader={data.recipe.label} captionText=""/> */}
                 <div id="recipe-info">
-                  <h4 id="label">{data.recipe.label}</h4>
-                  <Button
-                    className="get-recipe"
-                    href={data.recipe.url}
-                    target="_blank"
-                  >
+                  <h4 id="label">{label}</h4>
+                  <Button className="get-recipe" href={url} target="_blank">
                     GET RECIPE
                   </Button>
                   <Button
                     className="btn-primary save-recipe"
-                    id={data.recipe.uri}
-                    name={data.recipe.label}
-                    img={data.recipe.image}
-                    link={data.recipe.url}
+                    id={uri}
+                    name={label}
+                    img={image}
+                    link={url}
                     onClick={this.saveRecipe}
                   >
                     SAVE RECIPE
@@ -180,26 +172,15 @@ class ControlledCarousel extends React.Component {
               <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                 <PiePlot
                   className="pieTry"
-                  digestData={data.recipe.digest}
-                  yieldData={data.recipe.yield}
+                  digestData={recipe.digest}
+                  yieldData={recipe.yield}
                 />
               </div>
             </div>
           </CarouselItem>
-          // </div>
         );
       });
     }
-
-    // const piePlot = this.state.data.map((data, index )=> (
-    //   <div key={data.recipe.uri}>
-    //     <PiePlot
-    //       className="pieTry"
-    //       digestData={data.recipe.digest}
-    //       yieldData={data.recipe.yield}
-    //     />
-    //   </div>
-    // ))
 
     return (
       <div className="main-content">
@@ -225,7 +206,7 @@ class ControlledCarousel extends React.Component {
           </div>
           <div className="col-1 col-sm-1 col-md-3 col-lg-2" />
         </div>
-        {/* START MAIN DISPLAY */}
+
         <div className="row">
           <div className="col-3 col-sm-3 col-md-5 col-lg-5" />
           <div className="col-6 col-sm-6 col-md-2 col-lg-2 sweet-loader">
@@ -247,7 +228,6 @@ class ControlledCarousel extends React.Component {
                 next={this.next}
                 previous={this.previous}
               >
-                {/* {searchedRecipeCard.map(c => { return <CarouselItem>{c}</CarouselItem> })} */}
                 {searchedRecipeCard}
                 <CarouselControl
                   direction="prev"
@@ -262,9 +242,7 @@ class ControlledCarousel extends React.Component {
               </Carousel>
             ) : null}
           </div>
-          {/* <div className="col-12 col-sm-12 col-md-3 col-lg-3">
-            {piePlot}
-          </div> */}
+
           <div className="col-0 col-sm-0 col-md-1 col-lg-2" />
         </div>
       </div>

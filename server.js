@@ -6,6 +6,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const session = require('express-session');
+const dotenv = require('dotenv');
 
 var sess = {
   secret: 'keyboard cat',
@@ -34,13 +35,18 @@ app.get('/*', function(req, res) {
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
 
+dotenv.config();
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/aBetterYou", { useNewUrlParser: true, useCreateIndex: true });
-mongoose.connect(
-  process.env.MONGODB_URI ||
-    'mongodb://heroku_g9qnjs2k:4mu4ku96lnli703pl5uhq20fun@ds131902.mlab.com:31902/heroku_g9qnjs2k',
-  { useNewUrlParser: true, useCreateIndex: true },
-);
+mongoose.connect('mongodb://localhost/aBetterYou', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
+// mongoose.connect(
+//   process.env.MONGODB_URI ||
+//     'mongodb://heroku_g9qnjs2k:4mu4ku96lnli703pl5uhq20fun@ds131902.mlab.com:31902/heroku_g9qnjs2k',
+//   { useNewUrlParser: true, useCreateIndex: true },
+// );
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);

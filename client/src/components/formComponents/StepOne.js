@@ -1,67 +1,83 @@
 import React from 'react';
 
-
-
-const StepOne = (props) => (
-
-
+const StepOne = props => {
+  const { firstName, lastName, email, password, userPhoto, onChange } = props;
+  return (
     <div className="steppy">
+      <br />
+      <br />
+      <form className="form-wizard">
+        <h3>First Name:</h3>
+
+        <input
+          className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          value={firstName}
+          onChange={onChange}
+        />
+
         <br />
         <br />
-        <form className="form-wizard">
 
-            <h3>First Name:</h3>
+        <h3>Last Name:</h3>
 
-            <input className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text" name="first_name"
-                placeholder="First Name"
-                value={props.first_name}
-                onChange={props.onChange}
-            />
+        <input
+          className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={onChange}
+        />
 
-            <br /><br />
+        <br />
+        <br />
 
-            <h3>Last Name:</h3>
+        <h3>Email:</h3>
 
-            <input className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text"
-                name="last_name"
-                placeholder="Last Name"
-                value={props.last_name}
-                onChange={props.onChange}
-            />
+        <input
+          className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          type="text"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={onChange}
+        />
 
-            <br /><br />
+        <br />
 
-            <h3>Email:</h3>
+        <h3>Password:</h3>
 
-            <input className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text"
-                name="email"
-                placeholder="Email"
-                value={props.email}
-                onChange={props.onChange} />
+        <input
+          className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={onChange}
+        />
 
-            <br />
+        <br />
+        <br />
 
-            <h3>Password:</h3>
+        <h3>Link to photo:</h3>
 
-            <input className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12" type="password"
-                name="password"
-                placeholder="Password"
-                value={props.password}
-                onChange={props.onChange} />
+        <input
+          className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12"
+          type="text"
+          name="userPhoto"
+          placeholder="Link to photo url..."
+          value={userPhoto}
+          onChange={onChange}
+        />
 
-            <br /><br />
-
-            <h3>Link to photo:</h3>
-
-            <input className="input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text"
-                name="user_photo"
-                placeholder="Link to photo url..."
-                value={props.user_photo}
-                onChange={props.onChange} />
-
-            <br /><br />
-        </form>
+        <br />
+        <br />
+      </form>
     </div>
-)
+  );
+};
 
 export default StepOne;

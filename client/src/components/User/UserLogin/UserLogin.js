@@ -12,14 +12,14 @@ const logStyle = {
 
 class UserLogin extends Component {
   state = {
-    diet_recommendation: '',
-    diet_restriction: '',
-    first_name: '',
-    last_name: '',
+    dietRecommendation: '',
+    dietRestriction: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
     recipes: [],
-    risk_factor: '',
+    riskFactor: '',
     _id: '',
   };
 

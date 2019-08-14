@@ -1,45 +1,38 @@
-.btn-secondary {
-    text-decoration: none;
-    background-color: #749541;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
-    margin: 5px;
-    width: 100%;
-    border-radius: .5em;
+#abttru-logo {
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+  height: 200px;
 }
 
 #abttru-logo {
-    display: table;
-    margin: 0 auto;
-    text-align: center;
-    height: 200px;
-}
-
-#abttru-logo {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 #img-div {
-    border-radius: 50%;
-    background-color: white;
-    border: 5px solid #2C3E50;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
-    margin: 10px auto 15px auto;
-    padding: 10px;
-    width: 245px;
-    height: auto;
+  border-radius: 50%;
+  background-color: white;
+  border: 5px solid #2c3e50;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  margin: 10px auto 15px auto;
+  padding: 10px;
+  width: 245px;
+  height: auto;
 }
 
 #doctor-icon {
-    height: 30px;
-    width: 30px;
+  height: 30px;
+  width: 30px;
 }
 
 #nav-link {
-    text-decoration: none;
-    color: #ffffff;
+  text-decoration: none;
+  color: #ffffff;
 }
 .welcome {
-    width: 100%;
+  width: 100%;
+  text-decoration: none;
+  background-color: #749541;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  margin: 0.5em 0;
 }
-
-

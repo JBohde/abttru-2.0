@@ -19,22 +19,22 @@ import './FullForm.css';
 
 class FullForm extends Component {
   state = {
-    doctor_id: this.props.location.params.data.doctor_id,
-    first_name: '',
-    last_name: '',
+    doctorId: this.props.location.params.data.doctor_id,
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    user_photo: '',
+    userPhoto: '',
     dob: '',
     sex: '',
     heightFoot: '',
     heightInch: '',
     weight: '',
     waist: '',
-    risk_factor: '',
+    riskRactor: '',
     dietRecommendation: '',
-    bp_systolic: '',
-    bp_diastolic: '',
+    bpSystolic: '',
+    bpSiastolic: '',
     isValid: true,
   };
 
@@ -45,18 +45,22 @@ class FullForm extends Component {
   };
 
   onSubmit = e => {
+    const {
+      location: {
+        params: {
+          data: { doctorId },
+        },
+      },
+      history,
+    } = this.props;
+    const { email, password } = this.state;
     e.preventDefault();
-    if (this.state.email && this.state.password) {
+    if (email && password) {
       this.setState({ isValid: true });
       axios
-        .post(
-          `/api/abttru/doctor/${this.props.location.params.data.doctor_id}`,
-          this.state,
-        )
+        .post(`/api/abttru/doctor/${doctorId}`, this.state)
         .then(() => {
-          this.props.history.push(
-            `/doctor/${this.props.location.params.data.doctor_id}`,
-          );
+          history.push(`/doctor/${doctorId}`);
         }) // redirect to admin page
         .catch(err => console.log(err));
     } else {
@@ -65,16 +69,34 @@ class FullForm extends Component {
   };
 
   render() {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      userPhoto,
+      dob,
+      sex,
+      heightFoot,
+      heightInch,
+      weight,
+      waist,
+      bpSystolic,
+      bpDiastolic,
+      riskFactor,
+      dietRecommendation,
+      dietRestriction,
+    } = this.state;
     const steps = [
       {
         name: 'General Patient Info',
         component: (
           <Step1
-            first_name={this.state.first_name}
-            last_name={this.state.last_name}
-            email={this.state.email}
-            password={this.state.password}
-            user_photo={this.state.user_photo}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            password={password}
+            userPhoto={userPhoto}
             onChange={this.onChangeHandler}
           />
         ),
@@ -83,12 +105,12 @@ class FullForm extends Component {
         name: 'Patient Statistics',
         component: (
           <Step2
-            dob={this.state.dob}
-            sex={this.state.sex}
-            heightFoot={this.state.heightFoot}
-            heightInch={this.state.heightInch}
-            weight={this.state.weight}
-            waist={this.state.waist}
+            dob={dob}
+            sex={sex}
+            heightFoot={heightFoot}
+            heightInch={heightInch}
+            weight={weight}
+            waist={waist}
             onChange={this.onChangeHandler}
           />
         ),
@@ -97,10 +119,11 @@ class FullForm extends Component {
         name: 'Patient Health Factors',
         component: (
           <Step3
-            bp_systolic={this.state.bp_systolic}
-            bp_diastolic={this.state.bp_diastolic}
-            risk_factor={this.state.risk_factor}
-            dietRecommendation={this.state.dietRecommendation}
+            bpSystolic={bpSystolic}
+            bpDiastolic={bpDiastolic}
+            riskFactor={riskFactor}
+            dietRecommendation={dietRecommendation}
+            dietRestriction={dietRestriction}
             onChange={this.onChangeHandler}
           />
         ),
@@ -109,21 +132,22 @@ class FullForm extends Component {
         name: 'Confirm & Save',
         component: (
           <Step4
-            first_name={this.state.first_name}
-            last_name={this.state.last_name}
-            email={this.state.email}
-            password={this.state.password}
-            user_photo={this.state.user_photo}
-            dob={this.state.dob}
-            sex={this.state.sex}
-            heightFoot={this.state.heightFoot}
-            heightInch={this.state.heightInch}
-            weight={this.state.weight}
-            waist={this.state.waist}
-            bp_systolic={this.state.bp_systolic}
-            bp_diastolic={this.state.bp_diastolic}
-            risk_factor={this.state.risk_factor}
-            dietRecommendation={this.state.dietRecommendation}
+            firstName={firstName}
+            lastName={lastName}
+            email={email}
+            password={password}
+            userPhoto={userPhoto}
+            dob={dob}
+            sex={sex}
+            heightFoot={heightFoot}
+            heightInch={heightInch}
+            weight={weight}
+            waist={waist}
+            bpSystolic={bpSystolic}
+            bpDiastolic={bpDiastolic}
+            riskFactor={riskFactor}
+            dietRecommendation={dietRecommendation}
+            dietRestriction={dietRestriction}
           />
         ),
       },

@@ -1,21 +1,22 @@
 import React from 'react';
 import axios from 'axios';
 import './User.css';
+import { Container } from 'reactstrap';
 import UserJumbotron from '../UserJumbotron/';
 import ControlledCarousel from '../Carousel';
 
 class User extends React.Component {
   state = {
     data: [],
-    user_id: this.props.match.params.id,
-    recipe_id: '',
-    first_name: '',
-    last_name: '',
+    userId: this.props.match.params.id,
+    recipeId: '',
+    firstName: '',
+    lastName: '',
     password: '',
-    user_photo: '',
-    risk_factor: '',
-    diet_recommendation: '',
-    diet_restriction: '',
+    userPhoto: '',
+    riskFactor: '',
+    dietRecommendation: '',
+    dietRestriction: '',
     recipes: [],
     passwordHasBeenUpdated: '',
     tabKey: 1,
@@ -24,41 +25,53 @@ class User extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`/api/abttru/user/${this.props.match.params.id}`)
+      .get(`/api/abttru/user/${this.state.userId}`)
       .then(res => {
         this.setState(res.data);
-        if (res.data.diet_restriction === '') {
-          this.setState({ diet_restriction: 'None' });
+        if (res.data.dietRestriction === '') {
+          this.setState({ dietRestriction: 'None' });
         }
       })
       .catch(err => console.log(err));
   }
 
   fontAwesomeColor = () =>
-    this.state.risk_factor === 'high-cholesterol' ? 'red' : 'black';
+    this.state.riskFactor === 'high-cholesterol' ? 'red' : 'black';
 
   render() {
+    const {
+      userId,
+      userPhoto,
+      riskFactor,
+      dietRecommendation,
+      dietRestriction,
+      isUserPage,
+      firstName,
+      lastName,
+    } = this.state;
     return (
-      <div className="jumbo-div">
-        <UserJumbotron
-          key={this.state.user_id}
-          userId={this.props.match.params.id}
-          user_photo={this.state.user_photo}
-          risk_factor={this.state.risk_factor}
-          diet_label={this.state.diet_recommendation}
-          health_label={this.state.diet_restriction}
-          isUserPage={this.state.isUserPage}
-          first_name={this.state.first_name}
-          last_name={this.state.last_name}
-        />
+      <Container>
+        <div className="jumbo-div">
+          <UserJumbotron
+            key={userId}
+            userId={userId}
+            userPhoto={userPhoto}
+            riskFactor={riskFactor}
+            dietLabel={dietRecommendation}
+            healthLabel={dietRestriction}
+            isUserPage={isUserPage}
+            firstName={firstName}
+            lastName={lastName}
+          />
 
-        <ControlledCarousel
-          userId={this.state.user_id}
-          captionText={''}
-          diet_label={this.state.diet_recommendation}
-          health_label={this.state.diet_restriction}
-        />
-      </div>
+          <ControlledCarousel
+            userId={userId}
+            captionText={''}
+            dietLabel={dietRecommendation}
+            healthLabel={dietRestriction}
+          />
+        </div>
+      </Container>
     );
   }
 }

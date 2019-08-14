@@ -6,10 +6,11 @@ module.exports = {
       .then(dbRecipe => {
         res.json(dbRecipe);
         return db.User.findOneAndUpdate(
-          { _id: dbRecipe.user_id },
+          { _id: dbRecipe.userId },
           { $push: { recipes: dbRecipe } },
           { upsert: true, new: true },
         );
+
       })
       .catch(err => res.status(422).json(err));
   },
