@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import './User.css';
-import { Container } from 'reactstrap';
 import UserJumbotron from '../UserJumbotron/';
 import ControlledCarousel from '../Carousel';
 
@@ -50,7 +49,6 @@ class User extends React.Component {
       lastName,
     } = this.state;
     return (
-      <Container>
         <div className="jumbo-div">
           <UserJumbotron
             key={userId}
@@ -71,7 +69,6 @@ class User extends React.Component {
             healthLabel={dietRestriction}
           />
         </div>
-      </Container>
     );
   }
 }
