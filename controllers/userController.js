@@ -1,19 +1,20 @@
 const db = require('../models');
 
 module.exports = {
-  login: function(req, res, next) {
-    const {
-      body: { email, password },
-    } = req;
-    db.User.findOne({ email }, function(err, user) {
+  login: function(req, res) {
+    return db.User.findOne({ email: req.body.email }, function(err, user) {
       if (err) throw err;
       if (user) {
-        user.comparePassword(password, function(err, isMatch) {
+        return user.comparePassword(req.body.password, function(err, isMatch) {
           if (err) throw err;
-          req.session.user = user;
-          res.json(user);
+          if (isMatch) {
+            req.session.user = user;
+            return res.json(user);
+          }
+          return res.status(403).json(err);
         });
       }
+      return res.status(404).json(err);
     }).catch(err => res.status(422).json(err));
   },
 
