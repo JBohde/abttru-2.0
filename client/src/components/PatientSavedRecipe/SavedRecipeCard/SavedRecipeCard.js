@@ -79,7 +79,7 @@ const SavedRecipeCard = props => {
               >
                 ADD NOTE
               </Button>
-              <Button className="get-recipe">
+              <Button className="get-saved-recipe">
                 <a
                   id="recipe-link"
                   href={link}
@@ -91,7 +91,7 @@ const SavedRecipeCard = props => {
               </Button>
               <Button
                 id={id}
-                className="delete-recipe"
+                className="delete-saved-recipe"
                 outline
                 color="danger"
                 onClick={deleteRecipe}
