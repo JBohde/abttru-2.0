@@ -21,8 +21,8 @@ class Home extends React.Component {
         </div>
         <div className="row">
           <div className="col-0 col-sm-0 col-md-3 col-lg-4" />
-          <div className="col-12 col-sm-12 col-md-6 col-lg-4 home-buttons">
-            <button type="button" className="btn btn-secondary welcome">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-4 buttons-wrapper">
+            <button type="button" className="btn btn-secondary home-buttons">
               <h3>
                 <Link to="/guest" id="nav-link">
                   <FontAwesomeIcon icon={faUser} />
@@ -30,7 +30,7 @@ class Home extends React.Component {
                 </Link>
               </h3>
             </button>
-            <button type="button" className="btn btn-secondary welcome">
+            <button type="button" className="btn btn-secondary home-buttons">
               <h3>
                 <Link to="/doctorLogin" id="nav-link">
                   <FontAwesomeIcon icon={faUserMd} color="#FFFFFF" />
@@ -38,7 +38,7 @@ class Home extends React.Component {
                 </Link>
               </h3>
             </button>
-            <button type="button" className="btn btn-secondary welcome">
+            <button type="button" className="btn btn-secondary home-buttons">
               <h3>
                 <Link to="/userLogin" id="nav-link">
                   <FontAwesomeIcon icon={faUser} />

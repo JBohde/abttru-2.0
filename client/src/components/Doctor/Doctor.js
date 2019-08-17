@@ -63,7 +63,6 @@ class Doctor extends React.Component {
                 <strong>Risk Factor: </strong>
                 {riskFactor}
               </h6>
-              <br />
               <h6 className="health">
                 <strong>Diet Recommendation: </strong>
                 {dietRecommendation}

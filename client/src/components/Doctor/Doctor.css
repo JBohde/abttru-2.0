@@ -63,11 +63,11 @@ button#dropdownMenuButton {
     padding: 10px;
     float: left;
   }
-  .first-last {
-    font-size: 12px;
-  }
   .health {
     font-size: 10px;
     margin: 0.1em;
+  }
+  .first-last {
+    font-size: 12px;
   }
 }

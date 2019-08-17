@@ -1,7 +1,6 @@
 import React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import avatar from './avatar.jpg';
 import cholesterolIcon from './cholesterol.png';
 import glucoseIcon from './glucometer.png';
 import restrictionIcon from './icons8-no-entry-512.png';
@@ -42,9 +41,7 @@ class UserJumbotron extends React.Component {
   savedTabColor = () => (this.props.isUserPage ? '#F3F0DD' : '#2C3E50');
 
   render() {
-    const { userId, riskFactor, dietLabel, dietRestriction } = this.props;
-    let { userPhoto } = this.props;
-    if (userPhoto === '') { userPhoto = avatar }
+    const { userId, userPhoto, riskFactor, dietLabel, dietRestriction } = this.props;
     return (
       <Jumbotron className="jumbo">
         <div className="row patient-profile">

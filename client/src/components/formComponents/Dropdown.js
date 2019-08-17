@@ -19,13 +19,13 @@ class Dropdown extends Component {
     this.fireChangeEvent = this.fireChangeEvent.bind(this);
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.value && newProps.value !== this.state.selected) {
-      this.setState({ selected: newProps.value });
-    } else if (!newProps.value) {
+  getDerivedStateFromProps(nextProps) {
+    if (nextProps.value && nextProps.value !== this.state.selected) {
+      this.setState({ selected: nextProps.value });
+    } else if (!nextProps.value) {
       this.setState({
         selected: {
-          label: newProps.placeholder || DEFAULT_PLACEHOLDER_STRING,
+          label: nextProps.placeholder || DEFAULT_PLACEHOLDER_STRING,
           value: '',
         },
       });
