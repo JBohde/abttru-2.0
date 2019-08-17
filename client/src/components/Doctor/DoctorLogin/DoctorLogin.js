@@ -17,11 +17,8 @@ class DoctorLogin extends Component {
 
   handleInputChange = event => {
     // Destructure the name and value properties off of event.target
-    // Update the appropriate state
     const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
+    this.setState({ [name]: value });
   };
 
   handleFormSubmit = event => {
@@ -41,13 +38,12 @@ class DoctorLogin extends Component {
   render() {
     return (
       <div>
-        <div className="row">
+        <Row>
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
           <Logo className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
           <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
-        </div>
+        </Row>
         <Row>
-          {/* <Col size="xs-12 sm- 12 md-12 lg-12"> */}
           <form>
             <Row>
               <Col size="xs-0 sm-0 md-4 lg-4" />
