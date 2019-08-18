@@ -49,8 +49,8 @@ class UserLogin extends Component {
         <Row>
           <form>
             <Row>
-              <Col size="xs-0 sm-0 md-4 lg-4" />
-              <Col size="xs-12 sm-12 md-4 lg-4">
+              <Col size="xs-0 sm-0 md-3 lg-4" />
+              <Col size="xs-12 sm-12 md-6 lg-4">
                 <Input
                   name="email"
                   value={this.state.email}
@@ -66,16 +66,16 @@ class UserLogin extends Component {
                   placeholder="Enter 'password'"
                 />
                 <br />
-                <button
+                <Button
                   type="submit"
                   onClick={this.handleFormSubmit}
                   style={logStyle}
                   className="btn-lg login"
                 >
                   Login
-                </button>
+                </Button>
               </Col>
-              <Col size="xs-0 sm-0 md-4 lg-4" />
+              <Col size="xs-0 sm-0 md-3 lg-4" />
             </Row>
           </form>
         </Row>

@@ -37,17 +37,17 @@ class DoctorLogin extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <Row>
-          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
+          <Col className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
           <Logo className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
-          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
+          <Col className="col-xs-4 col-sm-4 col-md-4 col-lg-4" />
         </Row>
         <Row>
           <form>
             <Row>
-              <Col size="xs-0 sm-0 md-4 lg-4" />
-              <Col size="xs-12 sm-12 md-4 lg-4">
+              <Col size="xs-0 sm-0 md-3 lg-4" />
+              <Col size="xs-12 sm-12 md-6 lg-4">
                 <Input
                   name="email"
                   value={this.state.email}
@@ -72,11 +72,11 @@ class DoctorLogin extends Component {
                   Login
                 </button>
               </Col>
-              <Col size="xs-0 sm-0 md-4 lg-4" />
+              <Col size="xs-0 sm-0 md-3 lg-4" />
             </Row>
           </form>
         </Row>
-      </div>
+      </>
     );
   }
 }

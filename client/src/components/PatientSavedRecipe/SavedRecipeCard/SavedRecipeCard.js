@@ -63,7 +63,7 @@ const SavedRecipeCard = props => {
                 </a>
               </h3>
               {notes}
-              <form onSubmit={saveNote} id={id}>
+              <form onSubmit={saveNote} id={id} className=".card-form">
                 <Input
                   name="noteText"
                   value={noteText}
@@ -71,24 +71,26 @@ const SavedRecipeCard = props => {
                   placeholder="Add A Note..."
                 />
               </form>
-              <Button
-                id={id}
-                className="save-note"
-                color="secondary"
-                onClick={saveNote}
-              >
-                ADD NOTE
-              </Button>
-              <Button className="get-saved-recipe">
-                <a
-                  id="recipe-link"
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <div className="card-button-wrapper">
+                <Button
+                  id={id}
+                  className="save-note"
+                  color="secondary"
+                  onClick={saveNote}
                 >
-                  GET RECIPE
-                </a>
-              </Button>
+                  ADD NOTE
+                </Button>
+                <Button className="get-saved-recipe">
+                  <a
+                    id="recipe-link"
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GET RECIPE
+                  </a>
+                </Button>
+              </div>
               <Button
                 id={id}
                 className="delete-saved-recipe"
