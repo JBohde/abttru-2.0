@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.f72e432e.chunk.css",
+    "main.css": "/static/css/main.b1fae513.chunk.css",
     "main.js": "/static/js/main.b30014c6.chunk.js",
     "main.js.map": "/static/js/main.b30014c6.chunk.js.map",
     "runtime~main.js": "/static/js/runtime~main.b6c273cb.js",
@@ -8,9 +8,9 @@
     "static/js/2.f36d75a0.chunk.js": "/static/js/2.f36d75a0.chunk.js",
     "static/js/2.f36d75a0.chunk.js.map": "/static/js/2.f36d75a0.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.f78c59731070080ba6d991ea81e1b42c.js": "/precache-manifest.f78c59731070080ba6d991ea81e1b42c.js",
+    "precache-manifest.32a6e46d6f8f9c0d62dd829d3311671b.js": "/precache-manifest.32a6e46d6f8f9c0d62dd829d3311671b.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.f72e432e.chunk.css.map": "/static/css/main.f72e432e.chunk.css.map",
+    "static/css/main.b1fae513.chunk.css.map": "/static/css/main.b1fae513.chunk.css.map",
     "static/media/bitmojiAlberto.png": "/static/media/bitmojiAlberto.2a0e0e6a.png",
     "static/media/bitmojiDavey.png": "/static/media/bitmojiDavey.a6471d89.png",
     "static/media/bitmojiJoshua2.png": "/static/media/bitmojiJoshua2.72949bd8.png",
