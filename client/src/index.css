@@ -13,7 +13,6 @@ html,
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 6rem;
   min-height: 100%;
   background-color: #f3f0dd;
 }
@@ -52,13 +51,9 @@ body {
   border-bottom: 2px solid #2c3e50;
 }
 
-.main {
-  margin-bottom: 10%;
-}
-
 @media screen and (max-width: 600px) {
   .main {
-    margin-bottom: 60%;
+    margin-bottom: 10%;
   }
 }
 
