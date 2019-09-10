@@ -127,7 +127,7 @@ class UserInfo extends React.Component {
                   </Button>
                   <Button className="btn-lg" color="primary">
                     <Link
-                      className='stepzilla-link'
+                      className="stepzilla-link"
                       to={{
                         pathname: `/edit/${_id}`,
                         params: {
