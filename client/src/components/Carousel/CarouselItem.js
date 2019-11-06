@@ -3,18 +3,18 @@ import React from "react";
 // import axios from "axios";
 
 class OurItem extends React.Component {
-    constructor(props, context) {
-        super(props, context);
+  constructor(props, context) {
+    super(props, context);
 
-        this.handleSelect = this.handleSelect.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
 
-        this.state = {
-            data: this.props,
-            index: 0,
-            direction: null,
-            user_id: "5aeccb14e21ebe39bce2f568"
-        };
-    }
+    this.state = {
+      data: this.props,
+      index: 0,
+      direction: null,
+      user_id: "5aeccb14e21ebe39bce2f568"
+    };
+  }
 }
 
 export default OurItem;

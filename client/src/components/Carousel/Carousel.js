@@ -1,8 +1,24 @@
 import React from 'react';
-import { Button, Carousel, CarouselItem, CarouselControl } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+} from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { RingLoader } from 'react-spinners';
 import PiePlot from '../Graphs/PiePlot';
-import Input from '../Input/Input';
 import './Carousel.css';
 import axios from 'axios';
 
@@ -26,9 +42,7 @@ class ControlledCarousel extends React.Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
+    this.setState({ [name]: value });
   };
 
   onExiting() {
@@ -69,14 +83,10 @@ class ControlledCarousel extends React.Component {
     let firstIndex = Math.floor(Math.random() * 20);
     axios
       .get(
-        `https://api.edamam.com/search?q=${
-          this.state.name
-        }&app_id=${appId}&app_key=${appKey}&calories=591-722&from=${firstIndex}&Diet=${
-          this.props.diet_label
-        }
-        &Health=${this.props.health_label}`,
+        `https://api.edamam.com/search?q=${this.state.name}&app_id=${appId}&app_key=${appKey}&calories=591-722&from=${firstIndex}&Diet=${this.props.dietLabel}&Health=${this.props.healthLabel}`,
       )
       .then(res => {
+        console.log(res.data.hits);
         this.setState({
           data: res.data.hits,
           showCarousel: true,
@@ -86,166 +96,141 @@ class ControlledCarousel extends React.Component {
       .catch(err => console.log(err));
   }
 
-  saveRecipe = event => {
-    const target = event.target;
-    const id = this.props.userId;
+  saveRecipe = () => {
+    const { activeIndex, data } = this.state;
+    const { userId } = this.props;
     const recipeObj = {
-      userId: id,
-      name: target.getAttribute('name'),
-      image: target.getAttribute('img'),
-      link: target.getAttribute('link'),
-      uri: target.id,
+      userId,
+      name: data[activeIndex].recipe.label,
+      image: data[activeIndex].recipe.image,
+      link: data[activeIndex].recipe.url,
+      uri: data[activeIndex].recipe.uri,
     };
     axios
-      .post(`/api/abttru/recipes/${id}`, recipeObj)
+      .post(`/api/abttru/recipes/${userId}`, recipeObj)
       .catch(err => console.log(err));
   };
 
   render() {
     const { pathName } = this.props;
-    let searchedRecipeCard;
-    if (pathName === '/guest') {
-      searchedRecipeCard = this.state.data.map((data, index) => {
-        const {
-          recipe: { url, image, label },
-        } = data;
-        return (
-          <CarouselItem
-            onExiting={this.onExiting}
-            onExited={this.onExited}
-            key={url}
-          >
-            <img
-              src={image}
-              width={250}
-              height={250}
-              alt="recipeImage"
-              id="pic"
-            />
-            <div id="recipe-info">
-              <h4 id="label">{label}</h4>
-              <Button className="get-recipe" href={url} target="_blank">
-                GET RECIPE
-              </Button>
-            </div>
-          </CarouselItem>
-        );
-      });
-    } else {
-      searchedRecipeCard = this.state.data.map((data, index) => {
-        const {
-          recipe: { url, uri, image, label },
-          recipe,
-        } = data;
-        return (
-          <CarouselItem
-            onExiting={this.onExiting}
-            onExited={this.onExited}
-            key={url}
-          >
-            <div className="row">
-              <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                <img
-                  src={image}
-                  width={250}
-                  height={250}
-                  alt="recipeImage"
-                  id="pic"
-                />
-                <div id="recipe-info">
-                  <h4 id="label">{label}</h4>
-                  <Button className="get-recipe" href={url} target="_blank">
-                    GET RECIPE
-                  </Button>
-                  <Button
-                    className="btn-primary save-recipe"
-                    id={uri}
-                    name={label}
-                    img={image}
-                    link={url}
-                    onClick={this.saveRecipe}
-                  >
-                    SAVE RECIPE
-                  </Button>
-                </div>
-              </div>
-              <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                <PiePlot
-                  className="pieTry"
-                  digestData={recipe.digest}
-                  yieldData={recipe.yield}
-                />
-              </div>
-            </div>
-          </CarouselItem>
-        );
-      });
-    }
+    const { activeIndex, data } = this.state;
+
+    const searchedRecipeCard = this.state.data.map(data => {
+      const {
+        recipe: { url, image, label },
+      } = data;
+      return (
+        <CarouselItem
+          onExiting={this.onExiting}
+          onExited={this.onExited}
+          key={url}
+        >
+          <img src={image} className='recipe-image' alt='recipeImage' />
+          <div className='recipe-info'>
+            <h4 className='recipe-label'>{label}</h4>
+          </div>
+        </CarouselItem>
+      );
+    });
 
     return (
-      <div className="main-content">
-        <div className="row">
-          <div className="col-1 col-sm-1 col-md-3 col-lg-2" />
-          <div className="col-10 col-sm-10 col-md-6 col-lg-8 carousel-div">
-            <form onSubmit={this.getRecipes.bind(this)}>
-              <Input
-                name="name"
-                value={this.state.name}
-                onChange={this.handleInputChange}
-                placeholder="Search ingredients(e.g. chicken)"
-              />
-              <br />
-              <Button
-                onClick={this.getRecipes.bind(this)}
-                color="primary"
-                id="get"
-              >
-                Get Recipes
-              </Button>
-            </form>
-          </div>
-          <div className="col-1 col-sm-1 col-md-3 col-lg-2" />
-        </div>
-
-        <div className="row">
-          <div className="col-3 col-sm-3 col-md-5 col-lg-5" />
-          <div className="col-6 col-sm-6 col-md-2 col-lg-2 sweet-loader">
-            <RingLoader
-              loading={this.state.loading}
-              size={200}
-              color={'#EC0B43'}
-            />
-          </div>
-          <div className="col-3 col-sm-3 col-md-5 col-lg-5" />
-        </div>
-        <div className="row">
-          <div className="col-0 col-sm-0 col-md-1 col-lg-2" />
-          <div className="col-12 col-sm-12 col-md-10 col-lg-8 recipe-display">
-            {this.state.showCarousel ? (
-              <Carousel
-                className={this.props.className}
-                activeIndex={this.state.activeIndex}
-                next={this.next}
-                previous={this.previous}
-              >
-                {searchedRecipeCard}
-                <CarouselControl
-                  direction="prev"
-                  directionText="Previous"
-                  onClickHandler={this.previous}
+      <Container>
+        <Row>
+          <Col xs={12} md={{ size: 8, offset: 2 }}>
+            <div className='search-wrapper'>
+              <Form onSubmit={this.getRecipes.bind(this)}>
+                <FormGroup>
+                  <Label for='name'>Search Ingredients</Label>
+                  <InputGroup>
+                    <Input
+                      name='name'
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                      placeholder='chicken, broccoli ...'
+                    />
+                    <InputGroupAddon
+                      addonType='append'
+                      onClick={this.getRecipes.bind(this)}
+                    >
+                      <InputGroupText>
+                        <FontAwesomeIcon icon={faSearch} />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </FormGroup>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          {this.state.loading ? (
+            <Col xs={{ size: 6, offset: 3 }}>
+              <div className='ring-loader'>
+                <RingLoader
+                  loading={this.state.loading}
+                  size={100}
+                  color={'#EC0B43'}
                 />
-                <CarouselControl
-                  direction="next"
-                  directionText="Next"
-                  onClickHandler={this.next}
+              </div>
+            </Col>
+          ) : null}
+        </Row>
+        {this.state.showCarousel ? (
+          <Container>
+            <Row>
+              <Col xs={12} md={6} lg={{ size: 4, offset: 2 }}>
+                <Carousel
+                  className={this.props.className}
+                  activeIndex={this.state.activeIndex}
+                  next={this.next}
+                  previous={this.previous}
+                  interval={false}
+                >
+                  {searchedRecipeCard}
+                  <CarouselControl
+                    direction='prev'
+                    directionText='Previous'
+                    onClickHandler={this.previous}
+                  />
+                  <CarouselControl
+                    direction='next'
+                    directionText='Next'
+                    onClickHandler={this.next}
+                  />
+                </Carousel>
+                <div className='search-button-wrapper'>
+                  <Button
+                    className='get-recipe'
+                    href={data[activeIndex].recipe.url}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    GET RECIPE
+                  </Button>
+                  {pathName === '/guest' ? null : (
+                    <Button
+                      className='btn-primary save-recipe'
+                      id={data[activeIndex].uri}
+                      name={data[activeIndex].label}
+                      img={data[activeIndex].image}
+                      link={data[activeIndex].url}
+                      onClick={this.saveRecipe}
+                    >
+                      SAVE RECIPE
+                    </Button>
+                  )}
+                </div>
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <PiePlot
+                  data={this.state.data}
+                  recipeIndex={this.state.activeIndex}
                 />
-              </Carousel>
-            ) : null}
-          </div>
-
-          <div className="col-0 col-sm-0 col-md-1 col-lg-2" />
-        </div>
-      </div>
+              </Col>
+            </Row>
+          </Container>
+        ) : null}
+      </Container>
     );
   }
 }

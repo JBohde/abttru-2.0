@@ -1,46 +1,53 @@
-.carousel-inner {
-  height: 100%;
-}
-
-#pic,
-.graphButtons {
-  display: table;
+.recipe-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
   margin: 0 auto;
-  margin-top: 10px;
-  text-align: center;
+  border-radius: 0.35rem;
 }
 
-#pie {
-  /* display: inline; */
-  text-align: center;
-  background-color: #749541;
+.recipe-info {
   color: white;
-  margin: 1px;
-  width: 75px;
-  padding: 2px;
+  position: absolute;
+  bottom: 2rem;
+  left: 0rem;
+  overflow-wrap: break-word;
 }
 
-@media screen and (max-width: 650px) {
-  .carousel-inner {
-    height: 700px;
-  }
+.recipe-label {
+  width: 95%;
+  margin-left: 1rem;
 }
 
-#recipe-info {
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.ring-loader {
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
 }
 
-#label {
-  color: #749541;
+.search-wrapper {
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
 }
 
+.search-recipes {
+  width: 100%;
+}
+
+.search-button-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+}
+
+.delete-recipe,
+.get-saved-recipe,
 .get-recipe,
 .save-recipe {
-  width: 50% !important;
-  margin: auto;
+  width: 145px;
 }
 
 .save-recipe {
@@ -52,15 +59,19 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.carousel-item {
-  background-color: #f3f0dd;
+.carousel {
+  padding: 1rem;
 }
 
-input,
-select,
-textarea,
-form {
-  width: 100%;
-  padding-left: 0;
-  margin: 0;
+.carousel-inner {
+  border-radius: 0.35rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.js-plotly-plot .plotly,
+.js-plotly-plot .plotly div {
+  direction: ltr;
+  font-family: 'Open Sans', verdana, arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
 }

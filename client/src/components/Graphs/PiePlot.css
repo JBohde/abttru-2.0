@@ -1,0 +1,15 @@
+.plot-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.graph-buttons {
+  display: flex;
+  margin: 1rem auto 0;
+}
+
+.graph-buttons > button {
+  margin: 0 .05rem;
+}
