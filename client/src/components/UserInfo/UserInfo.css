@@ -3,6 +3,7 @@
   height: 180px;
   margin: 0 auto;
   padding: 2px;
+  border-radius: 0.35rem;
 }
 
 #user-photo,
@@ -11,16 +12,16 @@
 }
 
 .health-stats {
-  display:inline;
+  display: inline;
 }
 
 .patients {
   text-align: center;
-  color: #F3F0DD;
+  color: #ffffff;
 }
 
 .user-info {
-  color: #F3F0DD;
+  color: #ffffff;
 }
 
 a.stepzilla-link {

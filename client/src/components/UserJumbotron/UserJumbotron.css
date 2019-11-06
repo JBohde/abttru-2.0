@@ -1,102 +1,76 @@
-.patient-profile {
-    margin-bottom: 18px !important;
-}
-
 .health_stats {
-    font-weight: bold;
-}
-
-
-#profileTab {
-    border-radius: 80px 0 0 0;
-    width: 50%;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-left: 0.5rem;
 }
 
 .tabGroup {
-    padding-left:0;
+  width: 100%;
+  max-width: 750px;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#profileTab {
+  border-radius: 3rem 0 0 0;
+  width: 50%;
 }
 
 #savedTab {
-    text-decoration: none;
-    border-radius: 0 80px 0 0;
-    width: 50%;
+  text-decoration: none;
+  border-radius: 0 3rem 0 0;
+  width: 50%;
 }
 
-.jumbo {
-    position:relative;
+.patient-profile {
+  margin-bottom: 2rem;
 }
 
 .search-saved {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    padding-top: 20px;
-    font-size: 13px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 13px;
 }
 
 #user_photo {
-    background-size:cover;
-    background-color: #ffffff;
-    border-radius: 50%;
-    border: 4px solid #2C3E50;
-    width: 150px;
-    height: 150px;
-    display: block;
-    margin: 0 auto;
-    /* padding: 2px; */
+  background-size: cover;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 4px solid #2c3e50;
+  width: 125px;
+  height: 125px;
+  display: block;
+  margin: 0 auto;
 }
 
-.stats {
-    display:inline-block;
-    height: 90px;
-    padding: 5px;
+.stats-wrapper {
+  display: flex;
+  margin-top: 0.5rem;
+  padding: 0;
 }
 
-
-.prof {
-    padding: 0 !important;
-    margin-bottom: 25px;
-}
-
-#tabs {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    font-size: 14px;
+.tabs {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .health-icon {
-    height: 50px;
-    width: 50px;
-    float: left;
+  height: 50px;
+  width: 50px;
+  float: left;
 }
 
 .tab-icon {
-    height: 20px;
-    width: 20px;
-}
-
-@media screen and (max-width: 600px) {
-    #user_photo {
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-        display: table;
-        margin: 0 auto;
-        text-align: center;
-    }
-    .health_stats {
-        font-size: 11px;
-        font-weight: bold;
-    }
-    .stats {
-        display:inline-block;
-        height: 60px;
-        padding: 5px;
-    }
-    .health-icon {
-        width: 50px;
-        height: 50px;
-        float: none;
-    }
+  height: 20px;
+  width: 20px;
 }

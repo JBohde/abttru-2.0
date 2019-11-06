@@ -44,17 +44,23 @@ class User extends React.Component {
       riskFactor,
       dietRecommendation,
       dietRestriction,
+      waist,
+      bpSystolic,
+      bpDiastolic,
       isUserPage,
       firstName,
       lastName,
     } = this.state;
     return (
-        <div className="jumbo-div">
+        <>
           <UserJumbotron
             key={userId}
             userId={userId}
             userPhoto={userPhoto}
             riskFactor={riskFactor}
+            waist={waist}
+            bpSystolic={bpSystolic}
+            bpDiastolic={bpDiastolic}
             dietLabel={dietRecommendation}
             healthLabel={dietRestriction}
             isUserPage={isUserPage}
@@ -68,7 +74,7 @@ class User extends React.Component {
             dietLabel={dietRecommendation}
             healthLabel={dietRestriction}
           />
-        </div>
+        </>
     );
   }
 }

@@ -1,32 +1,25 @@
-.delete.btn.btn-default  {
-    background-color:transparent;
-    color: #EC0B43;
-    font-size: 24px;
-    font-style: italic;
-    position: relative;
-    top: -3px;
-    right: 5px;
-    cursor: pointer;
-  }
+.delete.btn.btn-default {
+  background-color: transparent;
+  color: #ec0b43;
+  font-size: 24px;
+  font-style: italic;
+  position: relative;
+  top: -3px;
+  right: 5px;
+  cursor: pointer;
+}
 
-.save.btn.btn-default  {
-    background-color:transparent;
-    color: #096e19;
-    font-size: 16px;
-    position: relative;
-    top: -3px;
-    right: 5px;
-    cursor: pointer;
-  }
+.save.btn.btn-default {
+  background-color: transparent;
+  color: #096e19;
+  font-size: 16px;
+  position: relative;
+  top: -3px;
+  right: 5px;
+  cursor: pointer;
+}
 
-  h6, h7 {
-    float:left;
-  }
-
-  h7 {
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  
-
+h7 {
+  font-size: 16px;
+  font-weight: bold;
+}

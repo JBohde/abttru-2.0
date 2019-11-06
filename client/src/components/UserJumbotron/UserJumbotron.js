@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron } from 'reactstrap';
+import { Jumbotron, Container, Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import cholesterolIcon from './cholesterol.png';
 import glucoseIcon from './glucometer.png';
@@ -18,16 +18,22 @@ class UserJumbotron extends React.Component {
       userId,
       riskFactor,
       dietLabel,
+      waist,
+      bpSystolic,
+      bpDiastolic,
       healthLabel,
       isUserPage,
     } = this.props;
 
     this.state = {
-      userId: userId,
-      riskFactor: riskFactor,
+      waist,
+      bpSystolic,
+      bpDiastolic,
+      userId,
+      riskFactor,
       dietRecommendation: dietLabel,
       dietRestriction: healthLabel,
-      isUserPage: isUserPage,
+      isUserPage,
       savedTab: '',
       profileTab: '',
     };
@@ -36,111 +42,133 @@ class UserJumbotron extends React.Component {
   fontAwesomeColor = () =>
     this.props.riskFactor === 'high-cholesterol' ? 'red' : 'black';
 
-  profileTabColor = () => (this.props.isUserPage ? '#2C3E50' : '#F3F0DD');
+  profileTabColor = () => (this.props.isUserPage ? '#F3F0DD' : '#2C3E50');
 
-  savedTabColor = () => (this.props.isUserPage ? '#F3F0DD' : '#2C3E50');
+  savedTabColor = () => (this.props.isUserPage ? '#2C3E50' : '#F3F0DD');
 
   render() {
-    const { userId, userPhoto, riskFactor, dietLabel, dietRestriction } = this.props;
+    const {
+      userId,
+      userPhoto,
+      waist,
+      // bpSystolic,
+      // bpDiastolic,
+      riskFactor,
+      dietLabel,
+      dietRestriction,
+    } = this.props;
     return (
-      <Jumbotron className="jumbo">
-        <div className="row patient-profile">
-          <div className="col-12 col-sm-12 col-md-3 col-lg-3 prof">
-            <img id="user_photo" src={userPhoto} alt="user_photo" />
-          </div>
-          <div className="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div className="col-6 col-sm-6 col-md-12 col-lg-12 stats">
-              <img
-                src={cholesterolIcon}
-                alt="cholesterol icon"
-                className="health-icon"
-              />
-              <span className="health_stats"> {riskFactor}</span>
-            </div>
-            <div className="col-6 col-sm-6 col-md-12 col-lg-12 stats">
-              <img src={pressureIcon} alt="bp icon" className="health-icon" />
-              <span className="health_stats"> Normal</span>
-            </div>
-          </div>
-          <div className="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div className="col-6 col-sm-6 col-md-12 col-lg-12 stats">
-              <img
-                src={glucoseIcon}
-                alt="glucose icon"
-                className="health-icon"
-              />
-              <span className="health_stats"> Normal</span>
-            </div>
-            <div className="col-6 col-sm-6 col-md-12 col-lg-12 stats">
-              <img src={tapeIcon} alt="tape icon" className="health-icon" />
-              <span className="health_stats"> Normal</span>
-            </div>
-          </div>
-          <div className="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div className="col-6 col-sm-6 col-md-12 col-lg-12 stats">
-              <img src={dietIcon} alt="diet icon" className="health-icon" />
-              <span className="health_stats">{dietLabel}</span>
-            </div>
-            <div className="col-6 col-sm-6 col-md-12 col-lg-12 stats">
-              <img
-                src={restrictionIcon}
-                alt="restriction icon"
-                className="health-icon"
-              />
-              <span className="health_stats">
-                {dietRestriction && dietRestriction.length > 0
-                  ? dietRestriction
-                  : 'None'}
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="row search-saved">
-          <div className="col-0 col-md-0 col-lg-1 col-1 " />
-          <div className="col-12 col-md-12 col-lg-10 col-10 tabGroup">
-            <Link
-              to={{
-                pathname: `/user/${userId}`,
-                params: { id: userId },
-              }}
-            >
-              <button
-                id="profileTab"
-                style={{ backgroundColor: this.profileTabColor() }}
-              >
-                <p style={{ color: this.savedTabColor() }} id="tabs">
+      <Jumbotron className='jumbo'>
+        <Container>
+          <Row className='patient-profile'>
+            <Col xs={12} md={4}>
+              <img id='user_photo' src={userPhoto} alt='user_photo' />
+            </Col>
+            <Col xs={12} md={8}>
+              <Row>
+                <Col xs={6} md={4} className='stats-wrapper'>
                   <img
-                    src={searchIcon}
-                    alt="search icon"
-                    className="tab-icon"
+                    src={cholesterolIcon}
+                    alt='cholesterol icon'
+                    className='health-icon'
                   />
-                  New Search{' '}
-                </p>
-              </button>
-            </Link>
-
-            <Link
-              to={{
-                pathname: `/savedrecipes/${userId}`,
-                params: { id: userId },
-              }}
-            >
-              <button
-                id="savedTab"
-                style={{ backgroundColor: this.savedTabColor() }}
-              >
-                <p style={{ color: this.profileTabColor() }} id="tabs">
+                  <span className='health_stats'>
+                    Risk Factor: <br /> {riskFactor}
+                  </span>
+                </Col>
+                <Col xs={6} md={4} className='stats-wrapper'>
+                  <img src={pressureIcon} alt='bp icon' className='health-icon' />
+                  <span className='health_stats'>
+                    Blood Pressure: <br />{' '}
+                  </span>
+                </Col>
+                <Col xs={6} md={4} className='stats-wrapper'>
                   <img
-                    src={recipeIcon}
-                    alt="search icon"
-                    className="tab-icon"
-                  />{' '}
-                  Saved Recipes
-                </p>
-              </button>
-            </Link>
-          </div>
-          <div className="col-0 col-md-0 col-lg-1 col-sm-1" />
+                    src={glucoseIcon}
+                    alt='glucose icon'
+                    className='health-icon'
+                  />
+                  <span className='health_stats'>
+                    Blood Sugar: <br />{' '}
+                  </span>
+                </Col>
+                <Col xs={6} md={4} className='stats-wrapper'>
+                  <img src={tapeIcon} alt='tape icon' className='health-icon' />
+                  <span className='health_stats'>
+                    Waist: <br /> {waist}''
+                </span>
+                </Col>
+                <Col xs={6} md={4} className='stats-wrapper'>
+                  <img src={dietIcon} alt='diet icon' className='health-icon' />
+                  <span className='health_stats'>
+                    Diet: <br /> {dietLabel}
+                  </span>
+                </Col>
+                <Col xs={6} md={4} className='stats-wrapper'>
+                  <img
+                    src={restrictionIcon}
+                    alt='restriction icon'
+                    className='health-icon'
+                  />
+                  <span className='health_stats'>
+                    Restriction: <br />
+                    {dietRestriction && dietRestriction.length > 0
+                      ? dietRestriction
+                      : 'None'}
+                  </span>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+        <div className='tabGroup'>
+          <Link
+            to={{
+              pathname: `/user/${userId}`,
+              params: { id: userId },
+            }}
+          >
+            <Button
+              id='profileTab'
+              style={{ backgroundColor: this.profileTabColor() }}
+            >
+              <p
+                style={{
+                  color: this.savedTabColor(),
+                  margin: '0.25rem 0',
+                  fontSize: '.75rem',
+                  fontWeight: 'bold',
+                }}
+              >
+                <img src={searchIcon} alt='search icon' className='tab-icon' />
+                New Search{' '}
+              </p>
+            </Button>
+          </Link>
+
+          <Link
+            to={{
+              pathname: `/savedrecipes/${userId}`,
+              params: { id: userId },
+            }}
+          >
+            <Button
+              id='savedTab'
+              style={{ backgroundColor: this.savedTabColor() }}
+            >
+              <p
+                style={{
+                  color: this.profileTabColor(),
+                  margin: '0.25rem 0',
+                  fontSize: '.75rem',
+                  fontWeight: 'bold',
+                }}
+              >
+                <img src={recipeIcon} alt='search icon' className='tab-icon' />{' '}
+                Saved Recipes
+              </p>
+            </Button>
+          </Link>
         </div>
       </Jumbotron>
     );

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Input from '../../Input/Input';
-import { Row, Col } from 'reactstrap';
-import { Button } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 import Logo from '../../Home/Logo/Logo';
 import axios from 'axios';
 
@@ -40,47 +38,34 @@ class UserLogin extends Component {
 
   render() {
     return (
-      <div>
-        <Row>
-        <Col xs={0} sm={0} md={4} lg={4} />
-          <Col xs={12} sm={12} md={4} lg={4}>
-            <Logo />
-          </Col>
-          <Col xs={0} sm={0} md={4} lg={4} />
-        </Row>
-        <Row>
-          <form>
-            <Row>
-            <Col xs={0} sm={0} md={3} lg={4} />
-            <Col xs={12} sm={12} md={6} lg={4}>
-                <Input
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleInputChange}
-                  placeholder="Enter 'bohdecoded@gmail.com'"
-                />
-                <br />
-                <Input
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  placeholder="Enter 'password'"
-                />
-                <br />
-                <Button
-                  type="submit"
-                  onClick={this.handleFormSubmit}
-                  style={logStyle}
-                  className="btn-lg login"
-                >
-                  Login
-                </Button>
-              </Col>
-              <Col xs={0} sm={0} md={3} lg={4} />
-            </Row>
-          </form>
-        </Row>
+      <div className='login-wrapper'>
+        <Logo />
+        <Form onSubmit={this.handleFormSubmit}>
+          <FormGroup>
+            <Input
+              name='email'
+              type='email'
+              value={this.state.email}
+              onChange={this.handleInputChange}
+              placeholder="Enter 'bohdecoded@gmail.com'"
+            />
+            <Input
+              name='password'
+              type='password'
+              value={this.state.password}
+              onChange={this.handleInputChange}
+              placeholder="Enter 'password'"
+            />
+            <Button
+              type='submit'
+              onClick={this.handleFormSubmit}
+              style={logStyle}
+              className='btn-lg login'
+            >
+              Login
+            </Button>
+          </FormGroup>
+        </Form>
       </div>
     );
   }
