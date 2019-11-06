@@ -1,34 +1,29 @@
-.delete.btn.btn-default  {
-    background-color:transparent;
-    color: #ff1744;
-    font-size: 24px;
-    font-style: italic;
-    position: relative;
-    top: -3px;
-    right: 5px;
-    cursor: pointer;
-  }
+.delete.btn.btn-default {
+  background-color: transparent;
+  color: #ff1744;
+  font-size: 24px;
+  font-style: italic;
+  position: relative;
+  top: -3px;
+  right: 5px;
+  cursor: pointer;
+}
 
-  .save.btn.btn-default  {
-    background-color:transparent;
-    background-color:#315659;
-    color: #F3F0DD;
-    font-size: 16px;
-    position: relative;
-    top: -3px;
-    right: 5px;
-    cursor: pointer;
-  }
-
-  .card {
-    z-index: 1;
-  }
+.save.btn.btn-default {
+  background-color: transparent;
+  background-color: #315659;
+  color: #f3f0dd;
+  font-size: 16px;
+  position: relative;
+  top: -3px;
+  right: 5px;
+  cursor: pointer;
+}
 
 .dropdown-toggle {
   width: 100px;
   height: 20px;
   margin-left: 10px;
-
 }
 .dropdown-menu {
   width: 100%;
@@ -41,14 +36,20 @@
   margin-bottom: 5px;
 }
 
-.dropdown-menu>li>a:hover {
-  background: #f1f9fd ;
+.dropdown-menu > li > a:hover {
+  background: #f1f9fd;
   width: 100%;
 }
 
 /* $search-blue */
 .dropdown-header {
-  background: #ccc; font-size: 14px; font-weight: 700; padding-top: 5px; padding-bottom: 5px; margin-top: 10px; margin-bottom: 5px
+  background: #ccc;
+  font-size: 14px;
+  font-weight: 700;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .scrollable-menu {
@@ -56,10 +57,6 @@
   height: auto;
   max-height: 300px;
   overflow-x: hidden;
-}
-
-.recipe {
-  height: 125px;
 }
 
 .pic {
@@ -70,9 +67,10 @@
   float: left;
 }
 
-.recipe-info {
-  padding: 10px;
-  float:left;
+.save-note,
+.delete-saved-recipe,
+.get-saved-recipe {
+  width: 145px;
 }
 
 .card-holder {
@@ -86,7 +84,7 @@
   width: 100%;
 }
 
-.open>.dropdown-menu {
+.open > .dropdown-menu {
   width: 100%;
   height: auto;
   display: block;
@@ -97,37 +95,7 @@ RingLoader {
 }
 
 .display {
-  background-color:#2C3E50;
+  background-color: #2c3e50;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
-}
-/*
-@media screen and (max-width: 600px) {
-  .js-plotly-plot {
-    margin-top: 150px;
-    margin-left: -350px;
-  }
-} */
-
-@media screen and (max-width: 600px) {
-  .recipe {
-    height: 100px;
-  }
-  .pic {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    margin: 0;
-  }
-  .recipe-info {
-    padding: 10px;
-    float:left;
-    margin-right: 0px;
-    width: 180px;
-  }
-  h6.recipe_name {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
 }

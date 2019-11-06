@@ -5,11 +5,10 @@ import UserJumbotron from '../UserJumbotron/';
 import './PatientSavedRecipe.css';
 import PiePlot from '../Graphs/PiePlot';
 import { RingLoader } from 'react-spinners';
-import { Button } from 'reactstrap';
+import { Container, Col, Row, Button } from 'reactstrap';
 
 class PatientSavedRecipe extends React.Component {
   state = {
-    data: [],
     userId: this.props.match.params.id,
     recipeId: '',
     name: '',
@@ -21,28 +20,20 @@ class PatientSavedRecipe extends React.Component {
     recipes: [],
     recipeData: [],
     index: 0,
+    activeIndex: 0,
     notes: [],
     noteText: '',
     isUserPage: false,
-    showResults: true,
-    loading: false,
+    showResults: false,
+    loading: true,
+    isFlipped: 'false',
+    flipClass: ''
   };
 
   componentDidMount() {
-    this.setState({
-      loading: true,
-      showResults: false,
-    });
     axios.get(`/api/abttru/user/${this.state.userId}`).then(res => {
       this.setState(res.data);
-      this.setState({
-        loading: false,
-        showResults: true,
-      });
-      if (res.data.recipes.length < 1) {
-        return;
-      }
-      this.getData();
+      return res.data.recipes.length < 1 ? null : this.getData();
     });
   }
 
@@ -51,28 +42,25 @@ class PatientSavedRecipe extends React.Component {
     let allUri = this.state.recipes.map(recipe => recipe.uri);
     let length = allUri.length;
     if (length === 0) {
-      this.setState({
-        index: 0,
-        showResults: true,
-        loading: false,
-      });
+      this.setState({ index: 0 });
     } else {
       let randomRecipe = Math.floor(Math.random() * length);
-      this.setState({
-        index: randomRecipe,
-        showResults: true,
-        loading: false,
-      });
+      this.setState({ index: randomRecipe });
     }
-
     let recipeUri = allUri[this.state.index];
     let edemamUri = encodeURIComponent(recipeUri);
     axios
       .get(
         `https://api.edamam.com/search?r=${edemamUri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
       )
-      .then(recipe => {
-        this.setState({ recipeData: recipe.data });
+      .then(result => {
+        const recipe = result.data[0];
+        const formattedRecipe = [{ recipe }];
+        this.setState({
+          recipeData: formattedRecipe,
+          showResults: true,
+          loading: false,
+        });
       });
   };
 
@@ -82,18 +70,20 @@ class PatientSavedRecipe extends React.Component {
     });
   };
 
-  changeRecipe = e => {
+  changeRecipe = event => {
     this.setState({ loading: true, showResults: false });
-    const id = e.target.id;
+    const { target: { id } } = event;
     const uri = encodeURIComponent(id);
     axios
       .get(
         `https://api.edamam.com/search?r=${uri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
       )
-      .then(recipe => {
+      .then(result => {
         const position = this.state.recipes.map(r => r.uri).indexOf(id);
+        const recipe = result.data[0];
+        const formattedRecipe = [{ recipe }];
         this.setState({
-          recipeData: recipe.data,
+          recipeData: formattedRecipe,
           index: position,
           loading: false,
           showResults: true,
@@ -101,53 +91,48 @@ class PatientSavedRecipe extends React.Component {
       });
   };
 
-  makeNotes = notes =>
-    notes.map(note => (
-      <div key={note._id} className="notes">
-        {note.body}
-        <button className="delete-note" id={note._id} onClick={this.deleteNote}>
-          x
-        </button>
-      </div>
-    ));
-
   makeCard = () => {
-    const { recipes, index } = this.state;
+    const { recipes, flipClass, index, noteText } = this.state;
     const savedCard = recipes.map(recipe => {
       const { saveNote, deleteRecipe, flipCard } = this;
-      const { noteText } = this.state;
       const { _id, name, image, link, notes } = recipe;
       return (
-        <div key={_id}>
-          <RecipeCard
-            saveNote={saveNote}
-            deleteRecipe={deleteRecipe}
-            flipCard={flipCard}
-            key={_id}
-            image={image}
-            name={name}
-            link={link}
-            id={_id}
-            notes={this.makeNotes(notes)}
-            noteText={noteText}
-            onChange={this.onChange}
-          />
-        </div>
+        <RecipeCard
+          saveNote={saveNote}
+          deleteRecipe={deleteRecipe}
+          flipClass={flipClass}
+          flipCard={flipCard}
+          key={_id}
+          image={image}
+          name={name}
+          link={link}
+          id={_id}
+          notes={this.makeNotes(notes)}
+          noteText={noteText}
+          onChange={this.onChange}
+        />
       );
     });
     return savedCard[index];
   };
 
   flipCard = () => {
-    const card = document.querySelector('#card');
-    const cardDiv = document.querySelector('.image-flip');
-    const isFlipped = JSON.parse(card.getAttribute('isflipped'));
-    if (!isFlipped) {
-      card.setAttribute('ispicked', 'true');
+    const isFlipped = this.state.isFlipped;
+    if (isFlipped === 'false') {
+      return this.setState({ isFlipped: 'true', flipClass: 'flip-card flip' })
     }
-    cardDiv.classList.toggle('flip');
-    return;
+    return this.setState({ isFlipped: 'false', flipClass: 'flip-card' })
   };
+
+  makeNotes = notes =>
+    notes.map(note => (
+      <div key={note._id} className='notes'>
+        {note.body}
+        <button className='delete-note' id={note._id} onClick={this.deleteNote}>
+          x
+        </button>
+      </div>
+    ));
 
   saveNote = event => {
     event.preventDefault();
@@ -186,30 +171,25 @@ class PatientSavedRecipe extends React.Component {
     const savedSelect = this.state.recipes.map(recipe => {
       const { _id, uri, link, name, image } = recipe;
       return (
-        <li className="recipe" id={uri} key={_id}>
-          <a href={link} title={name} target="_blank" rel="noopener noreferrer">
-            <img className="img-responsive pic" src={image} alt="alt" />
-          </a>
-          <div className="recipe-info">
-            <h6 className="recipe_name">{name}</h6>
-            <br />
-            <Button
-              className="recipe-card-button"
-              id={uri}
-              onClick={this.changeRecipe}
-            >
-              GET RECIPE CARD
+        <li className='recipe' id={uri} key={_id}>
+          <div className='recipe-wrapper'>
+            <a href={link} title={name} target='_blank' rel='noopener noreferrer'>
+              <img className='img-responsive patient-photo' src={image} alt='alt' />
+            </a>
+            <div className='recipe-card-info'>
+              <h6 className='recipe-name'>{name}</h6>
+              <Button
+                className='recipe-card-button'
+                id={uri}
+                onClick={this.changeRecipe}
+              >
+                GET RECIPE CARD
             </Button>
+            </div>
           </div>
         </li>
       );
     });
-
-    const piePlot = this.state.recipeData.map(recipe => (
-      <div key={recipe.uri}>
-        <PiePlot digestData={recipe.digest} yieldData={recipe.yield} />
-      </div>
-    ));
 
     const {
       userId,
@@ -220,76 +200,86 @@ class PatientSavedRecipe extends React.Component {
       userPhoto,
       loading,
       showResults,
+      recipes,
+      index,
     } = this.state;
 
     return (
-      <div>
-        <div className="savedPage">
-          <div>
-            <div>
-              <UserJumbotron
-                className={'col-md-12'}
-                userId={userId}
-                riskFactor={riskFactor}
-                dietLabel={dietRecommendation}
-                healthLabel={dietRestriction}
-                isUserPage={isUserPage}
-                userPhoto={userPhoto}
-              />
-              <div className="">
-                <div className="row">
-                  <div className="col-3 col-sm-3 col-md-5 cold-lg-5" />
-                  <div className="col-6 col-sm-6 col-md-2 cold-lg-2 sweet-loader">
-                    <RingLoader
-                      loading={loading}
-                      size={200}
-                      color={'#EC0B43'}
-                    />
-                  </div>
-                  <div className="col-3 col-sm-3 col-md-5 cold-lg-5" />
-                </div>
-
-                {showResults ? (
-                  <div>
-                    <div className="row">
-                      <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <div className="dropdown">
-                          <button
-                            className="btn btn-secondary dropdown-toggle"
-                            type="button"
-                            id="dropdownMenuButton"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            RECIPE BOX
-                          </button>
-                          <ul
-                            className="dropdown-menu scrollable-menu"
-                            role="menu"
-                          >
-                            {savedSelect}
-                          </ul>
-                        </div>
-                      </div>
-                      <div className="col-12 col-sm-12 col-md-4 col-lg-4" />
-                    </div>
-                    <div className="row">
-                      <div className="col-0 col-sm-0 col-md-1 cold-lg-1" />
-                      <div className="col-12 col-sm-12 col-md-5 col-lg-5 display">
-                        <div className="card-holder">{this.makeCard()}</div>
-                      </div>
-                      <div className="col-12 col-sm-12 col-md-5 col-lg-5 display">
-                        {piePlot}
-                      </div>
-                      <div className="col-0 col-sm-0 col-md-1 col-lg-1" />
-                    </div>
-                  </div>
-                ) : null}
+      <div className='savedPage'>
+        <UserJumbotron
+          className={'col-md-12'}
+          userId={userId}
+          riskFactor={riskFactor}
+          dietLabel={dietRecommendation}
+          healthLabel={dietRestriction}
+          isUserPage={isUserPage}
+          userPhoto={userPhoto}
+        />
+        <Row>
+          {loading ? (
+            <Col xs={{ size: 6, offset: 3 }}>
+              <div className='ring-loader'>
+                <RingLoader loading={loading} size={100} color={'#EC0B43'} />
               </div>
-            </div>
-          </div>
-        </div>
+            </Col>
+          ) : null}
+        </Row>
+        {showResults ? (
+          <>
+            <Container>
+              <Row>
+                <Col xs={12} md={{ size: 8, offset: 2 }}>
+                  <div className='search-wrapper'>
+                    <div className='dropdown'>
+                      <button
+                        className='btn btn-secondary dropdown-toggle'
+                        type='button'
+                        id='dropdownMenuButton'
+                        data-toggle='dropdown'
+                        aria-haspopup='true'
+                        aria-expanded='false'
+                      >
+                        RECIPE BOX
+                      </button>
+                      <ul className='dropdown-menu scrollable-menu' role='menu'>
+                        {savedSelect}
+                      </ul>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12} md={6} lg={{ size: 4, offset: 2 }}>
+                  {this.makeCard()}
+                  <div className='search-button-wrapper'>
+                    <Button className='get-saved-recipe'>
+                      <a
+                        className='recipe-link'
+                        href={this.state.recipeData[0].url}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        GET RECIPE
+                      </a>
+                    </Button>
+                    <Button
+                      id={recipes[index]._id}
+                      className='delete-saved-recipe'
+                      outline
+                      color='danger'
+                      onClick={this.deleteRecipe}
+                    >
+                      DELETE RECIPE
+                    </Button>
+                  </div>
+                </Col>
+                <Col xs={12} md={6} lg={4}>
+                  <PiePlot data={this.state.recipeData} recipeIndex={this.state.activeIndex} />
+                </Col>
+              </Row>
+            </Container>
+          </>
+        ) : null}
       </div>
     );
   }
