@@ -22,8 +22,6 @@ const StepFour = props => {
 
   return (
     <div className="steppy">
-      <br />
-      <br />
       <h5 className="review-info">First Name: {firstName}</h5>
       <h5 className="review-info">Last Name: {lastName}</h5>
       <h5 className="review-info">Email: {email}</h5>
@@ -42,7 +40,7 @@ const StepFour = props => {
       <h5 className="review-info">BP -- Diastolic: {bpDiastolic}</h5>
       <h5 className="review-info">Health Risk Factor: {riskFactor}</h5>
       <h5 className="review-info">Diet Recommendation: {dietRecommendation}</h5>
-      <h5 className="review-info"> Diet Restriction: {dietRestriction}</h5>
+      <h5 className="review-info"> Diet Restriction: {dietRestriction ? dietRestriction : 'None'}</h5>
     </div>
   );
 };

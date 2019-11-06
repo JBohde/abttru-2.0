@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Container, Row, Col } from 'reactstrap';
 import './Doctor.css';
 import DoctorJumbotron from '../DoctorJumbotron/DoctorJumbotron';
 
@@ -74,7 +75,7 @@ class Doctor extends React.Component {
     });
     const { name, facilityName, specialty, doctorId, doctorPhoto } = this.state;
     return (
-      <div>
+      <>
         <DoctorJumbotron
           name={name}
           facilityName={facilityName}
@@ -84,28 +85,31 @@ class Doctor extends React.Component {
           doctorId={doctorId}
         />
         <div className="main-content">
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-              <div className="dropdown">
-                <button
-                  className="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  View My Patients
-                </button>
-                <ul className="dropdown-menu scrollable-menu" role="menu">
-                  {savedSelect}
-                </ul>
-              </div>
-            </div>
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6" />
-          </div>
+          <Container>
+            <Row>
+              <Col xs={12} md={{ size: 8, offset: 2 }}>
+                <div className='search-wrapper'>
+                  <div className="dropdown">
+                    <button
+                      className="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      View My Patients
+                    </button>
+                    <ul className="dropdown-menu scrollable-menu" role="menu">
+                      {savedSelect}
+                    </ul>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
-      </div>
+      </>
     );
   }
 }

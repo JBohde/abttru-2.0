@@ -47,9 +47,10 @@
   float: left;
 }
 
-button#dropdownMenuButton {
-  width: auto;
+button.dropdown-toggle.btn.btn-secondary {
+  width: 100%;
   height: auto;
+  margin: 0;
 }
 
 @media screen and (max-width: 600px) {
