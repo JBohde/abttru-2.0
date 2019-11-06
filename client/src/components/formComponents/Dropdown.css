@@ -1,249 +1,250 @@
 .Dropdown-root {
-    position: relative;
+  position: relative;
+}
+
+.Dropdown-control {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #333;
+  cursor: default;
+  outline: none;
+  padding: 8px 52px 8px 10px;
+  transition: all 200ms ease;
+}
+
+.Dropdown-control:hover {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+.Dropdown-arrow {
+  border-color: #999 transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 0;
+  content: ' ';
+  display: block;
+  height: 0;
+  margin-top: -ceil(2.5);
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  width: 0;
+}
+
+.is-open .Dropdown-arrow {
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
+}
+
+.Dropdown-menu {
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 1000;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Dropdown-menu .Dropdown-group > .Dropdown-title {
+  padding: 8px 10px;
+  color: rgba(51, 51, 51, 1);
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.Dropdown-option {
+  box-sizing: border-box;
+  color: rgba(51, 51, 51, 0.8);
+  cursor: pointer;
+  display: block;
+  padding: 8px 10px;
+}
+
+.Dropdown-option:last-child {
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.Dropdown-option:hover {
+  background-color: #f2f9fc;
+  color: #333;
+}
+
+.Dropdown-option.is-selected {
+  background-color: #f2f9fc;
+  color: #333;
+}
+
+.Dropdown-noresults {
+  box-sizing: border-box;
+  color: #ccc;
+  cursor: default;
+  display: block;
+  padding: 8px 10px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .Dropdown-control {
-    position: relative;
-    overflow: hidden;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    box-sizing: border-box;
-    color: #333;
-    cursor: default;
-    outline: none;
-    padding: 8px 52px 8px 10px;
-    transition: all 200ms ease;
+  to {
+    transform: rotate(360deg);
   }
-  
-  .Dropdown-control:hover {
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-  }
-  
-  .Dropdown-arrow {
-    border-color: #999 transparent transparent;
-    border-style: solid;
-    border-width: 5px 5px 0;
-    content: ' ';
-    display: block;
-    height: 0;
-    margin-top: -ceil(2.5);
-    position: absolute;
-    right: 10px;
-    top: 14px;
-    width: 0
-  }
-  
-  .is-open .Dropdown-arrow {
-    border-color: transparent transparent #999;
-    border-width: 0 5px 5px;
-  }
-  
-  .Dropdown-menu {
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-    box-sizing: border-box;
-    margin-top: -1px;
-    max-height: 200px;
-    overflow-y: auto;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    z-index: 1000;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .Dropdown-menu .Dropdown-group > .Dropdown-title{
-    padding: 8px 10px;
-    color: rgba(51, 51, 51, 1);
-    font-weight: bold;
-    text-transform: capitalize;
-  }
-  
-  .Dropdown-option {
-    box-sizing: border-box;
-    color: rgba(51, 51, 51, 0.8);
-    cursor: pointer;
-    display: block;
-    padding: 8px 10px;
-  }
-  
-  .Dropdown-option:last-child {
-    border-bottom-right-radius: 2px;
-     border-bottom-left-radius: 2px;
-  }
-  
-  .Dropdown-option:hover {
-    background-color: #f2f9fc;
-    color: #333;
-  }
-  
-  .Dropdown-option.is-selected {
-    background-color: #f2f9fc;
-    color: #333;
-  }
-  
-  .Dropdown-noresults {
-    box-sizing: border-box;
-    color: #ccc;
-    cursor: default;
-    display: block;
-    padding: 8px 10px;
-  }
-  
-  .App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-  }
-  
-  .App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-    color: white;
-  }
-  
-  .App-title {
-    font-size: 1.5em;
-  }
-  
-  .App-intro {
-    font-size: large;
-  }
-  
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  ol.progtrckr {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  ol.progtrckr li {
-    display: inline-block;
-    text-align: center;
-    line-height: 4.5rem;
-    cursor: pointer;
-  }
-  
-  ol.progtrckr li span {
-    padding: 0 1.5rem;
-  }
-  
-  @media (max-width: 650px) {
-    .progtrckr li span {
-      display: none;
-    }
-  }
-  .progtrckr em {
+}
+ol.progtrckr {
+  list-style-type: none;
+  padding: 0;
+}
+
+ol.progtrckr li {
+  display: inline-block;
+  text-align: center;
+  line-height: 4.5rem;
+  cursor: pointer;
+}
+
+ol.progtrckr li span {
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 650px) {
+  .progtrckr li span {
     display: none;
-    font-weight: 700;
-    padding-left: 1rem;
   }
-  
-  @media (max-width: 650px) {
-    .progtrckr em {
-      display: inline;
-    }
+}
+.progtrckr em {
+  display: none;
+  font-weight: 700;
+  padding-left: 1rem;
+}
+
+@media (max-width: 650px) {
+  .progtrckr em {
+    display: inline;
   }
-  
-  ol.progtrckr li.progtrckr-todo {
-    color: silver;
-    border-bottom: 4px solid silver;
-  }
-  
-  ol.progtrckr li.progtrckr-doing {
-    color: black;
-    border-bottom: 4px solid #CCCCCC;
-  }
-  
-  ol.progtrckr li.progtrckr-done {
-    color: black;
-    border-bottom: 4px solid #5cb85c;
-  }
-  
-  ol.progtrckr li:after {
-    content: "\00a0\00a0";
-  }
-  
-  ol.progtrckr li:before {
-    position: relative;
-    bottom: -3.7rem;
-    float: left;
-    left: 50%;
-  }
-  
-  ol.progtrckr li.progtrckr-todo:before {
-    content: "\039F";
-    color: silver;
-    background-color: white;
-    width: 1.2em;
-    line-height: 1.4em;
-  }
-  
-  ol.progtrckr li.progtrckr-todo:hover:before {
-    color: #ff4500;
-  }
-  
-  ol.progtrckr li.progtrckr-doing:before {
-    content: "\2022";
-    color: white;
-    background-color: #CCCCCC;
-    width: 1.2em;
-    line-height: 1.2em;
-    border-radius: 1.2em;
-  }
-  
-  ol.progtrckr li.progtrckr-doing:hover:before {
-    color: #ff4500;
-  }
-  
-  ol.progtrckr li.progtrckr-done:before {
-    content: "\2713";
-    color: white;
-    background-color: #5cb85c;
-    width: 1.2em;
-    line-height: 1.2em;
-    border-radius: 1.2em;
-  }
-  
-  ol.progtrckr li.progtrckr-done:hover:before {
-    color: #333;
-  }
-  
+}
+
+ol.progtrckr li.progtrckr-todo {
+  color: silver;
+  border-bottom: 4px solid silver;
+}
+
+ol.progtrckr li.progtrckr-doing {
+  color: black;
+  border-bottom: 4px solid #cccccc;
+}
+
+ol.progtrckr li.progtrckr-done {
+  color: black;
+  border-bottom: 4px solid #5cb85c;
+}
+
+ol.progtrckr li:after {
+  content: '\00a0\00a0';
+}
+
+ol.progtrckr li:before {
+  position: relative;
+  bottom: -3.7rem;
+  float: left;
+  left: 50%;
+}
+
+ol.progtrckr li.progtrckr-todo:before {
+  content: '\039F';
+  color: silver;
+  background-color: white;
+  width: 1.2em;
+  line-height: 1.4em;
+}
+
+ol.progtrckr li.progtrckr-todo:hover:before {
+  color: #ff4500;
+}
+
+ol.progtrckr li.progtrckr-doing:before {
+  content: '\2022';
+  color: white;
+  background-color: #cccccc;
+  width: 1.2em;
+  line-height: 1.2em;
+  border-radius: 1.2em;
+}
+
+ol.progtrckr li.progtrckr-doing:hover:before {
+  color: #ff4500;
+}
+
+ol.progtrckr li.progtrckr-done:before {
+  content: '\2713';
+  color: white;
+  background-color: #5cb85c;
+  width: 1.2em;
+  line-height: 1.2em;
+  border-radius: 1.2em;
+}
+
+ol.progtrckr li.progtrckr-done:hover:before {
+  color: #333;
+}
+
+form {
+  margin: auto;
+  text-align: left;
+  width: 100%;
+}
+
+@media (min-width: 651px) {
   form {
     margin: auto;
     text-align: left;
   }
-  
-  @media (min-width: 651px) {
-    form {
-      margin: auto;
-      text-align: left;
-    }
-  
-    .bp-label {
-      float: left;
-    }
-    
-    .bp-div {
-      position: relative;
-      float: left;
-      top: -15px;
-      left: 10px;
-    }
+
+  .bp-label {
+    float: left;
   }
 
-  .review-info {
-    text-align: left;
+  .bp-div {
+    position: relative;
+    float: left;
+    top: -15px;
+    left: 10px;
   }
+}
 
-
-  
-  
+.review-info {
+  text-align: left;
+}

@@ -1,1 +1,1 @@
-export {default} from "./PatientSavedRecipe";
+export { default } from "./PatientSavedRecipe";

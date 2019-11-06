@@ -13,41 +13,37 @@ class Home extends React.Component {
     return (
       <>
         <Row className="row">
-          <Col xs={0} sm={0} md={4} lg={4} />
-          <Col xs={12} sm={12} md={4} lg={4}>
+          <Col xs={0} sm={0} md={3} lg={3} xl={4} />
+          <Col cxs={12} sm={12} md={6} lg={6} xl={4} >
+            <div className="login-wrapper">
             <Logo />
+            <Button className="home-buttons">
+              <h3>
+                <Link to="/userLogin" className="login-link">
+                  <FontAwesomeIcon icon={faUser} className="login-icon" />
+                  Patient Login
+                </Link>
+              </h3>
+            </Button>
+            <Button className="home-buttons">
+              <h3>
+                <Link to="/doctorLogin" className="login-link">
+                  <FontAwesomeIcon icon={faUserMd} color="#FFFFFF" className="login-icon" />
+                  Doctor Login
+                </Link>
+              </h3>
+            </Button>
+            <Button className="home-buttons">
+              <h3>
+                <Link to="/guest" className="login-link">
+                  <FontAwesomeIcon icon={faUser} className="login-icon"/>
+                  Guest
+                </Link>
+              </h3>
+            </Button>
+            </div>
           </Col>
-          <Col xs={0} sm={0} md={4} lg={4} />
-        </Row>
-        <Row className="row">
-          <Col xs={0} sm={0} md={3} lg={4} />
-          <Col cxs={12} sm={12} md={6} lg={4} className="buttons-wrapper">
-            <Button className="home-buttons">
-              <h3>
-                <Link to="/guest" id="nav-link">
-                  <FontAwesomeIcon icon={faUser} />
-                  Continue as Guest
-                </Link>
-              </h3>
-            </Button>
-            <Button className="home-buttons">
-              <h3>
-                <Link to="/doctorLogin" id="nav-link">
-                  <FontAwesomeIcon icon={faUserMd} color="#FFFFFF" />
-                  Login as Doctor
-                </Link>
-              </h3>
-            </Button>
-            <Button className="home-buttons">
-              <h3>
-                <Link to="/userLogin" id="nav-link">
-                  <FontAwesomeIcon icon={faUser} />
-                  Login as Patient
-                </Link>
-              </h3>
-            </Button>
-          </Col>
-          <Col xs={0} sm={0} md={3} lg={4} />
+          <Col xs={0} sm={0} md={3} lg={3} xl={4} />
         </Row>
       </>
     );

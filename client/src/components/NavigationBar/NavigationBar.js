@@ -10,14 +10,6 @@ const linkStyle = {
   float: 'right',
 };
 
-// const navStyle = {
-//   backgroundColor: `#2C3E50`,
-//   // backgroundColor: "#315659",
-//   display: "inline-block",
-//   float: "right",
-//   color: "white"
-// }
-
 const logoStyle = {
   width: '50px',
   height: 'auto',
@@ -30,18 +22,6 @@ const Nav = () => (
         <img src={require('./abttru-logo2.png')} style={logoStyle} alt="logo" />
       </div>
     </Link>
-    {/* <a className="navbar-brand" href="" style={brandStyle}>A Better You</a> */}
-    <button
-      className="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span className="navbar-toggler-icon" />
-    </button>
     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div className="navbar-nav">
         <Link to="/">

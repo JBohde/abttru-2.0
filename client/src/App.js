@@ -12,7 +12,6 @@ import UserLogin from './components/User/UserLogin/UserLogin';
 import DoctorLogin from './components/Doctor/DoctorLogin/DoctorLogin';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer/Footer';
-
 import './App.css';
 
 class App extends Component {
