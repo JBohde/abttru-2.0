@@ -28,7 +28,7 @@ const doogie = {
   email: 'doogie@gmail.com',
   password: 'password',
   doctorPhoto:
-    'http://mccurdywriting.com/wp-content/uploads/2010/09/Doogie_Howser_MD_290x400-290x300.jpg',
+    'https://m.media-amazon.com/images/M/MV5BNzk0ODYzNjkxNV5BMl5BanBnXkFtZTgwNDY3MTY1MTE@._V1_SY1000_CR0,0,1180,1000_AL_.jpg',
   facilityName: 'Eastman Medical Center',
   specialty: 'Child Genius Physician',
   patients: [],
