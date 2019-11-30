@@ -23,12 +23,12 @@ class App extends Component {
           <div className="main">
             <Route exact path="/" component={Home} />
             <Route path="/doctor/:id" component={Doctor} />
-            <Route path="/doctorLogin" component={DoctorLogin} />
+            <Route path="/doctorlogin" component={DoctorLogin} />
             <Route path="/create/:id" component={CreateUser} />
             <Route path="/edit/:id" component={EditUser} />
             <Route path="/show/:id" component={UserInfo} />
             <Route path="/user/:id" component={User} />
-            <Route path="/userLogin" component={UserLogin} />
+            <Route path="/userlogin" component={UserLogin} />
             <Route path="/savedrecipes/:id" component={PatientSavedRecipe} />
             <Route path="/guest" component={Guest} />
           </div>

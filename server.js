@@ -47,8 +47,14 @@ dotenv.config();
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  'mongodb://heroku_g9qnjs2k:4mu4ku96lnli703pl5uhq20fun@ds131902.mlab.com:31902/heroku_g9qnjs2k',
-  { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false, useUnifiedTopology: true, useUnifiedTopology: true },
+  "mongodb://heroku_g9qnjs2k:4mu4ku96lnli703pl5uhq20fun@ds131902.mlab.com:31902/heroku_g9qnjs2k",
+  {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useUnifiedTopology: true
+  }
 );
 
 app.listen(PORT, function () {

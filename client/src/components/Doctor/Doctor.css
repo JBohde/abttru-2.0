@@ -51,6 +51,8 @@ button.dropdown-toggle.btn.btn-secondary {
   width: 100%;
   height: auto;
   margin: 0;
+  background: #749541;
+  outline: #2c3e50;
 }
 
 @media screen and (max-width: 600px) {

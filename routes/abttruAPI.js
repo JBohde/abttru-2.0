@@ -13,7 +13,7 @@ router
   .get(doctorController.findById) // get all patients
   .post(doctorController.createPatient); // create a patient
 
-router.route('/abttru/doctorLogin').post(doctorController.login);
+router.route('/abttru/doctorlogin').post(doctorController.login);
 
 router
   .route('/abbtru/patient/:id')
@@ -27,7 +27,7 @@ router
   .put(userController.update) // update a user by id
   .delete(userController.deletePatient); // delete a user by id
 
-router.route('/abttru/userLogin').post(userController.login);
+router.route('/abttru/userlogin').post(userController.login);
 
 router
   .route('/abttru/recipes/:id')
