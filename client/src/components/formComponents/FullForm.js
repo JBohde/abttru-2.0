@@ -89,7 +89,7 @@ class FullForm extends Component {
     } = this.state;
     const steps = [
       {
-        name: 'General Patient Info',
+        name: 'General Info',
         component: (
           <Step1
             firstName={firstName}
@@ -102,7 +102,7 @@ class FullForm extends Component {
         ),
       },
       {
-        name: 'Patient Statistics',
+        name: 'Statistics',
         component: (
           <Step2
             dob={dob}
@@ -116,7 +116,7 @@ class FullForm extends Component {
         ),
       },
       {
-        name: 'Patient Health Factors',
+        name: 'Health Factors',
         component: (
           <Step3
             bpSystolic={bpSystolic}
@@ -129,7 +129,8 @@ class FullForm extends Component {
         ),
       },
       {
-        name: 'Confirm & Save',
+        name: 'Confirm',
+        nextButtonText: 'Save',
         component: (
           <Step4
             firstName={firstName}
@@ -154,22 +155,19 @@ class FullForm extends Component {
     ];
 
     return (
-      <div className="App">
-        <div className="step-progress">
-          <StepZilla
-            steps={steps}
-            showNavigation={true}
-            showSteps={true}
-            stepsNavigation={true}
-            preventEnterSubmission={true}
-            nextTextOnFinalActionStep={'Click to Review Data'}
-            hocValidationAppliedTo={[3]}
-            startAtStep={0}
-            prevBtnOnLastStep={true}
-            onStepChange={step => window.sessionStorage.setItem('step', step)}
-          />
-        </div>
-        <Button onClick={this.onSubmit.bind(this)}>Submit</Button>
+      <div className="step-progress">
+        <StepZilla
+          steps={steps}
+          showNavigation={true}
+          showSteps={true}
+          stepsNavigation={true}
+          preventEnterSubmission={true}
+          nextTextOnFinalActionStep={'Review'}
+          hocValidationAppliedTo={[3]}
+          startAtStep={0}
+          prevBtnOnLastStep={true}
+          onStepChange={step => window.sessionStorage.setItem('step', step)}
+        />
       </div>
     );
   }

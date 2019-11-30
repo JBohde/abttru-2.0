@@ -17,19 +17,19 @@ const StepTwo = props => {
       <form>
         {(pathName !== '/edit/:id') ?
           <>
-            <h3>Date of Birth:</h3>
+            <h4>Date of Birth:</h4>
             <input
-              className='input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12'
+              className='input-wizard'
               type='date'
               name='dob'
               value={dob}
               onChange={onChange}
             />
-            <br />
-            <br />
-            <h3>Sex:</h3>
+
+
+            <h4>Sex:</h4>
             <select
-              className='input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12'
+              className='input-wizard'
               value={sex}
               name='sex'
               onChange={onChange}
@@ -38,12 +38,9 @@ const StepTwo = props => {
               <option value='Male'>Male</option>
               <option value='Female'>Female</option>
             </select>
-            <br />
-            <br />
-            <h3> Height:</h3>
+            <h4> Height:</h4>
             <select
-              className='input-wizard col-xs-6 col-sm-6 col-md-6 col-lg-6'
-              id='height'
+              className='input-wizard height'
               name='heightFoot'
               placeholder='Height'
               value={heightFoot}
@@ -56,8 +53,7 @@ const StepTwo = props => {
               <option value='7'>7'</option>
             </select>
             <select
-              className='input-wizard height col-xs-6 col-sm-6 col-md-6 col-lg-6'
-              id='height'
+              className='input-wizard height'
               name='heightInch'
               placeholder='Height'
               value={heightInch}
@@ -76,24 +72,22 @@ const StepTwo = props => {
               <option value='10'>10"</option>
               <option value='11'>11"</option>
             </select>
-            <br />
-            <br />
+
+
           </>
           : null}
-        <h3>Weight:</h3>
+        <h4>Weight:</h4>
         <input
-          className='input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12'
+          className='input-wizard'
           type='text'
           name='weight'
-          placeholder='Weight (LBS)'
+          placeholder='Weight (lbs)'
           value={weight}
           onChange={onChange}
         />
-        <br />
-        <br />
-        <h3> Waist Measurement:</h3>
+        <h4> Waist Measurement:</h4>
         <select
-          className='input-wizard col-xs-12 col-sm-12 col-md-12 col-lg-12'
+          className='input-wizard'
           name='waist'
           placeholder='Waist Measurement'
           value={waist}
@@ -128,8 +122,6 @@ const StepTwo = props => {
           <option value='50'>50"</option>
           <option value='51'>50" +</option>
         </select>
-        <br />
-        <br />
       </form>
     </div>
   );
