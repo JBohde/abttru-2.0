@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Input } from 'reactstrap';
-// import Input from '../../Input/Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SavedRecipeCard.css';
 

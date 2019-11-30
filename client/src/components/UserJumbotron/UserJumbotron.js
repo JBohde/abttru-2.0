@@ -1,6 +1,10 @@
 import React from 'react';
 import { Jumbotron, Container, Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
+
 import cholesterolIcon from './cholesterol.png';
 import glucoseIcon from './glucometer.png';
 import restrictionIcon from './icons8-no-entry-512.png';
@@ -51,18 +55,19 @@ class UserJumbotron extends React.Component {
       userId,
       userPhoto,
       waist,
-      // bpSystolic,
-      // bpDiastolic,
+      bpSystolic,
       riskFactor,
       dietLabel,
       dietRestriction,
     } = this.props;
+
+    const userImage = userPhoto ? userPhoto : <FontAwesomeIcon icon={faUser} className="login-icon" />
     return (
       <Jumbotron className='jumbo'>
         <Container>
           <Row className='patient-profile'>
             <Col xs={12} md={4}>
-              <img id='user_photo' src={userPhoto} alt='user_photo' />
+              <img id='user_photo' src={userImage} alt='user_photo' />
             </Col>
             <Col xs={12} md={8}>
               <Row>
@@ -79,7 +84,7 @@ class UserJumbotron extends React.Component {
                 <Col xs={6} md={4} className='stats-wrapper'>
                   <img src={pressureIcon} alt='bp icon' className='health-icon' />
                   <span className='health_stats'>
-                    Blood Pressure: <br />{' '}
+                    Blood Pressure: <br />{bpSystolic}
                   </span>
                 </Col>
                 <Col xs={6} md={4} className='stats-wrapper'>
@@ -89,7 +94,7 @@ class UserJumbotron extends React.Component {
                     className='health-icon'
                   />
                   <span className='health_stats'>
-                    Blood Sugar: <br />{' '}
+                    Blood Sugar: <br />80 mg/dL
                   </span>
                 </Col>
                 <Col xs={6} md={4} className='stats-wrapper'>

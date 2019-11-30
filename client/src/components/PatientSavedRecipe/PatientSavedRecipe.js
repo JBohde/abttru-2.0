@@ -94,15 +94,13 @@ class PatientSavedRecipe extends React.Component {
   makeCard = () => {
     const { recipes, flipClass, index, noteText } = this.state;
     const savedCard = recipes.map(recipe => {
-      const { saveNote, deleteRecipe, flipCard } = this;
+      const { saveNote, flipCard } = this;
       const { _id, name, image, link, notes } = recipe;
       return (
         <RecipeCard
           saveNote={saveNote}
-          deleteRecipe={deleteRecipe}
           flipClass={flipClass}
           flipCard={flipCard}
-          key={_id}
           image={image}
           name={name}
           link={link}
@@ -252,15 +250,13 @@ class PatientSavedRecipe extends React.Component {
                 <Col xs={12} md={6} lg={{ size: 4, offset: 2 }}>
                   {this.makeCard()}
                   <div className='search-button-wrapper'>
-                    <Button className='get-saved-recipe'>
-                      <a
-                        className='recipe-link'
-                        href={this.state.recipeData[0].url}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                      >
-                        GET RECIPE
-                      </a>
+                    <Button
+                      className='get-recipe'
+                      href={recipes[0].link}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      GET RECIPE
                     </Button>
                     <Button
                       id={recipes[index]._id}

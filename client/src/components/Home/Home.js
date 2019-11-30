@@ -16,31 +16,31 @@ class Home extends React.Component {
           <Col xs={0} sm={0} md={3} lg={3} xl={4} />
           <Col cxs={12} sm={12} md={6} lg={6} xl={4} >
             <div className="login-wrapper">
-            <Logo />
-            <Button className="home-buttons">
-              <h3>
-                <Link to="/userLogin" className="login-link">
-                  <FontAwesomeIcon icon={faUser} className="login-icon" />
-                  Patient Login
+              <Logo />
+              <Button className="home-buttons">
+                <h3>
+                  <Link to="/userlogin" className="login-link">
+                    <FontAwesomeIcon icon={faUser} className="login-icon" />
+                    Patient Login
                 </Link>
-              </h3>
-            </Button>
-            <Button className="home-buttons">
-              <h3>
-                <Link to="/doctorLogin" className="login-link">
-                  <FontAwesomeIcon icon={faUserMd} color="#FFFFFF" className="login-icon" />
-                  Doctor Login
+                </h3>
+              </Button>
+              <Button className="home-buttons">
+                <h3>
+                  <Link to="/doctorlogin" className="login-link">
+                    <FontAwesomeIcon icon={faUserMd} color="#FFFFFF" className="login-icon" />
+                    Doctor Login
                 </Link>
-              </h3>
-            </Button>
-            <Button className="home-buttons">
-              <h3>
-                <Link to="/guest" className="login-link">
-                  <FontAwesomeIcon icon={faUser} className="login-icon"/>
-                  Guest
+                </h3>
+              </Button>
+              <Button className="home-buttons">
+                <h3>
+                  <Link to="/guest" className="login-link">
+                    <FontAwesomeIcon icon={faUser} className="login-icon" />
+                    Guest
                 </Link>
-              </h3>
-            </Button>
+                </h3>
+              </Button>
             </div>
           </Col>
           <Col xs={0} sm={0} md={3} lg={3} xl={4} />

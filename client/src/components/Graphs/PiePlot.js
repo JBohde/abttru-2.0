@@ -226,11 +226,11 @@ class PiePlot extends Component {
   };
 
   nextRecipe = () => {
-    const { data, plotObjects, recipeIndex, nutrientIndex } = this.state;
-    const newRecipeIndex = recipeIndex === data.length - 1 ? 0 : recipeIndex + 1;
+    const { data, plotObjects, nutrientIndex, recipeIndex } = this.state;
+    const nextIndex = recipeIndex === data.length - 1 ? 0 : recipeIndex + 1;
     this.setState({
-      recipeIndex: newRecipeIndex,
-      showingPlot: plotObjects[newRecipeIndex][nutrientIndex].data,
+      recipeIndex: nextIndex,
+      showingPlot: plotObjects[nextIndex][nutrientIndex].data,
     });
   };
 
@@ -263,7 +263,6 @@ class PiePlot extends Component {
         </div>
         <Plot
           data={[this.state.showingPlot]}
-          // data={this.state.data[0][0].data}
           layout={this.state.plotLayout}
         />
       </div>
