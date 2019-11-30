@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { Card, CardBody, Button, Alert } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Step1 from '../formComponents/StepOne';
-import Step2 from '../formComponents/StepTwo';
-import Step3 from '../formComponents/StepThree';
-import Step4 from '../formComponents/StepFour';
-import StepZilla from 'react-stepzilla';
-import '../formComponents/Dropdown.css';
-import './CreateUser.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { Button, Container, Card, Alert } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Step1 from "../formComponents/StepOne";
+import Step2 from "../formComponents/StepTwo";
+import Step3 from "../formComponents/StepThree";
+import Step4 from "../formComponents/StepFour";
+import StepZilla from "react-stepzilla";
+import "../formComponents/Dropdown.css";
+import "./CreateUser.css";
 
 class Create extends React.Component {
   constructor(props) {
@@ -17,30 +17,30 @@ class Create extends React.Component {
 
     this.state = {
       doctorId: this.props.match.params.id,
-      userId: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      userPhoto: '',
-      dob: '',
-      sex: '',
-      heightFoot: '',
-      heightInch: '',
-      weight: '',
-      waist: '',
-      bpSystolic: '',
-      bpDiastolic: '',
-      riskFactor: '',
-      dietRecommendation: '',
-      dietRestriction: '',
-      isValid: true,
+      userId: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      userPhoto: "",
+      dob: "",
+      sex: "",
+      heightFoot: "",
+      heightInch: "",
+      weight: "",
+      waist: "",
+      bpSystolic: "",
+      bpDiastolic: "",
+      riskFactor: "",
+      dietRecommendation: "",
+      dietRestriction: "",
+      isValid: true
     };
   }
 
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -50,19 +50,19 @@ class Create extends React.Component {
     const {
       history,
       match: {
-        params: { id },
-      },
+        params: { id }
+      }
     } = this.props;
     if (firstName && password) {
       this.setState({
-        isValid: true,
+        isValid: true
       });
       axios
         .post(`/api/abttru/doctor/${id}`, this.state)
         .then(() => history.push(`/doctor/${id}`)); // redirect to admin page
     } else {
       this.setState({
-        isValid: false,
+        isValid: false
       });
     }
   };
@@ -85,16 +85,18 @@ class Create extends React.Component {
       riskFactor,
       dietRecommendation,
       dietRestriction,
-      isValid,
+      isValid
     } = this.state;
+
     const {
       match: {
-        params: { id },
-      },
+        params: { id }
+      }
     } = this.props;
+
     const steps = [
       {
-        name: 'General Patient Info',
+        name: "General Info",
         component: (
           <Step1
             firstName={firstName}
@@ -104,10 +106,10 @@ class Create extends React.Component {
             userPhoto={userPhoto}
             onChange={this.onChange}
           />
-        ),
+        )
       },
       {
-        name: 'Patient Statistics',
+        name: "Statistics",
         component: (
           <Step2
             dob={dob}
@@ -118,10 +120,10 @@ class Create extends React.Component {
             waist={waist}
             onChange={this.onChange}
           />
-        ),
+        )
       },
       {
-        name: 'Patient Health Factors',
+        name: "Health Factors",
         component: (
           <Step3
             bpSystolic={bpSystolic}
@@ -131,10 +133,10 @@ class Create extends React.Component {
             dietRestriction={dietRestriction}
             onChange={this.onChange}
           />
-        ),
+        )
       },
       {
-        name: 'Confirm & Save',
+        name: "Review",
         component: (
           <Step4
             firstName={firstName}
@@ -154,58 +156,48 @@ class Create extends React.Component {
             dietRecommendation={dietRecommendation}
             dietRestriction={dietRestriction}
           />
-        ),
-      },
+        )
+      }
     ];
-    return (
-      <div className="container">
-        <Card className="add-panel">
-          <Card>
-            <h3 className="add-patient">
-              <strong>Add Patient</strong>
-            </h3>
-          </Card>
-          <CardBody>
-            <div>
-              <h5 className="list">
-                <Link to={{ pathname: `/doctor/${id}` }} id="doc-home">
-                  <FontAwesomeIcon icon="list" /> Doctor Home
-                </Link>
-              </h5>
 
-              <div className="App">
-                <div className="step-progress">
-                  <StepZilla
-                    steps={steps}
-                    showNavigation={true}
-                    showSteps={true}
-                    stepsNavigation={true}
-                    preventEnterSubmission={true}
-                    nextTextOnFinalActionStep={'Review Data'}
-                    hocValidationAppliedTo={[3]}
-                    startAtStep={0}
-                    prevBtnOnLastStep={true}
-                    onStepChange={step =>
-                      window.sessionStorage.setItem('step', step)
-                    }
-                  />
-                </div>
-              </div>
-              <Button
-                className="btn-lg submit"
-                onClick={this.onSubmit}
-                color="primary"
-              >
-                Submit
-              </Button>
-            </div>
-          </CardBody>
+    return (
+      <Container>
+        <Card className="add-panel">
+          <h3 className="add-patient list">Add Patient</h3>
+          <h5 className="list">
+            <Link to={{ pathname: `/doctor/${id}` }} id="doc-home">
+              <FontAwesomeIcon icon="list" />
+              &nbsp; Doctor Home
+            </Link>
+          </h5>
+          <div className="step-progress">
+            <StepZilla
+              steps={steps}
+              showNavigation={true}
+              showSteps={true}
+              stepsNavigation={true}
+              preventEnterSubmission={true}
+              nextTextOnFinalActionStep={"Review"}
+              hocValidationAppliedTo={[3]}
+              startAtStep={0}
+              prevBtnOnLastStep={true}
+              onStepChange={step => window.sessionStorage.setItem("step", step)}
+            />
+          </div>
+          <Button
+            className="btn-lg submit"
+            onClick={this.onSubmit}
+            color="primary"
+          >
+            Submit
+          </Button>
         </Card>
+
         <br />
         {!isValid && (
           <Alert color="danger">Please fill the required form fields.</Alert>
         )}
-      </div>
+      </Container>
     );
   }
 }

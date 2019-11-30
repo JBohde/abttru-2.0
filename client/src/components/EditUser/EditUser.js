@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
-import { Card, Button } from 'reactstrap';
+import { Button, Card } from 'reactstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Step1 from '../formComponents/StepOne';
 import Step2 from '../formComponents/StepTwo';
 import Step3 from '../formComponents/StepThree';
@@ -36,6 +38,7 @@ class EditUser extends React.Component {
 
   render() {
     const {
+      doctorId,
       firstName,
       lastName,
       email,
@@ -53,6 +56,7 @@ class EditUser extends React.Component {
       dietRecommendation,
       dietRestriction,
     } = this.state;
+
 
     const steps = [
       {
@@ -123,6 +127,13 @@ class EditUser extends React.Component {
     return (
       <div className="container">
         <Card className="edit-patient">
+          <h3 className="add-patient list">Edit Patient</h3>
+          <h5 className="list">
+            <Link to={{ pathname: `/doctor/${doctorId}` }} id="doc-home">
+              <FontAwesomeIcon icon="list" />
+              &nbsp; Doctor Home
+            </Link>
+          </h5>
           <div className="App">
             <div className="step-progress">
               <StepZilla
@@ -139,15 +150,15 @@ class EditUser extends React.Component {
                   window.sessionStorage.setItem('step', step)
                 }
               />
-              <Button
-                className="btn-lg submit"
-                onClick={this.onSubmit}
-                color="primary"
-              >
-                Submit
-              </Button>
             </div>
           </div>
+          <Button
+            className="btn-lg submit"
+            onClick={this.onSubmit}
+            color="primary"
+          >
+            Submit
+          </Button>
         </Card>
       </div>
     );

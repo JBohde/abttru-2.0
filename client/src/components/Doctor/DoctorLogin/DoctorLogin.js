@@ -23,7 +23,7 @@ class DoctorLogin extends Component {
   handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
-    axios.post(`/api/abttru/doctorLogin`, this.state).then(res => {
+    axios.post(`/api/abttru/doctorlogin`, this.state).then(res => {
       if (res.data == null) {
         this.props.history.push('/doctorLogin');
       } else {

@@ -12,11 +12,7 @@ class Doctor extends React.Component {
   };
 
   componentDidMount() {
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
+    const { match: { params: { id } } } = this.props;
     axios
       .get(`/api/abttru/doctor/${id}`)
       .then(res => this.setState(res.data))
@@ -33,9 +29,9 @@ class Doctor extends React.Component {
         riskFactor,
         dietRecommendation,
       } = patient;
-      const {
-        match: { params: id },
-      } = this.props;
+
+      const { match: { params: id } } = this.props;
+
       return (
         <li className="patient" id={_id} key={_id}>
           <div id="patient-wrapper">
