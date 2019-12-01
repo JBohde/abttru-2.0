@@ -86,7 +86,6 @@ class ControlledCarousel extends React.Component {
         `https://api.edamam.com/search?q=${this.state.name}&app_id=${appId}&app_key=${appKey}&calories=591-722&from=${firstIndex}&Diet=${this.props.dietLabel}&Health=${this.props.healthLabel}`,
       )
       .then(res => {
-        console.log(res.data.hits);
         this.setState({
           data: res.data.hits,
           showCarousel: true,
@@ -225,6 +224,7 @@ class ControlledCarousel extends React.Component {
                 <PiePlot
                   data={this.state.data}
                   recipeIndex={this.state.activeIndex}
+                  path={this.props.pathName}
                 />
               </Col>
             </Row>

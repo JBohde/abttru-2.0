@@ -226,45 +226,43 @@ class PiePlot extends Component {
   };
 
   nextRecipe = () => {
-    const { data, plotObjects, nutrientIndex, recipeIndex } = this.state;
+    const { data, recipeIndex } = this.state;
     const nextIndex = recipeIndex === data.length - 1 ? 0 : recipeIndex + 1;
-    this.setState({
-      recipeIndex: nextIndex,
-      showingPlot: plotObjects[nextIndex][nutrientIndex].data,
-    });
+    this.setState({ recipeIndex: nextIndex });
   };
 
   switchPlot = event => {
-    const { plotObjects, recipeIndex } = this.state;
     let nutrientIndex = event.target.value;
-    this.setState({
-      showingPlot: plotObjects[recipeIndex][nutrientIndex].data,
-      plotLayout: plotObjects[recipeIndex][nutrientIndex].layout,
-      nutrientIndex,
-    });
+    this.setState({ nutrientIndex });
   };
 
   render() {
+    const { plotObjects, recipeIndex, nutrientIndex } = this.state;
+    const { path } = this.props;
     return (
       <div className='plot-wrapper'>
-        <div className="graph-buttons">
-          <Button className='btn-sm' onClick={this.switchPlot} value={0}>
-            Macros
-          </Button>
-          <Button className='btn-sm' onClick={this.switchPlot} value={1}>
-            Lipids
-          </Button>
-          <Button className='btn-sm' onClick={this.switchPlot} value={2}>
-            Minerals
-          </Button>
-          <Button className='btn-sm' onClick={this.switchPlot} value={3}>
-            Vitamins
-          </Button>
-        </div>
-        <Plot
-          data={[this.state.showingPlot]}
-          layout={this.state.plotLayout}
-        />
+        {path !== '/guest' &&
+          <div className="graph-buttons">
+            <Button className='btn-sm' onClick={this.switchPlot} value={0}>
+              Macros
+            </Button>
+            <Button className='btn-sm' onClick={this.switchPlot} value={1}>
+              Lipids
+            </Button>
+            <Button className='btn-sm' onClick={this.switchPlot} value={2}>
+              Minerals
+            </Button>
+            <Button className='btn-sm' onClick={this.switchPlot} value={3}>
+              Vitamins
+            </Button>
+          </div>
+        }
+        {plotObjects.length > 0 &&
+          <Plot
+            data={[plotObjects[recipeIndex][nutrientIndex].data]}
+            layout={plotObjects[recipeIndex][nutrientIndex].layout}
+          />
+        }
       </div>
     );
   }
