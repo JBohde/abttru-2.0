@@ -111,8 +111,8 @@ class ControlledCarousel extends React.Component {
   };
 
   render() {
-    const { pathName } = this.props;
-    const { activeIndex, data } = this.state;
+    const { pathName, className } = this.props;
+    const { activeIndex, name, data, loading, showCarousel} = this.state;
 
     const searchedRecipeCard = this.state.data.map(data => {
       const {
@@ -143,7 +143,7 @@ class ControlledCarousel extends React.Component {
                   <InputGroup>
                     <Input
                       name='name'
-                      value={this.state.name}
+                      value={name}
                       onChange={this.handleInputChange}
                       placeholder='chicken, broccoli ...'
                     />
@@ -162,11 +162,11 @@ class ControlledCarousel extends React.Component {
           </Col>
         </Row>
         <Row>
-          {this.state.loading ? (
+          {loading ? (
             <Col xs={{ size: 6, offset: 3 }}>
               <div className='ring-loader'>
                 <RingLoader
-                  loading={this.state.loading}
+                  loading={loading}
                   size={100}
                   color={'#EC0B43'}
                 />
@@ -174,13 +174,13 @@ class ControlledCarousel extends React.Component {
             </Col>
           ) : null}
         </Row>
-        {this.state.showCarousel ? (
+        {showCarousel ? (
           <Container>
             <Row>
               <Col xs={12} md={6} lg={{ size: 4, offset: 2 }}>
                 <Carousel
-                  className={this.props.className}
-                  activeIndex={this.state.activeIndex}
+                  className={className}
+                  activeIndex={activeIndex}
                   next={this.next}
                   previous={this.previous}
                   interval={false}
@@ -222,9 +222,9 @@ class ControlledCarousel extends React.Component {
               </Col>
               <Col xs={12} md={6} lg={4}>
                 <PiePlot
-                  data={this.state.data}
-                  recipeIndex={this.state.activeIndex}
-                  path={this.props.pathName}
+                  data={data}
+                  recipeIndex={activeIndex}
+                  path={pathName}
                 />
               </Col>
             </Row>
