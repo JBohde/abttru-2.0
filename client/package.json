@@ -23,7 +23,7 @@
     "react-scripts": "3.1.1",
     "react-spinners": "^0.3.2",
     "react-stepzilla": "^6.0.0",
-    "reactstrap": "^.4.0"
+    "reactstrap": "^6.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,15 +38,15 @@
     "chai-enzyme": "^1.0.0-beta.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.8.0",
-    "eslint": "^6.1.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-node": "^4.0.0",
     "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest-canvas-mock": "^2.1.0",
     "mocha": "^5.2.0",
