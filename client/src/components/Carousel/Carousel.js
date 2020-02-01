@@ -35,7 +35,6 @@ class ControlledCarousel extends React.Component {
     };
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
-    this.goToIndex = this.goToIndex.bind(this);
     this.onExiting = this.onExiting.bind(this);
     this.onExited = this.onExited.bind(this);
   }
@@ -65,11 +64,6 @@ class ControlledCarousel extends React.Component {
     const { activeIndex, data } = this.state;
     const nextIndex = activeIndex === 0 ? data.length - 1 : activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
-  }
-
-  goToIndex(newIndex) {
-    if (this.animating) return;
-    this.setState({ activeIndex: newIndex });
   }
 
   getRecipes(e) {

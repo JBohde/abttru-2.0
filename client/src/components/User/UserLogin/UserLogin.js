@@ -24,7 +24,6 @@ class UserLogin extends Component {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
     axios.post(`/api/abttru/userlogin`, this.state).then(res => {
-      console.log('response!!', res)
       if (res.data == null) {
         this.props.history.push('/userLogin');
       } else {
