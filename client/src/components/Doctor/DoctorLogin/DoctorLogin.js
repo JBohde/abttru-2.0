@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
-import Logo from '../../Home/Logo/Logo';
+import {
+  Button, Form, FormGroup, Input
+} from 'reactstrap';
 import axios from 'axios';
+import Logo from '../../Home/Logo/Logo';
 
 const logStyle = {
   textAlign: 'center',
@@ -21,13 +23,14 @@ class DoctorLogin extends Component {
   };
 
   handleFormSubmit = event => {
-    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+    // When the form is submitted, prevent its
+    // default behavior, get recipes update the recipes state
     event.preventDefault();
-    axios.post(`/api/abttru/doctorlogin`, this.state).then(res => {
+    axios.post('/api/abttru/doctorlogin', this.state).then(res => {
       if (res.data == null) {
         this.props.history.push('/doctorLogin');
       } else {
-        let id = res.data._id;
+        const id = res.data._id;
         this.setState({ _id: id });
         this.props.history.push(`/doctor/${id}`);
       }

@@ -1,4 +1,4 @@
-let plotConfig = [
+const plotConfig = [
   {
     data: {
       values: [],

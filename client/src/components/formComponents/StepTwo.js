@@ -15,8 +15,8 @@ const StepTwo = props => {
   return (
     <div className='steppy'>
       <form>
-        {(pathName !== '/edit/:id') ?
-          <>
+        {(pathName !== '/edit/:id')
+          ? <>
             <h4>Date of Birth:</h4>
             <input
               className='input-wizard'
@@ -25,7 +25,6 @@ const StepTwo = props => {
               value={dob}
               onChange={onChange}
             />
-
 
             <h4>Sex:</h4>
             <select
@@ -72,7 +71,6 @@ const StepTwo = props => {
               <option value='10'>10"</option>
               <option value='11'>11"</option>
             </select>
-
 
           </>
           : null}

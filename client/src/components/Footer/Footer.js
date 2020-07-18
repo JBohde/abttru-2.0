@@ -1,14 +1,15 @@
-import React from "react";
-import "./Footer.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faUserMd } from '@fortawesome/free-solid-svg-icons'
+/* eslint-disable global-require */
+import React from 'react';
+import './Footer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faUserMd } from '@fortawesome/free-solid-svg-icons';
 
 const logoStyle = {
-    width: "75px",
-    height: "auto",
-    margin: "5px 5px 15px 5px",
-    float: "left"
-}
+  width: '75px',
+  height: 'auto',
+  margin: '5px 5px 15px 5px',
+  float: 'left'
+};
 
 const Footer = () => (
 

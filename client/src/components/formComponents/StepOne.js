@@ -1,7 +1,14 @@
 import React from 'react';
 
 const StepOne = props => {
-  const { firstName, lastName, email, password, userPhoto, onChange } = props;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    userPhoto,
+    onChange,
+  } = props;
   return (
     <div className='steppy'>
       <form className='form-wizard'>

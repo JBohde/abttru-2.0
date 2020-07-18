@@ -1,18 +1,20 @@
-import React from "react";
-import { Jumbotron, Container, Row, Col, Button, Media } from "reactstrap";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import {
+  Jumbotron, Container, Row, Col, Button, Media
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import cholesterolIcon from "./cholesterol.png";
-import glucoseIcon from "./glucometer.png";
-import restrictionIcon from "./icons8-no-entry-512.png";
-import pressureIcon from "./pressure.png";
-import recipeIcon from "./recipe.png";
-import tapeIcon from "./tape.png";
-import dietIcon from "./diet.png";
-import searchIcon from "./search.png";
-import "./UserJumbotron.css";
+import cholesterolIcon from './cholesterol.png';
+import glucoseIcon from './glucometer.png';
+import restrictionIcon from './icons8-no-entry-512.png';
+import pressureIcon from './pressure.png';
+import recipeIcon from './recipe.png';
+import tapeIcon from './tape.png';
+import dietIcon from './diet.png';
+import searchIcon from './search.png';
+import './UserJumbotron.css';
 
 class UserJumbotron extends React.Component {
   constructor(props, context) {
@@ -37,17 +39,16 @@ class UserJumbotron extends React.Component {
       dietRecommendation: dietLabel,
       dietRestriction: healthLabel,
       isUserPage,
-      savedTab: "",
-      profileTab: ""
+      savedTab: '',
+      profileTab: ''
     };
   }
 
-  fontAwesomeColor = () =>
-    this.props.riskFactor === "high-cholesterol" ? "red" : "black";
+  fontAwesomeColor = () => (this.props.riskFactor === 'high-cholesterol' ? 'red' : 'black');
 
-  profileTabColor = () => (this.props.isUserPage ? "#F3F0DD" : "#2C3E50");
+  profileTabColor = () => (this.props.isUserPage ? '#F3F0DD' : '#2C3E50');
 
-  savedTabColor = () => (this.props.isUserPage ? "#2C3E50" : "#F3F0DD");
+  savedTabColor = () => (this.props.isUserPage ? '#2C3E50' : '#F3F0DD');
 
   render() {
     const {
@@ -130,7 +131,7 @@ class UserJumbotron extends React.Component {
                     Restriction: <br />
                     {dietRestriction && dietRestriction.length > 0
                       ? dietRestriction
-                      : "None"}
+                      : 'None'}
                   </span>
                 </Col>
               </Row>
@@ -151,13 +152,13 @@ class UserJumbotron extends React.Component {
               <p
                 style={{
                   color: this.savedTabColor(),
-                  margin: "0.25rem 0",
-                  fontSize: ".75rem",
-                  fontWeight: "bold"
+                  margin: '0.25rem 0',
+                  fontSize: '.75rem',
+                  fontWeight: 'bold'
                 }}
               >
                 <img src={searchIcon} alt="search icon" className="tab-icon" />
-                New Search{" "}
+                New Search{' '}
               </p>
             </Button>
           </Link>
@@ -175,12 +176,12 @@ class UserJumbotron extends React.Component {
               <p
                 style={{
                   color: this.profileTabColor(),
-                  margin: "0.25rem 0",
-                  fontSize: ".75rem",
-                  fontWeight: "bold"
+                  margin: '0.25rem 0',
+                  fontSize: '.75rem',
+                  fontWeight: 'bold'
                 }}
               >
-                <img src={recipeIcon} alt="search icon" className="tab-icon" />{" "}
+                <img src={recipeIcon} alt="search icon" className="tab-icon" />{' '}
                 Saved Recipes
               </p>
             </Button>

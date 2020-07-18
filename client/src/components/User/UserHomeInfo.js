@@ -1,8 +1,7 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 // import {Button, Table, FormGroup, FormControl} from "reactstrap";
-
 
 const UserStatsTable = props => (
 <Table hover striped responsive>
@@ -17,7 +16,7 @@ const UserStatsTable = props => (
 </thead>
 <tbody>
     <tr>
-      <td className="id"><Link to={`/user`}>{props._id}</Link></td>
+      <td className="id"><Link to={'/user'}>{props._id}</Link></td>
       <td className="name"><FontAwesomeIcon icon={ faUser}/>{props.name}</td>
       <td className="risk_factor"><FontAwesomeIcon icon="heartbeat"/> {props.risk_factor}</td>
       <td className="diet_recommendation"><FontAwesomeIcon icon="utensils"/> {props.diet_recommendation}</td>
@@ -25,6 +24,6 @@ const UserStatsTable = props => (
     </tr>
 </tbody>
 </Table>
-)
+);
 
 export default UserStatsTable;

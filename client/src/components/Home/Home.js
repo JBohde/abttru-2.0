@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Col, Row } from 'reactstrap';
-import Logo from './Logo/Logo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserMd } from '@fortawesome/free-solid-svg-icons';
+import Logo from './Logo/Logo';
 import './Home.css';
 
 class Home extends React.Component {

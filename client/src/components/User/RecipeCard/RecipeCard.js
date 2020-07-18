@@ -29,7 +29,7 @@ const RecipeCard = props => (
               />
             </FormGroup>
             <a>
-              <i class='fa fa-plus'>
+              <i className='fa fa-plus'>
                 <Button
                   className='save'
                   id={props.recipe_id}

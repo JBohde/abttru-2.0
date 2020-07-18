@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
-import {
-  Panel,
-  Button,
-  Form,
-  FormGroup,
-  FormControl,
-  Label,
-  Alert,
-} from 'reactstrap';
 import axios from 'axios';
+import StepZilla from 'react-stepzilla';
 import Step1 from './StepOne';
 import Step2 from './StepTwo';
 import Step3 from './StepThree';
 import Step4 from './StepFour';
-import StepZilla from 'react-stepzilla';
 import './Dropdown.css';
 import './FullForm.css';
 
@@ -39,8 +30,8 @@ class FullForm extends Component {
   };
 
   onChangeHandler = e => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
     this.setState({ [name]: value });
   };
 

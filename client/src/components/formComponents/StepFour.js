@@ -1,5 +1,5 @@
-import React from "react";
-import Moment from "moment";
+import React from 'react';
+import Moment from 'moment';
 
 const StepFour = props => {
   const {
@@ -27,7 +27,7 @@ const StepFour = props => {
       <h5 className="review-info">Email: {email}</h5>
       <h5 className="review-info">Password: ****************************</h5>
       <h5 className="review-info">IMG: {userPhoto}</h5>
-      <h5 className="review-info">DOB: {Moment(dob).format("MMMM Do YYYY")}</h5>
+      <h5 className="review-info">DOB: {Moment(dob).format('MMMM Do YYYY')}</h5>
       <h5 className="review-info">Sex: {sex}</h5>
       <h5 className="review-info">Height: {heightFoot}' {heightInch}"</h5>
       <h5 className="review-info">Weight: {weight}</h5>
@@ -36,7 +36,7 @@ const StepFour = props => {
       <h5 className="review-info">BP -- Diastolic: {bpDiastolic}</h5>
       <h5 className="review-info">Health Risk Factor: {riskFactor}</h5>
       <h5 className="review-info">Diet Recommendation: {dietRecommendation}</h5>
-      <h5 className="review-info">Diet Restriction: {dietRestriction ? dietRestriction : "None"}</h5>
+      <h5 className="review-info">Diet Restriction: {dietRestriction || 'None'}</h5>
     </div>
   );
 };

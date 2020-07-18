@@ -41,7 +41,7 @@ class PiePlot extends Component {
     data.forEach(() => {
       // create object that will contain the 'data' property for each distinct plot (macros, fats, minerals, vitamins)
 
-      let plots = [
+      const plots = [
         {
           data: {
             values: [],
@@ -187,31 +187,31 @@ class PiePlot extends Component {
     recipeDigest.forEach((digest, index) => {
       digest.forEach((nutrient, i) => {
         if (
-          nutrient.label === 'Fat' ||
-          nutrient.label === 'Carbs' ||
-          nutrient.label === 'Protein'
+          nutrient.label === 'Fat'
+          || nutrient.label === 'Carbs'
+          || nutrient.label === 'Protein'
         ) {
           plotObjects[index][0].data.values.push(
-            nutrient.total / recipeYield[index],
+            nutrient.total / recipeYield[index]
           );
           plotObjects[index][0].data.labels.push(nutrient.label);
 
           if (nutrient.label === 'Fat') {
             nutrient.sub.forEach(fat => {
               plotObjects[index][1].data.values.push(
-                fat.total / recipeYield[index],
+                fat.total / recipeYield[index]
               );
               plotObjects[index][1].data.labels.push(fat.label);
             });
           }
         } else if ((i > 3) & (i < 11)) {
           plotObjects[index][2].data.values.push(
-            nutrient.total / recipeYield[index],
+            nutrient.total / recipeYield[index]
           );
           plotObjects[index][2].data.labels.push(nutrient.label);
         } else if ((i > 10) & (i < 24)) {
           plotObjects[index][3].data.values.push(
-            nutrient.total / recipeYield[index],
+            nutrient.total / recipeYield[index]
           );
           plotObjects[index][3].data.labels.push(nutrient.label);
         }
@@ -232,7 +232,7 @@ class PiePlot extends Component {
   };
 
   switchPlot = event => {
-    let nutrientIndex = event.target.value;
+    const nutrientIndex = event.target.value;
     this.setState({ nutrientIndex });
   };
 
@@ -241,8 +241,8 @@ class PiePlot extends Component {
     const { path } = this.props;
     return (
       <div className='plot-wrapper'>
-        {path !== '/guest' &&
-          <div className="graph-buttons">
+        {path !== '/guest'
+          && <div className="graph-buttons">
             <Button className='btn-sm' onClick={this.switchPlot} value={0}>
               Macros
             </Button>
@@ -257,8 +257,8 @@ class PiePlot extends Component {
             </Button>
           </div>
         }
-        {plotObjects.length > 0 &&
-          <Plot
+        {plotObjects.length > 0
+          && <Plot
             data={[plotObjects[recipeIndex][nutrientIndex].data]}
             layout={plotObjects[recipeIndex][nutrientIndex].layout}
           />

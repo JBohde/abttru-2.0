@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react';
 
-export const Row = ({ fluid, children }) => (
-  <div className={`row${fluid ? "-fluid" : ""}`}>
+const Row = ({ fluid, children }) => (
+  <div className={`row${fluid ? '-fluid' : ''}`}>
     {children}
   </div>
 );
+
+export default Row;
