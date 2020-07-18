@@ -6,7 +6,14 @@ import { Link } from 'react-router-dom';
 import './DoctorJumbotron.css';
 
 const DoctorJumbotron = props => {
-  const { doctorPhoto, name, specialty, facilityName, doctorId, data } = props;
+  const {
+    doctorPhoto,
+    name,
+    specialty,
+    facilityName,
+    doctorId,
+    data,
+  } = props;
   return (
     <Jumbotron>
       <div className="row">
@@ -38,8 +45,8 @@ const DoctorJumbotron = props => {
               to={{
                 pathname: `/create/${doctorId}`,
                 params: {
-                  data: data,
-                  doctorId: doctorId,
+                  data,
+                  doctorId,
                 },
               }}
             >

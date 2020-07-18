@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './User.css';
-import UserJumbotron from '../UserJumbotron/';
+import UserJumbotron from '../UserJumbotron';
 import ControlledCarousel from '../Carousel';
 
 class User extends React.Component {
@@ -34,8 +34,7 @@ class User extends React.Component {
       .catch(err => console.log(err));
   }
 
-  fontAwesomeColor = () =>
-    this.state.riskFactor === 'high-cholesterol' ? 'red' : 'black';
+  fontAwesomeColor = () => (this.state.riskFactor === 'high-cholesterol' ? 'red' : 'black');
 
   render() {
     const {

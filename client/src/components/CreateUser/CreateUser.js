@@ -1,15 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { Button, Container, Card, Alert } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Step1 from "../formComponents/StepOne";
-import Step2 from "../formComponents/StepTwo";
-import Step3 from "../formComponents/StepThree";
-import Step4 from "../formComponents/StepFour";
-import StepZilla from "react-stepzilla";
-import "../formComponents/Dropdown.css";
-import "./CreateUser.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import {
+  Button, Container, Card, Alert
+} from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import StepZilla from 'react-stepzilla';
+import Step1 from '../formComponents/StepOne';
+import Step2 from '../formComponents/StepTwo';
+import Step3 from '../formComponents/StepThree';
+import Step4 from '../formComponents/StepFour';
+import '../formComponents/Dropdown.css';
+import './CreateUser.css';
 
 class Create extends React.Component {
   constructor(props) {
@@ -17,23 +19,23 @@ class Create extends React.Component {
 
     this.state = {
       doctorId: this.props.match.params.id,
-      userId: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      userPhoto: "",
-      dob: "",
-      sex: "",
-      heightFoot: "",
-      heightInch: "",
-      weight: "",
-      waist: "",
-      bpSystolic: "",
-      bpDiastolic: "",
-      riskFactor: "",
-      dietRecommendation: "",
-      dietRestriction: "",
+      userId: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      userPhoto: '',
+      dob: '',
+      sex: '',
+      heightFoot: '',
+      heightInch: '',
+      weight: '',
+      waist: '',
+      bpSystolic: '',
+      bpDiastolic: '',
+      riskFactor: '',
+      dietRecommendation: '',
+      dietRestriction: '',
       isValid: true
     };
   }
@@ -88,15 +90,11 @@ class Create extends React.Component {
       isValid
     } = this.state;
 
-    const {
-      match: {
-        params: { id }
-      }
-    } = this.props;
+    const { match: { params: { id } } } = this.props;
 
     const steps = [
       {
-        name: "General Info",
+        name: 'General Info',
         component: (
           <Step1
             firstName={firstName}
@@ -109,7 +107,7 @@ class Create extends React.Component {
         )
       },
       {
-        name: "Statistics",
+        name: 'Statistics',
         component: (
           <Step2
             dob={dob}
@@ -123,7 +121,7 @@ class Create extends React.Component {
         )
       },
       {
-        name: "Health Factors",
+        name: 'Health Factors',
         component: (
           <Step3
             bpSystolic={bpSystolic}
@@ -136,7 +134,7 @@ class Create extends React.Component {
         )
       },
       {
-        name: "Review",
+        name: 'Review',
         component: (
           <Step4
             firstName={firstName}
@@ -177,11 +175,11 @@ class Create extends React.Component {
               showSteps={true}
               stepsNavigation={true}
               preventEnterSubmission={true}
-              nextTextOnFinalActionStep={"Review"}
+              nextTextOnFinalActionStep={'Review'}
               hocValidationAppliedTo={[3]}
               startAtStep={0}
               prevBtnOnLastStep={true}
-              onStepChange={step => window.sessionStorage.setItem("step", step)}
+              onStepChange={step => window.sessionStorage.setItem('step', step)}
             />
           </div>
           <Button

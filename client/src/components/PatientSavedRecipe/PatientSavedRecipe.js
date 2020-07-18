@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import RecipeCard from './SavedRecipeCard';
-import UserJumbotron from '../UserJumbotron/';
+import UserJumbotron from '../UserJumbotron';
 import './PatientSavedRecipe.css';
 import PiePlot from '../Graphs/PiePlot';
 import { RingLoader } from 'react-spinners';
-import { Container, Col, Row, Button } from 'reactstrap';
+import {
+  Container, Col, Row, Button
+} from 'reactstrap';
 
 class PatientSavedRecipe extends React.Component {
   state = {
@@ -39,19 +41,19 @@ class PatientSavedRecipe extends React.Component {
 
   getData = () => {
     this.setState({ showResults: false, loading: true });
-    let allUri = this.state.recipes.map(recipe => recipe.uri);
-    let length = allUri.length;
+    const allUri = this.state.recipes.map(recipe => recipe.uri);
+    const { length } = allUri;
     if (length === 0) {
       this.setState({ index: 0 });
     } else {
-      let randomRecipe = Math.floor(Math.random() * length);
+      const randomRecipe = Math.floor(Math.random() * length);
       this.setState({ index: randomRecipe });
     }
-    let recipeUri = allUri[this.state.index];
-    let edemamUri = encodeURIComponent(recipeUri);
+    const recipeUri = allUri[this.state.index];
+    const edemamUri = encodeURIComponent(recipeUri);
     axios
       .get(
-        `https://api.edamam.com/search?r=${edemamUri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
+        `https://api.edamam.com/search?r=${edemamUri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`
       )
       .then(result => {
         const recipe = result.data[0];
@@ -76,7 +78,7 @@ class PatientSavedRecipe extends React.Component {
     const uri = encodeURIComponent(id);
     axios
       .get(
-        `https://api.edamam.com/search?r=${uri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
+        `https://api.edamam.com/search?r=${uri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`
       )
       .then(result => {
         const position = this.state.recipes.map(r => r.uri).indexOf(id);
@@ -92,10 +94,14 @@ class PatientSavedRecipe extends React.Component {
   };
 
   makeCard = () => {
-    const { recipes, flipClass, index, noteText } = this.state;
+    const {
+      recipes, flipClass, index, noteText
+    } = this.state;
     const savedCard = recipes.map(recipe => {
       const { saveNote, flipCard } = this;
-      const { _id, name, image, link, notes } = recipe;
+      const {
+        _id, name, image, link, notes
+      } = recipe;
       return (
         <RecipeCard
           saveNote={saveNote}
@@ -115,26 +121,25 @@ class PatientSavedRecipe extends React.Component {
   };
 
   flipCard = () => {
-    const isFlipped = this.state.isFlipped;
+    const { isFlipped } = this.state;
     if (isFlipped === 'false') {
-      return this.setState({ isFlipped: 'true', flipClass: 'flip-card flip' })
+      return this.setState({ isFlipped: 'true', flipClass: 'flip-card flip' });
     }
-    return this.setState({ isFlipped: 'false', flipClass: 'flip-card' })
+    return this.setState({ isFlipped: 'false', flipClass: 'flip-card' });
   };
 
-  makeNotes = notes =>
-    notes.map(note => (
+  makeNotes = notes => notes.map(note => (
       <div key={note._id} className='notes'>
         {note.body}
         <button className='delete-note' id={note._id} onClick={this.deleteNote}>
           x
         </button>
       </div>
-    ));
+  ));
 
   saveNote = event => {
     event.preventDefault();
-    const id = event.target.id;
+    const { id } = event.target;
     const noteObj = { recipeId: id, body: this.state.noteText };
     axios
       .post(`/api/abttru/recipes/notes/${id}`, noteObj)
@@ -147,7 +152,7 @@ class PatientSavedRecipe extends React.Component {
   };
 
   deleteNote = event => {
-    const id = event.target.id;
+    const { id } = event.target;
     axios.delete(`/api/abttru/recipes/notes/${id}`).then(() => {
       axios
         .get(`/api/abttru/user/${this.props.match.params.id}`)
@@ -156,7 +161,7 @@ class PatientSavedRecipe extends React.Component {
   };
 
   deleteRecipe = event => {
-    const id = event.target.id;
+    const { id } = event.target;
     axios.delete(`/api/abttru/recipes/${id}`).then(() => {
       axios.get(`/api/abttru/user/${this.props.match.params.id}`).then(res => {
         this.setState(res.data);
@@ -167,7 +172,9 @@ class PatientSavedRecipe extends React.Component {
 
   render() {
     const savedSelect = this.state.recipes.map(recipe => {
-      const { _id, uri, link, name, image } = recipe;
+      const {
+        _id, uri, link, name, image
+      } = recipe;
       return (
         <li className='recipe' id={uri} key={_id}>
           <div className='recipe-wrapper'>

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
   Container,
   Row,
@@ -13,14 +14,15 @@ import {
   Input,
   InputGroup,
   InputGroupAddon,
-  InputGroupText,
+  InputGroupText
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { RingLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
+
 import PiePlot from '../Graphs/PiePlot';
 import './Carousel.css';
-import axios from 'axios';
 
 class ControlledCarousel extends React.Component {
   constructor(props) {
@@ -74,10 +76,10 @@ class ControlledCarousel extends React.Component {
       showCarousel: false,
       loading: true,
     });
-    let firstIndex = Math.floor(Math.random() * 20);
+    const firstIndex = Math.floor(Math.random() * 20);
     axios
       .get(
-        `https://api.edamam.com/search?q=${this.state.name}&app_id=${appId}&app_key=${appKey}&calories=591-722&from=${firstIndex}&Diet=${this.props.dietLabel}&Health=${this.props.healthLabel}`,
+        `https://api.edamam.com/search?q=${this.state.name}&app_id=${appId}&app_key=${appKey}&calories=591-722&from=${firstIndex}&Diet=${this.props.dietLabel}&Health=${this.props.healthLabel}`
       )
       .then(res => {
         this.setState({
@@ -106,21 +108,31 @@ class ControlledCarousel extends React.Component {
 
   render() {
     const { pathName, className } = this.props;
-    const { activeIndex, name, data, loading, showCarousel} = this.state;
+    const {
+      activeIndex,
+      name,
+      data,
+      loading,
+      showCarousel
+    } = this.state;
 
-    const searchedRecipeCard = this.state.data.map(data => {
+    const searchedRecipeCard = data.map(datum => {
       const {
-        recipe: { url, image, label },
-      } = data;
+        recipe: {
+          url,
+          image,
+          label
+        },
+      } = datum;
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
           key={url}
         >
-          <img src={image} className='recipe-image' alt='recipeImage' />
-          <div className='recipe-info'>
-            <h4 className='recipe-label'>{label}</h4>
+          <img src={image} className="recipe-image" alt="recipeImage" />
+          <div className="recipe-info">
+            <h4 className="recipe-label">{label}</h4>
           </div>
         </CarouselItem>
       );
@@ -130,19 +142,19 @@ class ControlledCarousel extends React.Component {
       <Container>
         <Row>
           <Col xs={12} md={{ size: 8, offset: 2 }}>
-            <div className='search-wrapper'>
+            <div className="search-wrapper">
               <Form onSubmit={this.getRecipes.bind(this)}>
                 <FormGroup>
-                  <Label for='name'>Search Ingredients</Label>
+                  <Label for="name">Search Ingredients</Label>
                   <InputGroup>
                     <Input
-                      name='name'
+                      name="name"
                       value={name}
                       onChange={this.handleInputChange}
-                      placeholder='chicken, broccoli ...'
+                      placeholder="chicken, broccoli ..."
                     />
                     <InputGroupAddon
-                      addonType='append'
+                      addonType="append"
                       onClick={this.getRecipes.bind(this)}
                     >
                       <InputGroupText>
@@ -158,12 +170,8 @@ class ControlledCarousel extends React.Component {
         <Row>
           {loading ? (
             <Col xs={{ size: 6, offset: 3 }}>
-              <div className='ring-loader'>
-                <RingLoader
-                  loading={loading}
-                  size={100}
-                  color={'#EC0B43'}
-                />
+              <div className="ring-loader">
+                <RingLoader loading={loading} size={100} color={'#EC0B43'} />
               </div>
             </Col>
           ) : null}
@@ -181,28 +189,28 @@ class ControlledCarousel extends React.Component {
                 >
                   {searchedRecipeCard}
                   <CarouselControl
-                    direction='prev'
-                    directionText='Previous'
+                    direction="prev"
+                    directionText="Previous"
                     onClickHandler={this.previous}
                   />
                   <CarouselControl
-                    direction='next'
-                    directionText='Next'
+                    direction="next"
+                    directionText="Next"
                     onClickHandler={this.next}
                   />
                 </Carousel>
-                <div className='search-button-wrapper'>
+                <div className="search-button-wrapper">
                   <Button
-                    className='get-recipe'
+                    className="get-recipe"
                     href={data[activeIndex].recipe.url}
-                    target='_blank'
-                    rel='noopener noreferrer'
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     GET RECIPE
                   </Button>
                   {pathName === '/guest' ? null : (
                     <Button
-                      className='btn-primary save-recipe'
+                      className="btn-primary save-recipe"
                       id={data[activeIndex].uri}
                       name={data[activeIndex].label}
                       img={data[activeIndex].image}
@@ -228,5 +236,11 @@ class ControlledCarousel extends React.Component {
     );
   }
 }
+
+ControlledCarousel.propTypes = {
+  userId: PropTypes.string.isRequired,
+  pathName: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired
+};
 
 export default ControlledCarousel;

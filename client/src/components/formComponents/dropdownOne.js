@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dropdown from './Dropdown.js';
+import Dropdown from './Dropdown';
 import './Dropdown.css';
 
 class ObjectArrayExample extends Component {
@@ -53,10 +53,9 @@ class ObjectArrayExample extends Component {
     ];
 
     const defaultOption = this.state.selected;
-    const placeHolderValue =
-      typeof this.state.selected === 'string'
-        ? this.state.selected
-        : this.state.selected.label;
+    const placeHolderValue = typeof this.state.selected === 'string'
+      ? this.state.selected
+      : this.state.selected.label;
 
     return (
       <section>

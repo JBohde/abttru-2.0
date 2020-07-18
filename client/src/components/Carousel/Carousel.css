@@ -17,6 +17,7 @@
 .recipe-label {
   width: 95%;
   margin-left: 1rem;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .ring-loader {

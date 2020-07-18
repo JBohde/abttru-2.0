@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Card } from 'reactstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import StepZilla from 'react-stepzilla';
 import Step1 from '../formComponents/StepOne';
 import Step2 from '../formComponents/StepTwo';
 import Step3 from '../formComponents/StepThree';
 import Step4 from '../formComponents/StepFour';
-import StepZilla from 'react-stepzilla';
 
 class EditUser extends React.Component {
   state = {};
@@ -28,12 +28,10 @@ class EditUser extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     const { _id, doctorId } = this.state;
-    axios.put(`/api/abttru/user/${_id}`, this.state).then(() =>
-      this.props.history.push({
-        pathname: `/show/${_id}`,
-        params: { data: this.state, doctorId: doctorId },
-      }),
-    ); // redirect back to the show page
+    axios.put(`/api/abttru/user/${_id}`, this.state).then(() => this.props.history.push({
+      pathname: `/show/${_id}`,
+      params: { data: this.state, doctorId },
+    })); // redirect back to the show page
   };
 
   render() {
@@ -56,7 +54,6 @@ class EditUser extends React.Component {
       dietRecommendation,
       dietRestriction,
     } = this.state;
-
 
     const steps = [
       {
@@ -146,8 +143,7 @@ class EditUser extends React.Component {
                 hocValidationAppliedTo={[3]}
                 startAtStep={0}
                 prevBtnOnLastStep={true}
-                onStepChange={step =>
-                  window.sessionStorage.setItem('step', step)
+                onStepChange={step => window.sessionStorage.setItem('step', step)
                 }
               />
             </div>

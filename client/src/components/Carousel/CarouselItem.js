@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import { Button, Carousel } from "reactstrap";
 // import axios from "axios";
 
@@ -12,7 +12,7 @@ class OurItem extends React.Component {
       data: this.props,
       index: 0,
       direction: null,
-      user_id: "5aeccb14e21ebe39bce2f568"
+      user_id: '5aeccb14e21ebe39bce2f568'
     };
   }
 }

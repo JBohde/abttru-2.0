@@ -59,7 +59,7 @@ class Dropdown extends Component {
   }
 
   setValue(value, label) {
-    let newState = {
+    const newState = {
       selected: {
         value,
         label,
@@ -85,11 +85,11 @@ class Dropdown extends Component {
 
     const optionClass = classNames(classes);
 
-    let value = option.value;
+    let { value } = option;
     if (typeof value === 'undefined') {
       value = option.label || option;
     }
-    let label = option.label || option.value || option;
+    const label = option.label || option.value || option;
 
     return (
       <div
@@ -104,13 +104,13 @@ class Dropdown extends Component {
   }
 
   buildMenu() {
-    let { options, baseClassName } = this.props;
-    let ops = options.map(option => {
+    const { options, baseClassName } = this.props;
+    const ops = options.map(option => {
       if (option.type === 'group') {
-        let groupTitle = (
+        const groupTitle = (
           <div className={`${baseClassName}-title`}>{option.name}</div>
         );
-        let _options = option.items.map(item => this.renderOption(item));
+        const _options = option.items.map(item => this.renderOption(item));
 
         return (
           <div className={`${baseClassName}-group`} key={option.name}>
@@ -118,9 +118,8 @@ class Dropdown extends Component {
             {_options}
           </div>
         );
-      } else {
-        return this.renderOption(option);
       }
+      return this.renderOption(option);
     });
 
     return ops.length ? (
@@ -150,10 +149,9 @@ class Dropdown extends Component {
     } = this.props;
 
     const disabledClass = this.props.disabled ? 'Dropdown-disabled' : '';
-    const placeHolderValue =
-      typeof this.state.selected === 'string'
-        ? this.state.selected
-        : this.state.selected.label;
+    const placeHolderValue = typeof this.state.selected === 'string'
+      ? this.state.selected
+      : this.state.selected.label;
 
     const dropdownClass = classNames({
       [`${baseClassName}-root`]: true,
