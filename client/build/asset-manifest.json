@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.04ba6073.chunk.css",
+    "main.js": "/static/js/main.a99d441a.chunk.js",
+    "main.js.map": "/static/js/main.a99d441a.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.9464611d.js",
+    "runtime~main.js.map": "/static/js/runtime~main.9464611d.js.map",
+    "static/js/2.91435150.chunk.js": "/static/js/2.91435150.chunk.js",
+    "static/js/2.91435150.chunk.js.map": "/static/js/2.91435150.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.84eb22012ccec58b6a7bac82594e03d9.js": "/precache-manifest.84eb22012ccec58b6a7bac82594e03d9.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.04ba6073.chunk.css.map": "/static/css/main.04ba6073.chunk.css.map",
+    "static/media/bitmojiAlberto.png": "/static/media/bitmojiAlberto.2a0e0e6a.png",
+    "static/media/bitmojiDavey.png": "/static/media/bitmojiDavey.a6471d89.png",
+    "static/media/bitmojiJoshua2.png": "/static/media/bitmojiJoshua2.72949bd8.png",
+    "static/media/icons8-no-entry-512.png": "/static/media/icons8-no-entry-512.fa0481f6.png"
+  }
+}
