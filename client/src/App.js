@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Doctor from './pages/Doctor';
-import CreateUser from './pages/CreateUser';
-import EditUser from './pages/EditUser';
-import UserInfo from './pages/UserInfo';
+import DoctorLogin from './pages/Doctor/DoctorLogin';
+import CreateUser from './pages/Doctor/CreateUser';
+import EditUser from './pages/Doctor/EditUser';
+import UserInfo from './pages/Doctor/UserInfo';
 import User from './pages/User';
-import PatientSavedRecipe from './pages/PatientSavedRecipe';
+import UserLogin from './pages/User/UserLogin';
+import SavedRecipes from './pages/User/SavedRecipes';
 import Guest from './pages/Guest';
-import UserLogin from './pages/User/UserLogin/UserLogin';
-import DoctorLogin from './pages/Doctor/DoctorLogin/DoctorLogin';
 import NavigationBar from './components/NavigationBar';
-import Footer from './components/Footer/Footer';
-import './App.css';
+import Footer from './components/Footer';
 
 class App extends Component {
   render() {
@@ -29,7 +28,7 @@ class App extends Component {
             <Route path="/show/:id" component={UserInfo} />
             <Route path="/user/:id" component={User} />
             <Route path="/userlogin" component={UserLogin} />
-            <Route path="/savedrecipes/:id" component={PatientSavedRecipe} />
+            <Route path="/savedrecipes/:id" component={SavedRecipes} />
             <Route path="/guest" component={Guest} />
           </div>
           <Footer />
