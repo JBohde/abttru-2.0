@@ -26,9 +26,9 @@ class DoctorLogin extends Component {
     // When the form is submitted, prevent its
     // default behavior, get recipes update the recipes state
     event.preventDefault();
-    axios.post('/api/abttru/doctorlogin', this.state).then(res => {
+    axios.post('/api/abttru/login/doctor', this.state).then(res => {
       if (res.data == null) {
-        this.props.history.push('/doctorLogin');
+        this.props.history.push('/login/doctor');
       } else {
         const id = res.data._id;
         this.setState({ _id: id });

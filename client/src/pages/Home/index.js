@@ -19,7 +19,7 @@ class Home extends React.Component {
               <Logo />
               <Button className="home-buttons">
                 <h3>
-                  <Link to="/userlogin" className="login-link">
+                  <Link to="/login/user" className="login-link">
                     <FontAwesomeIcon icon={faUser} className="login-icon" />
                     Patient Login
                 </Link>
@@ -27,7 +27,7 @@ class Home extends React.Component {
               </Button>
               <Button className="home-buttons">
                 <h3>
-                  <Link to="/doctorlogin" className="login-link">
+                  <Link to="/login/doctor" className="login-link">
                     <FontAwesomeIcon icon={faUserMd} color="#FFFFFF" className="login-icon" />
                     Doctor Login
                 </Link>

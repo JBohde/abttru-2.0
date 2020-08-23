@@ -21,13 +21,13 @@ class App extends Component {
           <NavigationBar />
           <div className="main">
             <Route exact path="/" component={Home} />
+            <Route path="/login/doctor" component={DoctorLogin} />
             <Route path="/doctor/:id" component={Doctor} />
-            <Route path="/doctorlogin" component={DoctorLogin} />
             <Route path="/create/:id" component={CreateUser} />
             <Route path="/edit/:id" component={EditUser} />
             <Route path="/show/:id" component={UserInfo} />
+            <Route path="/login/user" component={UserLogin} />
             <Route path="/user/:id" component={User} />
-            <Route path="/userlogin" component={UserLogin} />
             <Route path="/savedrecipes/:id" component={SavedRecipes} />
             <Route path="/guest" component={Guest} />
           </div>

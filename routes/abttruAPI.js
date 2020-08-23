@@ -8,12 +8,12 @@ const userController = require('../controllers/userController');
 //   .get(adminController.findAll) // get all users
 //   .post(adminController.createUser) // create a doctor
 
+router.route('/abttru/login/doctor').post(doctorController.login);
+
 router
   .route('/abttru/doctor/:id')
   .get(doctorController.findById) // get all patients
   .post(doctorController.createPatient); // create a patient
-
-router.route('/abttru/doctorlogin').post(doctorController.login);
 
 router
   .route('/abbtru/patient/:id')
@@ -21,13 +21,14 @@ router
   .put(doctorController.updatePatient) // update a patient by id
   .delete(doctorController.deletePatient); // delete a patient by id
 
+router.route('/abttru/login/user').post(userController.login);
+
 router
   .route('/abttru/user/:id')
   .get(userController.findById) // get a user by id
   .put(userController.update) // update a user by id
   .delete(userController.deletePatient); // delete a user by id
 
-router.route('/abttru/userlogin').post(userController.login);
 
 router
   .route('/abttru/recipes/:id')

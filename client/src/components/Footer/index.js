@@ -30,8 +30,8 @@ const Footer = () => (
                 <ul className="list-unstyled quick-links">
                     <li>
                         <h3 className="footnav">
-                            <a href="/doctorLogin"><FontAwesomeIcon icon={faUserMd} className="icon" /> </a>
-                            <a href="/userLogin"><FontAwesomeIcon icon={faUser}className="icon" /></a>
+                            <a href="/login/doctor"><FontAwesomeIcon icon={faUserMd} className="icon" /> </a>
+                            <a href="/login/user"><FontAwesomeIcon icon={faUser}className="icon" /></a>
                         </h3>
                     </li>
                 </ul>
