@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Row, Col } from 'reactstrap';
 import './Doctor.css';
-import DoctorJumbotron from '../DoctorJumbotron/DoctorJumbotron';
+import DoctorJumbotron from '../../components/DoctorJumbotron/DoctorJumbotron';
 
 class Doctor extends React.Component {
   state = {

@@ -6,11 +6,11 @@ import {
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StepZilla from 'react-stepzilla';
-import Step1 from '../formComponents/StepOne';
-import Step2 from '../formComponents/StepTwo';
-import Step3 from '../formComponents/StepThree';
-import Step4 from '../formComponents/StepFour';
-import '../formComponents/Dropdown.css';
+import Step1 from '../../components/formComponents/StepOne';
+import Step2 from '../../components/formComponents/StepTwo';
+import Step3 from '../../components/formComponents/StepThree';
+import Step4 from '../../components/formComponents/StepFour';
+// import '../formComponents/Dropdown.css';
 import './CreateUser.css';
 
 class Create extends React.Component {

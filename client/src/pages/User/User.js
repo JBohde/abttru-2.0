@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import './User.css';
-import UserJumbotron from '../UserJumbotron';
-import ControlledCarousel from '../Carousel';
+import UserJumbotron from '../../components/UserJumbotron';
+import ControlledCarousel from '../../components/Carousel';
 
 class User extends React.Component {
   state = {

@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "../../components/Carousel";
-import Logo from '../../components/Home/Logo/Logo';
+import Logo from '../Home/Logo/Logo';
 import "./Guest.css";
 
 class Guest extends React.Component {

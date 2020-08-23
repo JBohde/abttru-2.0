@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import RecipeCard from './SavedRecipeCard';
-import UserJumbotron from '../UserJumbotron';
+import UserJumbotron from '../../components/UserJumbotron';
 import './PatientSavedRecipe.css';
-import PiePlot from '../Graphs/PiePlot';
+import PiePlot from '../../components/Graphs/PiePlot';
 import { RingLoader } from 'react-spinners';
 import {
   Container, Col, Row, Button

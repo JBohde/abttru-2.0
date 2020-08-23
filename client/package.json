@@ -16,7 +16,6 @@
     "radium": "^0.24.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
     "react-history": "^0.18.2",
     "react-plotly.js": "^2.2.0",
