@@ -44,7 +44,7 @@ class UserLogin extends Component {
     return (
       <div className='login-wrapper'>
         <Logo />
-        <Form onSubmit={this.handleFormSubmit}>
+        <Form className="login-form" onSubmit={this.handleFormSubmit}>
           <FormGroup>
             <Input
               name='email'

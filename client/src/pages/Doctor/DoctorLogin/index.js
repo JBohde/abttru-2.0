@@ -40,7 +40,7 @@ class DoctorLogin extends Component {
   render() {
     return (
       <div className='login-wrapper'>
-        <Form onSubmit={this.handleFormSubmit}>
+        <Form className="login-form" onSubmit={this.handleFormSubmit}>
           <FormGroup>
             <Logo />
             <Input

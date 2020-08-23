@@ -10,7 +10,7 @@ import Step1 from '../../../components/MultiStepForm/StepOne';
 import Step2 from '../../../components/MultiStepForm/StepTwo';
 import Step3 from '../../../components/MultiStepForm/StepThree';
 import Step4 from '../../../components/MultiStepForm/StepFour';
-// import '../formComponents/Dropdown.css';
+import '../../../components/MultiStepForm/Dropdown.css';
 import './CreateUser.css';
 
 class Create extends React.Component {
