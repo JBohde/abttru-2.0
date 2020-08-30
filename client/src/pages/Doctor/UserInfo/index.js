@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Container, Row, Col, Card, CardBody, Button } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Moment from 'moment';
+import { Container, Row, Card, CardBody } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+
 import './UserInfo.css';
 
 class UserInfo extends React.Component {
@@ -20,9 +22,7 @@ class UserInfo extends React.Component {
   componentDidMount() {
     axios
       .get(`/api/abttru/user/${this.state.patientId}`)
-      .then(res => {
-        this.setState(res.data);
-      })
+      .then(res => this.setState(res.data))
       .catch(err => console.log(err));
   }
 
@@ -39,7 +39,6 @@ class UserInfo extends React.Component {
     const {
       _id,
       dob,
-      name,
       doctorId,
       firstName,
       lastName,
@@ -56,90 +55,87 @@ class UserInfo extends React.Component {
       bpDiastolic,
     } = this.state;
     return (
-      <Container>
-        <Card className='patient-card' key={_id}>
-          <h4>{name}</h4>
+      <Container className='mt-5'>
+        <h6>
+          <Link to={`/doctor/${doctorId}`}>
+            <FontAwesomeIcon icon='arrow-alt-circle-left' /> BACK TO PATIENTS
+          </Link>
+        </h6>
+        <Card className='text-center patient-info' key={_id}>
           <CardBody>
-            <div className='user-info'>
-              <h5 className='patients'>
-                <Link to={`/doctor/${doctorId}`} className='patients'>
-                  <FontAwesomeIcon icon='list' /> My Patients
-                </Link>
-              </h5>
+            <div>
+              <Row>
+                <img
+                  className='img-fluid patient-thumbnail'
+                  src={userPhoto}
+                  alt={firstName}
+                />
+              </Row>
+              <h2>{`${firstName} ${lastName}`}</h2>
 
-              <h2 className='patients'>{`${firstName} ${lastName}`}</h2>
-              <div id='user-photo' className='row'>
-                <img id='user-thumb' src={userPhoto} alt={firstName} />
-              </div>
-              <div id='user-stats' className='row'>
-                <Col xs={12} md={6}>
-                  <h5 className='health-stats'>Email: </h5>
+              <div className='row'>
+                <Container>
+                  <h6 className='health-stats'>Email: </h6>
                   <span>{email}</span>
                   <br />
-                  <h5 className='health-stats'>Risk Factor: </h5>
+                  <h6 className='health-stats'>Risk Factor: </h6>
                   <span>{riskFactor}</span>
                   <br />
-                  <h5 className='health-stats'>Height: </h5>
+                  <h6 className='health-stats'>Height: </h6>
                   <span>
                     {heightFoot}'{heightInch}"
                   </span>
                   <br />
-                  <h5 className='health-stats'>Weight: </h5>
+                  <h6 className='health-stats'>Weight: </h6>
                   <span>{weight}</span>
                   <br />
-                  <h5 className='health-stats'>Waist Measure: </h5>
+                  <h6 className='health-stats'>Waist Measure: </h6>
                   <span>{waist}</span>
                   <br />
-                </Col>
-                <Col xs={12} md={6}>
-                  <h5 className='health-stats'>DOB: </h5>
+                  <h6 className='health-stats'>DOB: </h6>
                   <span>
-                    {Moment(dob).add(1, 'days').format('MMMM Do YYYY')}
+                    {Moment(dob).add(1, 'days').format('DD MMM YYYY')}
                   </span>
                   <br />
-                  <h5 className='health-stats'>Diet Recommendation: </h5>
+                  <h6 className='health-stats'>Diet Recommendation: </h6>
                   <span>{dietRecommendation}</span>
                   <br />
-                  <h5 className='health-stats'>Diet Restriction: </h5>
+                  <h6 className='health-stats'>Diet Restriction: </h6>
                   <span>{dietRestriction}</span>
                   <br />
-                  <h5 className='health-stats'>Systolic BP: </h5>
+                  <h6 className='health-stats'>Systolic BP: </h6>
                   <span>{bpSystolic}</span>
                   <br />
-                  <h5 className='health-stats'>Diastolic BP: </h5>
+                  <h6 className='health-stats'>Diastolic BP: </h6>
                   <span>{bpDiastolic}</span>
-                </Col>
+                </Container>
               </div>
+              <span>
+                <Link
+                  to={{
+                    pathname: `/edit/${_id}`,
+                    params: {
+                      data: this.state,
+                      doctor_id: doctorId,
+                    },
+                  }}
+                >
+                  <FontAwesomeIcon
+                    className='mx-2 my-2'
+                    color='#185477'
+                    icon={faPencilAlt}
+                  />
+                </Link>
+              </span>
+              <FontAwesomeIcon
+                id={_id}
+                className='mx-2 my-2'
+                onClick={this.deletePatient.bind(this)}
+                color='#EC0B43'
+                style={{ cursor: 'pointer' }}
+                icon={faTrashAlt}
+              />
             </div>
-            <Row>
-              <Col xs={12} md={3} lg={8} />
-              <Col xs={12} md={3} lg={4} >
-                <div className='stepzilla-button-wrapper'>
-                  <Button
-                    id={_id}
-                    onClick={this.deletePatient.bind(this)}
-                    className='btn-lg delete'
-                    color='danger'
-                  >
-                    Delete
-                  </Button>
-                  <Button className='btn-lg' color='primary'>
-                    <Link
-                      className='stepzilla-link'
-                      to={{
-                        pathname: `/edit/${_id}`,
-                        params: {
-                          data: this.state,
-                          doctor_id: doctorId,
-                        },
-                      }}
-                    >
-                      Edit Info
-                    </Link>
-                  </Button>
-                </div>
-              </Col>
-            </Row>
           </CardBody>
         </Card>
       </Container>

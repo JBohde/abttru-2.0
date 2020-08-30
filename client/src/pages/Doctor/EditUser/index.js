@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Card } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StepZilla from 'react-stepzilla';
 import Step1 from '../../../components/MultiStepForm/StepOne';
@@ -9,13 +9,20 @@ import Step2 from '../../../components/MultiStepForm/StepTwo';
 import Step3 from '../../../components/MultiStepForm/StepThree';
 import Step4 from '../../../components/MultiStepForm/StepFour';
 
+import '../../../components/MultiStepForm/FullForm.css';
+
 class EditUser extends React.Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   componentDidMount() {
     axios
       .get(`/api/abttru/user/${this.props.match.params.id}`)
-      .then(res => { this.setState(res.data) })
+      .then(res => {
+        this.setState(res.data);
+      })
       .catch(err => console.log(err));
   }
 
@@ -26,10 +33,12 @@ class EditUser extends React.Component {
   onSubmit = e => {
     e.preventDefault();
     const { _id, doctorId } = this.state;
-    axios.put(`/api/abttru/user/${_id}`, this.state).then(() => this.props.history.push({
-      pathname: `/show/${_id}`,
-      params: { data: this.state, doctorId },
-    })); // redirect back to the show page
+    axios.put(`/api/abttru/user/${_id}`, this.state).then(() =>
+      this.props.history.push({
+        pathname: `/show/${_id}`,
+        params: { data: this.state, doctorId },
+      }),
+    ); // redirect back to the show page
   };
 
   render() {
@@ -73,6 +82,7 @@ class EditUser extends React.Component {
           <Step2
             pathName={this.props.match.path}
             sex={sex}
+            dob={dob}
             heightFoot={heightFoot}
             heightInch={heightInch}
             weight={weight}
@@ -120,41 +130,53 @@ class EditUser extends React.Component {
     ];
 
     return (
-      <div className="container">
-        <Card className="edit-patient">
-          <h3 className="add-patient list">Edit Patient</h3>
-          <h5 className="list">
-            <Link to={{ pathname: `/doctor/${doctorId}` }} id="doc-home">
-              <FontAwesomeIcon icon="list" />
-              &nbsp; Doctor Home
-            </Link>
-          </h5>
-          <div className="App">
-            <div className="step-progress">
-              <StepZilla
-                steps={steps}
-                showNavigation={true}
-                showSteps={true}
-                stepsNavigation={true}
-                preventEnterSubmission={true}
-                nextTextOnFinalActionStep={'Review'}
-                hocValidationAppliedTo={[3]}
-                startAtStep={0}
-                prevBtnOnLastStep={true}
-                onStepChange={step => window.sessionStorage.setItem('step', step)
-                }
-              />
-            </div>
-          </div>
-          <Button
-            className="btn-lg submit"
-            onClick={this.onSubmit}
-            color="primary"
-          >
-            Submit
-          </Button>
-        </Card>
-      </div>
+      <Container>
+        <Row>
+          <Col xs={12} md={2} className='mt-4'>
+            <h6>
+              <Link to={{ pathname: `/doctor/${doctorId}` }}>
+                <FontAwesomeIcon icon='arrow-alt-circle-left' /> BACK TO
+                PATIENTS
+              </Link>
+            </h6>
+          </Col>
+          <Col xs={12} md={8}>
+            <Container className='step-container pt-3 mt-3 mt-lg-5'>
+              <h3 className='text-center'>EDIT PATIENT</h3>
+              <div className='step-progress'>
+                <StepZilla
+                  steps={steps}
+                  showNavigation={true}
+                  showSteps={true}
+                  stepsNavigation={true}
+                  preventEnterSubmission={true}
+                  nextTextOnFinalActionStep={'Review'}
+                  startAtStep={0}
+                  prevBtnOnLastStep={true}
+                  onStepChange={step =>
+                    window.sessionStorage.setItem('step', step)
+                  }
+                />
+              </div>
+              <Button
+                className='btn-lg'
+                onClick={this.onSubmit}
+                color='primary'
+                style={{
+                  backgroundColor: '#185477',
+                  position: 'absolute',
+                  bottom: '0',
+                  width: '6rem',
+                  margin: '0 auto',
+                  right: '8rem',
+                }}
+              >
+                Submit
+              </Button>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {
-  Button, Container, Card, Alert
-} from 'reactstrap';
+import { Button, Container, Card, Alert } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StepZilla from 'react-stepzilla';
+
 import Step1 from '../../../components/MultiStepForm/StepOne';
 import Step2 from '../../../components/MultiStepForm/StepTwo';
 import Step3 from '../../../components/MultiStepForm/StepThree';
 import Step4 from '../../../components/MultiStepForm/StepFour';
-import '../../../components/MultiStepForm/Dropdown.css';
+
 import './CreateUser.css';
 
 class Create extends React.Component {
@@ -36,7 +35,7 @@ class Create extends React.Component {
       riskFactor: '',
       dietRecommendation: '',
       dietRestriction: '',
-      isValid: true
+      isValid: true,
     };
   }
 
@@ -50,11 +49,11 @@ class Create extends React.Component {
     const {
       history,
       match: {
-        params: { id }
-      }
+        params: { id },
+      },
     } = this.props;
     if (firstName && password) {
-      this.setState({  isValid: true });
+      this.setState({ isValid: true });
       axios
         .post(`/api/abttru/doctor/${id}`, this.state)
         .then(() => history.push(`/doctor/${id}`)); // redirect to admin page
@@ -81,10 +80,14 @@ class Create extends React.Component {
       riskFactor,
       dietRecommendation,
       dietRestriction,
-      isValid
+      isValid,
     } = this.state;
 
-    const { match: { params: { id } } } = this.props;
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
 
     const steps = [
       {
@@ -98,7 +101,7 @@ class Create extends React.Component {
             userPhoto={userPhoto}
             onChange={this.onChange}
           />
-        )
+        ),
       },
       {
         name: 'Statistics',
@@ -112,7 +115,7 @@ class Create extends React.Component {
             waist={waist}
             onChange={this.onChange}
           />
-        )
+        ),
       },
       {
         name: 'Health Factors',
@@ -125,7 +128,7 @@ class Create extends React.Component {
             dietRestriction={dietRestriction}
             onChange={this.onChange}
           />
-        )
+        ),
       },
       {
         name: 'Review',
@@ -148,21 +151,21 @@ class Create extends React.Component {
             dietRecommendation={dietRecommendation}
             dietRestriction={dietRestriction}
           />
-        )
-      }
+        ),
+      },
     ];
 
     return (
       <Container>
-        <Card className="add-panel">
-          <h3 className="add-patient list">Add Patient</h3>
-          <h5 className="list">
-            <Link to={{ pathname: `/doctor/${id}` }} id="doc-home">
-              <FontAwesomeIcon icon="list" />
+        <Card className='add-panel'>
+          <h3 className='add-patient list'>Add Patient</h3>
+          <h5 className='list'>
+            <Link to={{ pathname: `/doctor/${id}` }} id='doc-home'>
+              <FontAwesomeIcon icon='list' />
               &nbsp; Doctor Home
             </Link>
           </h5>
-          <div className="step-progress">
+          <div className='step-progress'>
             <StepZilla
               steps={steps}
               showNavigation={true}
@@ -177,9 +180,9 @@ class Create extends React.Component {
             />
           </div>
           <Button
-            className="btn-lg submit"
+            className='btn-lg submit'
             onClick={this.onSubmit}
-            color="primary"
+            color='primary'
           >
             Submit
           </Button>
@@ -187,7 +190,7 @@ class Create extends React.Component {
 
         <br />
         {!isValid && (
-          <Alert color="danger">Please fill the required form fields.</Alert>
+          <Alert color='danger'>Please fill the required form fields.</Alert>
         )}
       </Container>
     );
