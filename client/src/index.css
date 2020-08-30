@@ -11,10 +11,15 @@ html,
 }
 
 body {
+  font-family: 'Quattrocento', serif;
   position: relative;
   margin: 0;
   min-height: 100%;
-  background-color: #f3f0dd;
+  background-color: #F6F5F4;
+}
+
+h1, h2, h3, h4, h5, h6, button {
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .abttru {
@@ -26,13 +31,6 @@ body {
 
 .main {
   flex-grow: 1;
-  margin-bottom: 3rem;
-}
-
-.form-control {
-  display: flex;
-  margin: 0 auto 1rem;
-  height: auto;
 }
 
 .login-form {
@@ -40,28 +38,27 @@ body {
 }
 
 label {
-  font-size: 0.75rem;
-  font-weight: bold;
+  font-size: 0.85rem;
 }
 
 .jumbotron {
+  padding: 1rem;
   position: relative;
-  background-color: #749541;
+  background-color: #7CB441;
   display: block;
-  color: #ffffff;
+  color: #fff;
 }
 
 .btn-primary,
 .btn-secondary {
   border: none;
-  background-color: #749541;
+  background-color: #7CB441;
   color: #ffffff;
 }
 
-/* .btn-primary:focus */
 .btn-primary:hover,
 .btn-secondary:hover {
-  background-color: #8eb94e;
+  background-color: #91C45A;
   color: #ffffff;
   box-shadow: none;
   outline: none;
@@ -89,7 +86,6 @@ label {
   color: #ffffff;
 }
 
-/* .submit:focus */
 .submit:hover,
 .delete:hover,
 .delete_recipe:hover {
@@ -101,99 +97,4 @@ label {
 
 .delete {
   float: left;
-}
-
-/*  */
-.add-card,
-.add-panel.card,
-.patient-card,
-.edit-patient {
-  width: 80%;
-  margin: 2rem auto;
-  padding: 1rem;
-  background-color: #2c3e50;
-}
-
-.add-card,
-.add-patient,
-.progtrckr-todo::before,
-.multi-step,
-.edit-patient {
-  background-color: #2c3e50;
-}
-
-.step-progress {
-  text-align: center;
-  position: relative;
-}
-
-.progtrckr-doing {
-  color: rgb(96, 195, 228) !important;
-}
-
-.progtrckr-todo,
-.progtrckr-done {
-  color: #ffffff !important;
-}
-
-.input-wizard {
-  background-color: #ffffff;
-  color: #2c3e50;
-  border-radius: 5px;
-  height: 2em;
-  line-height: inherit;
-  width: 100%;
-  margin: 0.5rem 0;
-}
-
-.height {
-  width: 49%;
-  margin-left: 1px;
-  margin-right: 1px;
-}
-
-.steppy {
-  width: 65%;
-  margin: 1rem auto;
-  color: #ffffff;
-}
-
-.patient-panel {
-  color: #ffffff;
-}
-
-ol.progtrckr,
-li.progtrckr-todo:before {
-  background-color: #2c3e50 !important;
-}
-
-li.progtrckr-doing:before {
-  background-color: #2c3e50 !important;
-  color: #f3f0dd !important;
-  border: 1px solid #f3f0dd;
-}
-
-ol.progtrckr,
-li.progtrckr-todo {
-  color: #ffffff !important;
-}
-
-.progtrckr-doing,
-li.progtrckr-todo {
-  border-bottom: 4px solid #ffffff !important;
-}
-
-@media screen and (max-width: 500px) {
-  .add-card,
-  .add-panel.card,
-  .patient-card,
-  .edit-patient {
-    width: 100%;
-    margin: 2rem auto;
-  }
-
-  .steppy {
-    width: 100%;
-    padding: 0.75rem;
-  }
 }

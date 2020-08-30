@@ -11,7 +11,7 @@ section {
 
 section .section-title {
   text-align: center;
-  color: #749541;
+  color: #7CB441;
   margin-bottom: 50px;
   text-transform: uppercase;
 }
@@ -157,7 +157,7 @@ section .section-title {
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
-  color: #749541;
+  color: #7CB441;
 }
 
 .arrow-front {

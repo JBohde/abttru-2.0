@@ -1,6 +1,20 @@
+.step-container {
+  background: white;
+  border-radius: 0.625rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.step {
+  background-color: transparent;
+  padding: 2rem;
+  width: 75%;
+  margin: 1rem auto;
+}
+
 ol.progtrckr {
   list-style-type: none;
   padding: 0;
+  text-align: center;
 }
 
 ol.progtrckr li {
@@ -14,35 +28,25 @@ ol.progtrckr li span {
   padding: 0 1.5rem;
 }
 
-@media (max-width: 650px) {
-  .progtrckr li span {
-    display: none;
-  }
-}
 .progtrckr em {
   display: none;
   font-weight: 700;
   padding-left: 1rem;
 }
 
-@media (max-width: 650px) {
-  .progtrckr em {
-    display: inline;
-  }
-}
 
 ol.progtrckr li.progtrckr-todo {
-  color: #effffa;
+  color: silver;
   border-bottom: 4px solid silver;
 }
 
 ol.progtrckr li.progtrckr-doing {
-  color: #effffa;
-  border-bottom: 4px solid #cccccc;
+  color: silver;
+  border-bottom: 4px solid #2A90CB;
 }
 
 ol.progtrckr li.progtrckr-done {
-  color: #315659;
+  color: #185477;
   border-bottom: 4px solid #5cb85c;
 }
 
@@ -58,11 +62,12 @@ ol.progtrckr li:before {
 }
 
 ol.progtrckr li.progtrckr-todo:before {
-  content: "\039F";
-  color: #effffa;
-  background-color: #315659;
+  content: "\2022";
+  color: white;
+  background-color: #CCCCCC;
   width: 1.2em;
-  line-height: 1.4em;
+  line-height: 1.2em;
+  border-radius: 1.2em;
 }
 
 ol.progtrckr li.progtrckr-todo:hover:before {
@@ -72,7 +77,7 @@ ol.progtrckr li.progtrckr-todo:hover:before {
 ol.progtrckr li.progtrckr-doing:before {
   content: "\2022";
   color: #f3f0dd;
-  background-color: #315659;
+  background-color: #2A90CB;
   width: 1.2em;
   line-height: 1.2em;
   border-radius: 1.2em;
@@ -92,17 +97,20 @@ ol.progtrckr li.progtrckr-done:before {
 }
 
 ol.progtrckr li.progtrckr-done:hover:before {
-  color: #315659;
+  color: #185477;
 }
 
-.review .txt {
-  font-size: 20px;
-  text-align: left;
-  margin: 0;
-  padding: 0;
-}
 
-.form-wizard {
-  width: 95%;
-  margin-top: 80px;
+@media (max-width: 650px) {
+  .step {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .progtrckr li span {
+    display: none;
+  }
+  .progtrckr em {
+    display: inline;
+  }
 }

@@ -24,8 +24,9 @@
 
 .footer {
     padding: 10px 0 0 10px;
-    background-color: #2C3E50;
-    border-top: 5px solid #749541;
+    background-color: #185477;
+    border-top: 3px solid #7CB441;
     color:white;
-    font-size: 10px;
+    font-size: 0.65rem;
+    margin-top: 1rem;
   }

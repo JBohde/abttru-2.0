@@ -33,25 +33,26 @@
 #patient-wrapper {
   display: inline-flex;
 }
-
-.stepzilla-button-wrapper {
-  display: flex;
-  justify-content: space-around;
-}
-
 .patient {
   display: inline;
 }
 
 .patient-info {
-  float: left;
+  margin: 1rem auto;
+  width: 50%;
+  max-width: 25rem;
+  border-radius: 0.625rem;
+  box-shadow:
+  0 1.5rem 1.25rem -1rem rgba(0, 0, 0, 0.15),
+  0 1rem 1rem -1rem rgba(0, 0, 0, 0.05),
+  0 1.675rem 0.5rem -1.5rem rgba(0, 0, 0, 0.05);
 }
 
 button.dropdown-toggle.btn.btn-secondary {
   width: 100%;
   height: auto;
   margin: 0;
-  background: #749541;
+  background: #7CB441;
   outline: #2c3e50;
 }
 
@@ -62,10 +63,11 @@ button.dropdown-toggle.btn.btn-secondary {
     padding: 10px;
     margin: 0;
   }
+
   .patient-info {
-    padding: 10px;
-    float: left;
+    width: 100%;
   }
+
   .health {
     font-size: 10px;
     margin: 0.1em;

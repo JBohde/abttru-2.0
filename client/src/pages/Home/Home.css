@@ -1,24 +1,15 @@
-#logo-wrapper {
-  border-radius: 50%;
-  background-color: white;
-  border: 5px solid #2c3e50;
-  margin: 1rem auto;
-  padding: 10px;
-  width: 8rem;
-  height: 8rem;
-}
-
-#abttru-logo {
+.abttru-logo {
   display: flex;
-  margin: 0 auto;
+  margin: 1rem;
   text-align: center;
-  height: 100px;
+  height: 150px;
 }
 
 .login {
   width: 100%;
-  background-color:#749541;
-  color: #F3F0DD;
+  margin: 1rem auto;
+  height: 3.5rem;
+  font-size: 1.5rem;
 }
 
 .login-icon {
@@ -47,6 +38,6 @@ a.login-link {
 .home-buttons {
   width: 100%;
   text-decoration: none;
-  background-color: #749541;
+  background-color: #7CB441;
   margin: 0.5em 0;
 }
