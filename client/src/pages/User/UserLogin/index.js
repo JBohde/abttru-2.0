@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import {
-  Button, Form, FormGroup, Input
-} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import axios from 'axios';
 import Logo from '../../../components/Logo';
-
-const logStyle = {
-  textAlign: 'center',
-};
 
 class UserLogin extends Component {
   state = {
@@ -25,27 +19,29 @@ class UserLogin extends Component {
   handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
-    axios.post('/api/abttru/login/user', this.state)
-    .then(res => {
-      if (res.data == null) {
-        this.props.history.push('/login/user');
-      } else {
-        const id = res.data._id;
-        this.setState({
-          _id: id,
-        });
-        this.props.history.push(`/user/${id}`);
-      }
-    })
-    .catch(err => console.log('{{{ there is an error }}}', err))
+    axios
+      .post('/api/abttru/login/user', this.state)
+      .then(res => {
+        if (res.data == null) {
+          this.props.history.push('/login/user');
+        } else {
+          const id = res.data._id;
+          this.setState({
+            _id: id,
+          });
+          this.props.history.push(`/user/${id}`);
+        }
+      })
+      .catch(err => console.log('{{{ there is an error }}}', err));
   };
 
   render() {
     return (
       <div className='login-wrapper'>
         <Logo />
-        <Form className="login-form" onSubmit={this.handleFormSubmit}>
+        <Form className='login-form' onSubmit={this.handleFormSubmit}>
           <FormGroup>
+            <Label for='email'>Email</Label>
             <Input
               name='email'
               type='email'
@@ -53,6 +49,9 @@ class UserLogin extends Component {
               onChange={this.handleInputChange}
               placeholder="Enter 'bohdecoded@gmail.com'"
             />
+          </FormGroup>
+          <FormGroup>
+            <Label for='password'>Password</Label>
             <Input
               name='password'
               type='password'
@@ -60,15 +59,17 @@ class UserLogin extends Component {
               onChange={this.handleInputChange}
               placeholder="Enter 'password'"
             />
+          </FormGroup>
+          <div>
             <Button
+              className='login'
               type='submit'
               onClick={this.handleFormSubmit}
-              style={logStyle}
-              className='btn-lg login'
+              size='lg'
             >
               Login
             </Button>
-          </FormGroup>
+          </div>
         </Form>
       </div>
     );

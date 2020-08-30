@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Button, Form, FormGroup, Input
-} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import axios from 'axios';
 import Logo from '../../../components/Logo';
 
@@ -40,15 +38,19 @@ class DoctorLogin extends Component {
   render() {
     return (
       <div className='login-wrapper'>
-        <Form className="login-form" onSubmit={this.handleFormSubmit}>
+        <Logo />
+        <Form className='login-form' onSubmit={this.handleFormSubmit}>
           <FormGroup>
-            <Logo />
+            <Label for='email'>Email</Label>
             <Input
               name='email'
               value={this.state.email}
               onChange={this.handleInputChange}
               placeholder="Enter 'doogie@gmail.com'"
             />
+          </FormGroup>
+          <FormGroup>
+            <Label for='email'>Password</Label>
             <Input
               name='password'
               type='password'
@@ -56,15 +58,16 @@ class DoctorLogin extends Component {
               onChange={this.handleInputChange}
               placeholder="Enter 'password'"
             />
-            <Button
-              type='submit'
-              onClick={this.handleFormSubmit}
-              style={logStyle}
-              className='btn-lg login'
-            >
-              Login
-          </Button>
           </FormGroup>
+          <Button
+            type='submit'
+            onClick={this.handleFormSubmit}
+            style={logStyle}
+            size='lg'
+            className='login'
+          >
+            Login
+          </Button>
         </Form>
       </div>
     );
