@@ -1,63 +1,69 @@
 import React from 'react';
+import { Form, FormGroup, Input, Label } from 'reactstrap';
 
 const StepOne = props => {
   const {
-    firstName,
-    lastName,
-    email,
-    password,
-    userPhoto,
+    firstName = '',
+    lastName = '',
+    email = '',
+    password = '',
+    userPhoto = '',
     onChange,
   } = props;
   return (
-    <div className='steppy'>
-      <form className='form-wizard'>
-        <h4>First Name:</h4>
-        <input
-          className='input-wizard'
-          type='text'
-          name='firstName'
-          placeholder='First Name'
-          value={firstName}
-          onChange={onChange}
-        />
-        <h4>Last Name:</h4>
-        <input
-          className='input-wizard'
-          type='text'
-          name='lastName'
-          placeholder='Last Name'
-          value={lastName}
-          onChange={onChange}
-        />
-        <h4>Email:</h4>
-        <input
-          className='input-wizard'
-          type='text'
-          name='email'
-          placeholder='Email'
-          value={email}
-          onChange={onChange}
-        />
-        <h4>Password:</h4>
-        <input
-          className='input-wizard'
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={password}
-          onChange={onChange}
-        />
-        <h4>Link to photo:</h4>
-        <input
-          className='input-wizard'
-          type='text'
-          name='userPhoto'
-          placeholder='Link to photo url...'
-          value={userPhoto}
-          onChange={onChange}
-        />
-      </form>
+    <div className='step'>
+      <Form>
+        <FormGroup>
+          <Label for='email'>First Name</Label>
+          <Input
+            type='text'
+            name='firstName'
+            placeholder='First Name'
+            value={firstName}
+            onChange={onChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for='email'>Last Name</Label>
+          <Input
+            type='text'
+            name='lastName'
+            placeholder='Last Name'
+            value={lastName}
+            onChange={onChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for='email'>Email</Label>
+          <Input
+            type='text'
+            name='email'
+            placeholder='Email'
+            value={email}
+            onChange={onChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for='email'>Password</Label>
+          <Input
+            type='password'
+            name='password'
+            placeholder='Password'
+            value={password}
+            onChange={onChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for='email'>Link to Photo</Label>
+          <Input
+            type='text'
+            name='userPhoto'
+            placeholder='Link to photo url...'
+            value={userPhoto}
+            onChange={onChange}
+          />
+        </FormGroup>
+      </Form>
     </div>
   );
 };

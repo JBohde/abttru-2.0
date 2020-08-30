@@ -5,7 +5,7 @@ import Step1 from './StepOne';
 import Step2 from './StepTwo';
 import Step3 from './StepThree';
 import Step4 from './StepFour';
-import './Dropdown.css';
+
 import './FullForm.css';
 
 class FullForm extends Component {
@@ -121,7 +121,6 @@ class FullForm extends Component {
       },
       {
         name: 'Confirm',
-        nextButtonText: 'Save',
         component: (
           <Step4
             firstName={firstName}
@@ -146,7 +145,7 @@ class FullForm extends Component {
     ];
 
     return (
-      <div className="step-progress">
+      <div className='step-progress'>
         <StepZilla
           steps={steps}
           showNavigation={true}
