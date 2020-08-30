@@ -5,11 +5,9 @@ import UserJumbotron from '../../../components/UserJumbotron';
 import './SavedRecipes.css';
 import PiePlot from '../../../components/PiePlot';
 import { RingLoader } from 'react-spinners';
-import {
-  Container, Col, Row, Button
-} from 'reactstrap';
+import { Container, Col, Row, Button } from 'reactstrap';
 
-class PatientSavedRecipe extends React.Component {
+class SavedRecipes extends React.Component {
   state = {
     userId: this.props.match.params.id,
     recipeId: '',
@@ -29,7 +27,7 @@ class PatientSavedRecipe extends React.Component {
     showResults: false,
     loading: true,
     isFlipped: 'false',
-    flipClass: ''
+    flipClass: '',
   };
 
   componentDidMount() {
@@ -53,16 +51,19 @@ class PatientSavedRecipe extends React.Component {
     const edemamUri = encodeURIComponent(recipeUri);
     axios
       .get(
-        `https://api.edamam.com/search?r=${edemamUri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`
+        `https://api.edamam.com/search?r=${edemamUri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
       )
       .then(result => {
         const recipe = result.data[0];
         const formattedRecipe = [{ recipe }];
-        this.setState({
-          recipeData: formattedRecipe,
-          showResults: true,
-          loading: false,
-        });
+        this.setState(
+          {
+            recipeData: formattedRecipe,
+            showResults: true,
+            loading: false,
+          },
+          console.log(this.state),
+        );
       });
   };
 
@@ -74,11 +75,13 @@ class PatientSavedRecipe extends React.Component {
 
   changeRecipe = event => {
     this.setState({ loading: true, showResults: false });
-    const { target: { id } } = event;
+    const {
+      target: { id },
+    } = event;
     const uri = encodeURIComponent(id);
     axios
       .get(
-        `https://api.edamam.com/search?r=${uri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`
+        `https://api.edamam.com/search?r=${uri}&app_id=76461587&app_key=b829a690de0595f2fa5b7cb02db4cd99`,
       )
       .then(result => {
         const position = this.state.recipes.map(r => r.uri).indexOf(id);
@@ -94,14 +97,10 @@ class PatientSavedRecipe extends React.Component {
   };
 
   makeCard = () => {
-    const {
-      recipes, flipClass, index, noteText
-    } = this.state;
+    const { recipes, flipClass, index, noteText } = this.state;
     const savedCard = recipes.map(recipe => {
       const { saveNote, flipCard } = this;
-      const {
-        _id, name, image, link, notes
-      } = recipe;
+      const { _id, name, image, link, notes } = recipe;
       return (
         <RecipeCard
           saveNote={saveNote}
@@ -128,14 +127,15 @@ class PatientSavedRecipe extends React.Component {
     return this.setState({ isFlipped: 'false', flipClass: 'flip-card' });
   };
 
-  makeNotes = notes => notes.map(note => (
+  makeNotes = notes =>
+    notes.map(note => (
       <div key={note._id} className='notes'>
         {note.body}
         <button className='delete-note' id={note._id} onClick={this.deleteNote}>
           x
         </button>
       </div>
-  ));
+    ));
 
   saveNote = event => {
     event.preventDefault();
@@ -172,14 +172,21 @@ class PatientSavedRecipe extends React.Component {
 
   render() {
     const savedSelect = this.state.recipes.map(recipe => {
-      const {
-        _id, uri, link, name, image
-      } = recipe;
+      const { _id, uri, link, name, image } = recipe;
       return (
         <li className='recipe' id={uri} key={_id}>
           <div className='recipe-wrapper'>
-            <a href={link} title={name} target='_blank' rel='noopener noreferrer'>
-              <img className='img-responsive patient-photo' src={image} alt='alt' />
+            <a
+              href={link}
+              title={name}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <img
+                className='img-responsive patient-photo'
+                src={image}
+                alt='alt'
+              />
             </a>
             <div className='recipe-card-info'>
               <h6 className='recipe-name'>{name}</h6>
@@ -189,7 +196,7 @@ class PatientSavedRecipe extends React.Component {
                 onClick={this.changeRecipe}
               >
                 GET RECIPE CARD
-            </Button>
+              </Button>
             </div>
           </div>
         </li>
@@ -199,8 +206,11 @@ class PatientSavedRecipe extends React.Component {
     const {
       userId,
       riskFactor,
+      bpSystolic,
+      bpDiastolic,
       dietRecommendation,
       dietRestriction,
+      waist,
       isUserPage,
       userPhoto,
       loading,
@@ -208,7 +218,7 @@ class PatientSavedRecipe extends React.Component {
       recipes,
       index,
     } = this.state;
-
+    console.log(this.state);
     return (
       <div className='savedPage'>
         <UserJumbotron
@@ -216,7 +226,10 @@ class PatientSavedRecipe extends React.Component {
           userId={userId}
           riskFactor={riskFactor}
           dietLabel={dietRecommendation}
+          bpSystolic={bpSystolic}
+          bpDiastolic={bpDiastolic}
           healthLabel={dietRestriction}
+          waist={waist}
           isUserPage={isUserPage}
           userPhoto={userPhoto}
         />
@@ -224,7 +237,7 @@ class PatientSavedRecipe extends React.Component {
           {loading ? (
             <Col xs={{ size: 6, offset: 3 }}>
               <div className='ring-loader'>
-                <RingLoader loading={loading} size={100} color={'#EC0B43'} />
+                <RingLoader loading={loading} size={100} color={'#E91547'} />
               </div>
             </Col>
           ) : null}
@@ -277,7 +290,10 @@ class PatientSavedRecipe extends React.Component {
                   </div>
                 </Col>
                 <Col xs={12} md={6} lg={4}>
-                  <PiePlot data={this.state.recipeData} recipeIndex={this.state.activeIndex} />
+                  <PiePlot
+                    data={this.state.recipeData}
+                    recipeIndex={this.state.activeIndex}
+                  />
                 </Col>
               </Row>
             </Container>
@@ -288,4 +304,4 @@ class PatientSavedRecipe extends React.Component {
   }
 }
 
-export default PatientSavedRecipe;
+export default SavedRecipes;

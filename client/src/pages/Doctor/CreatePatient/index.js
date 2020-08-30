@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Container, Card, Alert } from 'reactstrap';
+import { Container, Row, Col, Button, Alert } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StepZilla from 'react-stepzilla';
 
@@ -10,9 +10,9 @@ import Step2 from '../../../components/MultiStepForm/StepTwo';
 import Step3 from '../../../components/MultiStepForm/StepThree';
 import Step4 from '../../../components/MultiStepForm/StepFour';
 
-import './CreateUser.css';
+import './CreatePatient.css';
 
-class Create extends React.Component {
+class CreatePatient extends React.Component {
   constructor(props) {
     super(props);
 
@@ -157,37 +157,52 @@ class Create extends React.Component {
 
     return (
       <Container>
-        <Card className='add-panel'>
-          <h3 className='add-patient list'>Add Patient</h3>
-          <h5 className='list'>
-            <Link to={{ pathname: `/doctor/${id}` }} id='doc-home'>
-              <FontAwesomeIcon icon='list' />
-              &nbsp; Doctor Home
-            </Link>
-          </h5>
-          <div className='step-progress'>
-            <StepZilla
-              steps={steps}
-              showNavigation={true}
-              showSteps={true}
-              stepsNavigation={true}
-              preventEnterSubmission={true}
-              nextTextOnFinalActionStep={'Review'}
-              hocValidationAppliedTo={[3]}
-              startAtStep={0}
-              prevBtnOnLastStep={true}
-              onStepChange={step => window.sessionStorage.setItem('step', step)}
-            />
-          </div>
-          <Button
-            className='btn-lg submit'
-            onClick={this.onSubmit}
-            color='primary'
-          >
-            Submit
-          </Button>
-        </Card>
-
+        <Row>
+          <Col xs={12} md={2} className='mt-4'>
+            <h6>
+              <Link to={{ pathname: `/doctor/${id}` }}>
+                <FontAwesomeIcon icon='arrow-alt-circle-left' /> BACK TO
+                PATIENTS
+              </Link>
+            </h6>
+          </Col>
+          <Col xs={12} md={8}>
+            <Container className='step-container pt-3 mt-3 mt-lg-5'>
+              <h3 className='text-center'>EDIT PATIENT</h3>
+              <div className='step-progress'>
+                <StepZilla
+                  steps={steps}
+                  showNavigation={true}
+                  showSteps={true}
+                  stepsNavigation={true}
+                  preventEnterSubmission={true}
+                  nextTextOnFinalActionStep={'Review'}
+                  hocValidationAppliedTo={[3]}
+                  startAtStep={0}
+                  prevBtnOnLastStep={true}
+                  onStepChange={step =>
+                    window.sessionStorage.setItem('step', step)
+                  }
+                />
+              </div>
+              <Button
+                className='btn-lg'
+                onClick={this.onSubmit}
+                color='primary'
+                style={{
+                  backgroundColor: '#185477',
+                  position: 'absolute',
+                  bottom: '0',
+                  width: '6rem',
+                  margin: '0 auto',
+                  right: '8rem',
+                }}
+              >
+                Submit
+              </Button>
+            </Container>
+          </Col>
+        </Row>
         <br />
         {!isValid && (
           <Alert color='danger'>Please fill the required form fields.</Alert>
@@ -197,4 +212,4 @@ class Create extends React.Component {
   }
 }
 
-export default Create;
+export default CreatePatient;

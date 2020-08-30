@@ -11,7 +11,7 @@ import Step4 from '../../../components/MultiStepForm/StepFour';
 
 import '../../../components/MultiStepForm/FullForm.css';
 
-class EditUser extends React.Component {
+class EditPatient extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -181,4 +181,4 @@ class EditUser extends React.Component {
   }
 }
 
-export default EditUser;
+export default EditPatient;

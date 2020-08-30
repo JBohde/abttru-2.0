@@ -6,9 +6,9 @@ import { Container, Row, Card, CardBody } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
-import './UserInfo.css';
+import './PatientInfo.css';
 
-class UserInfo extends React.Component {
+class PatientInfo extends React.Component {
   state = {
     patientId: this.props.match.params.id,
     doctorId: '',
@@ -131,7 +131,7 @@ class UserInfo extends React.Component {
                 id={_id}
                 className='mx-2 my-2'
                 onClick={this.deletePatient.bind(this)}
-                color='#EC0B43'
+                color='#E91547'
                 style={{ cursor: 'pointer' }}
                 icon={faTrashAlt}
               />
@@ -143,4 +143,4 @@ class UserInfo extends React.Component {
   }
 }
 
-export default UserInfo;
+export default PatientInfo;
