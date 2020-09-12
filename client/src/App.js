@@ -17,18 +17,18 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter keyLength={12}>
+        <NavigationBar />
         <div className='abttru'>
-          <NavigationBar />
           <div className='main'>
             <Route exact path='/' component={Home} />
             <Route path='/login/doctor' component={DoctorLogin} />
             <Route path='/doctor/:id' component={Doctor} />
-            <Route path='/create/:id' component={CreateUser} />
-            <Route path='/edit/:id' component={EditUser} />
-            <Route path='/show/:id' component={UserInfo} />
+            <Route path='/patient/:id' component={PatientInfo} />
+            <Route path='/create/:id' component={CreatePatient} />
+            <Route path='/edit/:id' component={EditPatient} />
             <Route path='/login/user' component={UserLogin} />
             <Route path='/user/:id' component={User} />
-            <Route path='/savedrecipes/:id' component={SavedRecipes} />
+            <Route path='/recipes/:id' component={SavedRecipes} />
             <Route path='/guest' component={Guest} />
           </div>
           <Footer />

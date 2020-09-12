@@ -35,7 +35,7 @@ class EditPatient extends React.Component {
     const { _id, doctorId } = this.state;
     axios.put(`/api/abttru/user/${_id}`, this.state).then(() =>
       this.props.history.push({
-        pathname: `/show/${_id}`,
+        pathname: `/patient/${_id}`,
         params: { data: this.state, doctorId },
       }),
     ); // redirect back to the show page

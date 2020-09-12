@@ -38,7 +38,7 @@ class Doctor extends React.Component {
             <div>
               <Link
                 to={{
-                  pathname: `/show/${_id}`,
+                  pathname: `/patient/${_id}`,
                   params: {
                     data: this.state,
                     doctorId: id,
