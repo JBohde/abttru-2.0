@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 dotenv.config();
+
 // Configure to use body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -29,15 +30,20 @@ app.use(passport.session());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../client/build'));
+  app.use(express.static('../client/build/static'));
   app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    res.sendFile(path.join(__dirname, '../client/build/'));
   });
 }
 // Add API Routes
 app.use('/api', routes);
 
-
+// Error handler
+app.use(function (err, req, res, next) {
+  console.log('====== ERROR =======');
+  console.error(err.stack);
+  res.status(500);
+});
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
