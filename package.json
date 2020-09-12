@@ -27,7 +27,8 @@
     "client": "node scripts/start-client.js",
     "start": "concurrently \"node server/server.js\" \"npm run client\"",
     "dev": "concurrently \"nodemon server/server.js\" \"npm run client\"",
-    "build": "node scripts/build.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "seedDB": "node scripts/seedDB.js"
   },
