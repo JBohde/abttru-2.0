@@ -21,7 +21,7 @@
     "react-history": "^0.18.2",
     "react-plotly.js": "^2.2.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1",
+    "react-scripts": "^3.1.1",
     "react-spinners": "^0.3.2",
     "react-stepzilla": "^6.0.0",
     "reactstrap": "^6.4.0"
