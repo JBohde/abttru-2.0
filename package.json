@@ -28,8 +28,7 @@
     "start": "concurrently \"node server/server.js\" \"npm run client\"",
     "dev": "concurrently \"nodemon server/server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
-    "seedDB": "node scripts/seedDB.js",
-    "heroku-postbuild": "echo Skip build on Heroku"
+    "seedDB": "node scripts/seedDB.js"
   },
   "repository": {
     "type": "git",
