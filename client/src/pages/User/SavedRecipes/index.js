@@ -11,8 +11,8 @@ class SavedRecipes extends React.Component {
   state = {
     userId: this.props.match.params.id,
     recipeId: '',
-    name: '',
-    password: '',
+    firstName: '',
+    lastName: '',
     userPhoto: '',
     riskFactor: '',
     dietRecommendation: '',
@@ -26,7 +26,7 @@ class SavedRecipes extends React.Component {
     isUserPage: false,
     showResults: false,
     loading: true,
-    isFlipped: 'false',
+    isFlipped: false,
     flipClass: '',
   };
 
@@ -56,28 +56,21 @@ class SavedRecipes extends React.Component {
       .then(result => {
         const recipe = result.data[0];
         const formattedRecipe = [{ recipe }];
-        this.setState(
-          {
-            recipeData: formattedRecipe,
-            showResults: true,
-            loading: false,
-          },
-          console.log(this.state),
-        );
+        this.setState({
+          recipeData: formattedRecipe,
+          loading: false,
+          showResults: true,
+        });
       });
   };
 
   onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   changeRecipe = event => {
     this.setState({ loading: true, showResults: false });
-    const {
-      target: { id },
-    } = event;
+    const { id } = event.target;
     const uri = encodeURIComponent(id);
     axios
       .get(
@@ -97,14 +90,14 @@ class SavedRecipes extends React.Component {
   };
 
   makeCard = () => {
-    const { recipes, flipClass, index, noteText } = this.state;
+    const { recipes, isFlipped, index, noteText } = this.state;
     const savedCard = recipes.map(recipe => {
       const { saveNote, flipCard } = this;
       const { _id, name, image, link, notes } = recipe;
       return (
         <RecipeCard
           saveNote={saveNote}
-          flipClass={flipClass}
+          isFlipped={isFlipped}
           flipCard={flipCard}
           image={image}
           name={name}
@@ -121,10 +114,7 @@ class SavedRecipes extends React.Component {
 
   flipCard = () => {
     const { isFlipped } = this.state;
-    if (isFlipped === 'false') {
-      return this.setState({ isFlipped: 'true', flipClass: 'flip-card flip' });
-    }
-    return this.setState({ isFlipped: 'false', flipClass: 'flip-card' });
+    this.setState({ isFlipped: !isFlipped });
   };
 
   makeNotes = notes =>
@@ -218,7 +208,7 @@ class SavedRecipes extends React.Component {
       recipes,
       index,
     } = this.state;
-    console.log(this.state);
+
     return (
       <div className='savedPage'>
         <UserJumbotron
@@ -249,7 +239,7 @@ class SavedRecipes extends React.Component {
                 <Col xs={12} md={{ size: 8, offset: 2 }}>
                   <div className='search-wrapper'>
                     <div className='dropdown'>
-                      <button
+                      <Button
                         className='btn btn-secondary dropdown-toggle'
                         type='button'
                         id='dropdownMenuButton'
@@ -258,7 +248,7 @@ class SavedRecipes extends React.Component {
                         aria-expanded='false'
                       >
                         RECIPE BOX
-                      </button>
+                      </Button>
                       <ul className='dropdown-menu scrollable-menu' role='menu'>
                         {savedSelect}
                       </ul>
@@ -292,7 +282,7 @@ class SavedRecipes extends React.Component {
                 <Col xs={12} md={6} lg={4}>
                   <PiePlot
                     data={this.state.recipeData}
-                    recipeIndex={this.state.activeIndex}
+                    activeIndex={this.state.activeIndex}
                   />
                 </Col>
               </Row>

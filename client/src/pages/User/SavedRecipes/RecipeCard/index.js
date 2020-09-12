@@ -10,7 +10,7 @@ const SavedRecipeCard = props => {
     link,
     name,
     flipCard,
-    flipClass,
+    isFlipped,
     notes,
     saveNote,
     noteText,
@@ -18,20 +18,16 @@ const SavedRecipeCard = props => {
   } = props;
 
   return (
-    <div className="carousel">
-      <div className={flipClass} key={id}>
+    <div className='carousel'>
+      <div className={`flip-card ${isFlipped && 'flip'}`} key={id}>
         <div className='flip-card-inner'>
           <div className='flip-card-front'>
-            <img
-              className='recipe-image'
-              src={image}
-              alt='card'
-            />
+            <img className='recipe-image' src={image} alt='card' />
             <div className='recipe-info'>
               <h4 className='recipe-label'>{name}</h4>
             </div>
             <FontAwesomeIcon
-              icon='undo'
+              icon='redo'
               size='2x'
               className='arrow-front'
               onClick={flipCard}
