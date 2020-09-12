@@ -4,10 +4,6 @@
     height: auto;
 }
 
-.blah {
-    width: 50% !important;
-}
-
 .hermanos,
 .copy {
     display: table;
@@ -15,8 +11,7 @@
     text-align: center;
 }
 
-.icon,
-.footnav {
+.icon {
     margin: 5px;
     color: white;
     text-align: center;

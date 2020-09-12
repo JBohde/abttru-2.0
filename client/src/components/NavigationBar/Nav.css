@@ -5,15 +5,8 @@
     border-bottom: 2px solid #E91547;
   }
 
-.navbar.navbar-default .navbar-toggler-icon {
-    background-image: url('https://mdbootstrap.com/img/svg/hamburger2.svg?color=fff');
-}
-
-.nav-item {
+.nav-item,
+.nav-link {
     color: white;
     float:right;
-}
-
-.home {
-    margin-right: 5px;
 }

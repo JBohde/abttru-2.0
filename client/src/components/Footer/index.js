@@ -1,8 +1,11 @@
 /* eslint-disable global-require */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserMd } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import './Footer.css';
 
@@ -30,42 +33,34 @@ const Footer = () => (
           make a better you.
         </p>
       </Col>
-      <Col xs={6} md={2} className='blah'>
-        <h5 className='footnav'> Resources </h5>
-        <ul className='list-unstyled quick-links'>
-          <li>
-            <a
-              href='https://github.com/a-better-you-2/abttru-2.0#abttru-20'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <p className='icon'>
-                <i className='fa fa-angle-double-right'></i>Readme
-              </p>
-            </a>
-          </li>
-        </ul>
+      <Col xs={6} md={2} className='text-center'>
+        <h5 style={{ marginBottom: '0.25rem' }}> Resources </h5>
+        <a
+          href='https://github.com/a-better-you-2/abttru-2.0#abttru-20'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          <FontAwesomeIcon icon={faGithub} size={'3x'} className='icon' />
+        </a>
       </Col>
-      <Col xs={6} md={2} className='blah'>
-        <h5 className='footnav'> Navigation </h5>
+      <Col xs={6} md={2} className='text-center'>
+        <h5> Navigation </h5>
         <ul className='list-unstyled quick-links'>
           <li>
-            <h3 className='footnav'>
-              <a href='/login/doctor'>
+            <h3>
+              <Link to='/login/doctor'>
                 <FontAwesomeIcon icon={faUserMd} className='icon' />{' '}
-              </a>
-              <a href='/login/user'>
+              </Link>
+              <Link to='/login/user'>
                 <FontAwesomeIcon icon={faUser} className='icon' />
-              </a>
+              </Link>
             </h3>
           </li>
         </ul>
       </Col>
-
-      {/* </div> */}
       <Col xs={12} md={4}>
         <div className='hermanos'>
-          <h5>Connect with our team!</h5>
+          <h5 style={{ marginBottom: 0 }}>Connect with our team!</h5>
           <a
             href='https://github.com/a-vargasmarte'
             target='_blank'

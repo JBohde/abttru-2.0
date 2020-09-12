@@ -1,38 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
-import './Nav.css';
 
-const linkStyle = {
-  color: 'white',
-  fontSize: '16px',
-  float: 'right',
-};
+import './Nav.css';
 
 const logoStyle = {
   width: '50px',
   height: 'auto',
 };
 
-const Nav = () => (
-  <nav className="navbar navbar-default">
-    <Link to="/">
-      <div className="navbar-left logo">
-        <img src={require('./abttru-logo2.png')} style={logoStyle} alt="logo" />
-      </div>
-    </Link>
-    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div className="navbar-nav">
-        <Link to="/">
-          <li className="nav-item">
-            <FontAwesomeIcon icon={faHome} style={linkStyle} />
-            <span className="home">Home </span>
-          </li>
-        </Link>
-      </div>
-    </div>
-  </nav>
-);
+const NavigationBar = props => {
+  const [collapsed, setCollapsed] = useState(true);
 
-export default Nav;
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
+  return (
+    <Navbar color='faded' dark>
+      <NavbarBrand href='/' className='mr-auto'>
+        <img src={require('./abttru-logo2.png')} style={logoStyle} alt='logo' />
+      </NavbarBrand>
+      <NavbarToggler onClick={toggleNavbar} className='mr-2' />
+      <Collapse isOpen={!collapsed} navbar>
+        <Nav navbar>
+          <NavItem>
+            <NavLink href='/'>
+              <FontAwesomeIcon icon={faHome} className='mr-2' /> HOME
+            </NavLink>
+          </NavItem>
+        </Nav>
+      </Collapse>
+    </Navbar>
+  );
+};
+
+export default NavigationBar;
