@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Carousel from '../../components/Carousel';
 
-import Logo from '../../components/Home/Logo/Logo';
+import Logo from '../../components/Logo';
 
 import './Guest.css';
 
@@ -13,7 +13,7 @@ class Guest extends React.Component {
         <Row>
           <Col xs={4} />
           <Col xs={4}>
-            <Logo />
+            <Logo className='text-center' />
           </Col>
           <Col xs={4} />
         </Row>

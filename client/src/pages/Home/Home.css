@@ -1,7 +1,6 @@
 .abttru-logo {
   display: flex;
-  margin: 1rem;
-  text-align: center;
+  margin: 1rem auto;
   height: 150px;
 }
 
