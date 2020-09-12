@@ -12,22 +12,22 @@ class PiePlot extends Component {
       plotObjects: [],
       showingPlot: [],
       plotLayout: {},
-      recipeIndex: 0,
+      activeIndex: 0,
       nutrientIndex: 0,
     };
   }
 
   componentDidMount() {
-    const { data, recipeIndex } = this.props;
-    this.setState({ data, recipeIndex }, () => this.createPlot());
+    const { data, activeIndex } = this.props;
+    this.setState({ data, activeIndex }, () => this.createPlot());
   }
 
   componentDidUpdate(nextProps) {
-    const { data, recipeIndex } = this.props;
+    const { data, activeIndex } = this.props;
     if (nextProps.data !== data) {
       this.createPlot();
     }
-    if (nextProps.recipeIndex !== recipeIndex) {
+    if (nextProps.activeIndex !== activeIndex) {
       this.nextRecipe();
     }
   }
@@ -187,31 +187,31 @@ class PiePlot extends Component {
     recipeDigest.forEach((digest, index) => {
       digest.forEach((nutrient, i) => {
         if (
-          nutrient.label === 'Fat'
-          || nutrient.label === 'Carbs'
-          || nutrient.label === 'Protein'
+          nutrient.label === 'Fat' ||
+          nutrient.label === 'Carbs' ||
+          nutrient.label === 'Protein'
         ) {
           plotObjects[index][0].data.values.push(
-            nutrient.total / recipeYield[index]
+            nutrient.total / recipeYield[index],
           );
           plotObjects[index][0].data.labels.push(nutrient.label);
 
           if (nutrient.label === 'Fat') {
             nutrient.sub.forEach(fat => {
               plotObjects[index][1].data.values.push(
-                fat.total / recipeYield[index]
+                fat.total / recipeYield[index],
               );
               plotObjects[index][1].data.labels.push(fat.label);
             });
           }
         } else if ((i > 3) & (i < 11)) {
           plotObjects[index][2].data.values.push(
-            nutrient.total / recipeYield[index]
+            nutrient.total / recipeYield[index],
           );
           plotObjects[index][2].data.labels.push(nutrient.label);
         } else if ((i > 10) & (i < 24)) {
           plotObjects[index][3].data.values.push(
-            nutrient.total / recipeYield[index]
+            nutrient.total / recipeYield[index],
           );
           plotObjects[index][3].data.labels.push(nutrient.label);
         }
@@ -226,9 +226,9 @@ class PiePlot extends Component {
   };
 
   nextRecipe = () => {
-    const { data, recipeIndex } = this.state;
-    const nextIndex = recipeIndex === data.length - 1 ? 0 : recipeIndex + 1;
-    this.setState({ recipeIndex: nextIndex });
+    const { data, activeIndex } = this.state;
+    const nextIndex = activeIndex === data.length - 1 ? 0 : activeIndex + 1;
+    this.setState({ activeIndex: nextIndex });
   };
 
   switchPlot = event => {
@@ -237,12 +237,12 @@ class PiePlot extends Component {
   };
 
   render() {
-    const { plotObjects, recipeIndex, nutrientIndex } = this.state;
+    const { plotObjects, activeIndex, nutrientIndex } = this.state;
     const { path } = this.props;
     return (
       <div className='plot-wrapper'>
-        {path !== '/guest'
-          && <div className="graph-buttons">
+        {path !== '/guest' && (
+          <div className='graph-buttons'>
             <Button className='btn-sm' onClick={this.switchPlot} value={0}>
               Macros
             </Button>
@@ -256,13 +256,13 @@ class PiePlot extends Component {
               Vitamins
             </Button>
           </div>
-        }
-        {plotObjects.length > 0
-          && <Plot
-            data={[plotObjects[recipeIndex][nutrientIndex].data]}
-            layout={plotObjects[recipeIndex][nutrientIndex].layout}
+        )}
+        {plotObjects.length > 0 && (
+          <Plot
+            data={[plotObjects[activeIndex][nutrientIndex].data]}
+            layout={plotObjects[activeIndex][nutrientIndex].layout}
           />
-        }
+        )}
       </div>
     );
   }

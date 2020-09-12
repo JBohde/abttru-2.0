@@ -2,20 +2,22 @@ import React from 'react';
 import { Jumbotron, Container, Row, Col, Button, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
+  faSearch,
+  faBookOpen,
+} from '@fortawesome/free-solid-svg-icons';
 
 import cholesterolIcon from './icons/high-cholesterol.png';
 import diabetesIcon from './icons/diabetes.png';
 import healthyIcon from './icons/healthy.png';
 import weightIcon from './icons/weight.png';
-
 import glucoseIcon from './icons/glucometer.png';
 import restrictionIcon from './icons/restriction.png';
 import pressureIcon from './icons/pressure.png';
-import recipeIcon from './icons/recipe.png';
 import tapeIcon from './icons/tape.png';
 import dietIcon from './icons/diet.png';
-import searchIcon from './icons/search.png';
+
 import './UserJumbotron.css';
 
 const determineRiskIcon = risk => {
@@ -159,10 +161,7 @@ class UserJumbotron extends React.Component {
                     className='health-icon'
                   />
                   <span className='health_stats'>
-                    Restriction: <br />
-                    {dietRestriction && dietRestriction.length > 0
-                      ? dietRestriction
-                      : 'None'}
+                    Restriction: <br /> {dietRestriction}
                   </span>
                 </Col>
               </Row>
@@ -184,19 +183,25 @@ class UserJumbotron extends React.Component {
                 style={{
                   color: this.savedTabColor(),
                   margin: '0.25rem 0',
-                  fontSize: '.75rem',
-                  fontWeight: 'bold',
+                  fontSize: '.85rem',
+                  display: 'flex',
+                  justifyContent: 'center',
                 }}
               >
-                <img src={searchIcon} alt='search icon' className='tab-icon' />
-                New Search{' '}
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className='tab-icon'
+                  alt='search icon'
+                  size='2x'
+                />
+                &nbsp; NEW SEARCH
               </p>
             </Button>
           </Link>
 
           <Link
             to={{
-              pathname: `/savedrecipes/${userId}`,
+              pathname: `/recipes/${userId}`,
               params: { id: userId },
             }}
           >
@@ -208,12 +213,18 @@ class UserJumbotron extends React.Component {
                 style={{
                   color: this.profileTabColor(),
                   margin: '0.25rem 0',
-                  fontSize: '.75rem',
-                  fontWeight: 'bold',
+                  fontSize: '.85rem',
+                  display: 'flex',
+                  justifyContent: 'center',
                 }}
               >
-                <img src={recipeIcon} alt='search icon' className='tab-icon' />{' '}
-                Saved Recipes
+                <FontAwesomeIcon
+                  icon={faBookOpen}
+                  alt='saved recipes icon'
+                  className='tab-icon'
+                  size='2x'
+                />
+                &nbsp; SAVED RECIPES
               </p>
             </Button>
           </Link>
