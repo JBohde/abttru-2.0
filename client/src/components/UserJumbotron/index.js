@@ -89,14 +89,14 @@ class UserJumbotron extends React.Component {
           <Row className='patient-profile'>
             <Col xs={12} md={4}>
               <div className='user-image'>
-                {userPhoto ? (
+                {userPhoto.length ? (
                   <Media
                     className='img-fluid'
                     src={userPhoto}
                     alt={`${firstName} ${lastName}`}
                   />
                 ) : (
-                  <FontAwesomeIcon icon={faUser} className='user-icon' />
+                  <FontAwesomeIcon icon={faUser} size='5x' style={ {color: '#2c3e50'}}className='user-icon' />
                 )}
               </div>
             </Col>
