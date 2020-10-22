@@ -96,7 +96,12 @@ class UserJumbotron extends React.Component {
                     alt={`${firstName} ${lastName}`}
                   />
                 ) : (
-                  <FontAwesomeIcon icon={faUser} size='5x' style={ {color: '#2c3e50'}}className='user-icon' />
+                  <FontAwesomeIcon
+                   icon={faUser}
+                   size='4x'
+                   style={ {color: '#FFF'}}
+                   className='user-icon'
+                  />
                 )}
               </div>
             </Col>

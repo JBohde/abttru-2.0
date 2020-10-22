@@ -42,14 +42,14 @@
 
 .user-image {
   background-size: cover;
-  background-color: #ffffff;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
+  background-color: #185477;
+  width: 85px;
+  height: 85px;
+  margin: 0.85rem auto;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  border: 4px solid #2c3e50;
+  border: 4px solid #185477;
   border-radius: 50%;
   overflow: hidden;
 }
