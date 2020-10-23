@@ -28,16 +28,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Add API Routes
+app.use('/api', routes);
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../client/build'));
   app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    res.sendFile(path.join(__dirname, './client/build/index.html'));
   });
 }
 
-// Add API Routes
-app.use('/api', routes);
 
 // Error handler
 app.use(function (err, req, res, next) {
