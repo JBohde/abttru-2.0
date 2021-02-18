@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+
 import Home from './pages/Home';
 import Doctor from './pages/Doctor';
 import DoctorLogin from './pages/Doctor/DoctorLogin';
@@ -12,6 +13,8 @@ import SavedRecipes from './pages/User/SavedRecipes';
 import Guest from './pages/Guest';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
+
+require('dotenv').config()
 
 class App extends Component {
   render() {
